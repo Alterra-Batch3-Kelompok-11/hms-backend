@@ -1,6 +1,7 @@
-package hms_backend
+package main
 
 import (
+	"fmt"
 	"hms-backend/configs"
 	"hms-backend/databases"
 	"hms-backend/routes"
@@ -11,5 +12,5 @@ func main() {
 	configs.InitConfig()
 
 	e := routes.New(databases.DB)
-	e.Logger.Fatal(":", e.Start(configs.Cfg.ApiPort))
+	e.Logger.Fatal(e.Start(fmt.Sprintf("%s%s", ":", configs.Cfg.ApiPort)))
 }
