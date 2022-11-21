@@ -1,6 +1,7 @@
 package authUseCase
 
 import (
+	"errors"
 	"gorm.io/gorm"
 	"hms-backend/dto"
 	"hms-backend/helpers"
@@ -62,6 +63,25 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 		return dto.UserRes{}, err
 	}
 
+	// TODO Check License Number if Exist
+	if payload.RoleID == 2 {
+		existDoctor, err := uc.doctorRepository.GetByLicenseNumber(payload.LicenseNumber)
+		if err != nil {
+			return dto.UserRes{}, err
+		}
+		if existDoctor.ID != 0 {
+			return dto.UserRes{}, errors.New("license number already exist")
+		}
+	} else if payload.RoleID == 3 {
+		existNurse, err := uc.nurseRepository.GetByLicenseNumber(payload.LicenseNumber)
+		if err != nil {
+			return dto.UserRes{}, err
+		}
+		if existNurse.ID != 0 {
+			return dto.UserRes{}, errors.New("license number already exist")
+		}
+	}
+
 	user := models.User{
 		Model:    gorm.Model{},
 		RoleId:   payload.RoleID,
@@ -77,7 +97,7 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 
 	licenseNumber := ""
 
-	if payload.RoleID == 2 {
+	if payload.RoleID == 2 { // if role as doctor
 		doctor := models.Doctor{
 			Model:         gorm.Model{},
 			UserId:        resCreateUsr.ID,
@@ -91,7 +111,7 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 		}
 
 		licenseNumber = resCreateDtr.LicenseNumber
-	} else if payload.RoleID == 3 {
+	} else if payload.RoleID == 3 { // if role as nurse
 		nurse := models.Nurse{
 			Model:         gorm.Model{},
 			UserId:        resCreateUsr.ID,
