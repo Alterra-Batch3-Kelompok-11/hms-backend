@@ -85,6 +85,15 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 		}
 	}
 
+	// TODO check username exist
+	usernameExist, err := uc.userRepository.GetByUsername(payload.Username)
+	if err != nil {
+		return dto.UserRes{}, err
+	}
+	if usernameExist.ID != 0 {
+		return dto.UserRes{}, errors.New("username already taken")
+	}
+
 	user := models.User{
 		Model:    gorm.Model{},
 		RoleId:   payload.RoleID,
