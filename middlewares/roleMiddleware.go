@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func RoleMiddleware(next echo.HandlerFunc, allowedRoles [...]uint) echo.HandlerFunc {
+func RoleMiddleware(next echo.HandlerFunc, allowedRoles []uint) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		headerToken := c.Request().Header.Get("Authorization")
 		token := strings.Split(headerToken, " ")[1]

@@ -39,8 +39,8 @@ func (ctrl *authController) Login(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, dto.Response{
-		Status:  http.StatusBadRequest,
-		Message: err.Error(),
+		Status:  http.StatusOK,
+		Message: "login success",
 		Data:    loginRes,
 	})
 
@@ -67,8 +67,8 @@ func (ctrl *authController) SignUp(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, dto.Response{
-		Status:  http.StatusBadRequest,
-		Message: err.Error(),
+		Status:  http.StatusOK,
+		Message: "signup success",
 		Data:    user,
 	})
 

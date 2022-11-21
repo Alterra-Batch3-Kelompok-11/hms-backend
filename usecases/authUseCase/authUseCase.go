@@ -29,14 +29,17 @@ func New(rep userRepository.UserRepository, dtrRep doctorRepository.DoctorReposi
 
 func (uc *authUseCase) Login(username, password string) (dto.LoginRes, error) {
 
-	hashedPass, err := helpers.HashPassword(password)
+	user, err := uc.userRepository.GetByUsername(username)
 	if err != nil {
 		return dto.LoginRes{}, err
 	}
 
-	user, err := uc.userRepository.GetByUsernamePassword(username, hashedPass)
+	checkPass, err := helpers.CheckPasswordHash(password, user.Password)
 	if err != nil {
 		return dto.LoginRes{}, err
+	}
+	if !checkPass {
+		return dto.LoginRes{}, errors.New("record not found")
 	}
 
 	token, err := middlewares.CreateToken(user.ID, user.Username, user.RoleId)

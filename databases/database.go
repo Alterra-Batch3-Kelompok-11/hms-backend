@@ -42,7 +42,6 @@ func InitialMigration() {
 		&models.Speciality{},
 		&models.Doctor{},
 		&models.Nurse{},
-		&models.DoctorNurse{},
 		&models.DoctorSchedule{},
 		&models.Patient{},
 		&models.OutpatientSession{},

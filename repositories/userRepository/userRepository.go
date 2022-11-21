@@ -9,6 +9,7 @@ type UserRepository interface {
 	GetAll() ([]models.User, error)
 	GetById(id uint) (models.User, error)
 	GetByUsernamePassword(username, password string) (models.User, error)
+	GetByUsername(username string) (models.User, error)
 	Create(user models.User) (models.User, error)
 	Update(id uint, user models.User) (models.User, error)
 	Delete(id uint) error
@@ -44,6 +45,15 @@ func (rep *userRepository) GetByUsernamePassword(username, password string) (mod
 	user := models.User{}
 
 	if err := rep.db.Model(models.User{}).Where("username = ? AND password = ?", username, password).First(&user).Error; err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+func (rep *userRepository) GetByUsername(username string) (models.User, error) {
+	user := models.User{}
+
+	if err := rep.db.Model(models.User{}).Where("username = ?", username).First(&user).Error; err != nil {
 		return user, err
 	}
 
