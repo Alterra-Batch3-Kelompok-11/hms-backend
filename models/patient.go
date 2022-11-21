@@ -1,14 +1,14 @@
 package models
 
 import (
-	"gorm.io/gorm"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type Patient struct {
 	gorm.Model
 	ReligionId    uint
-	StatusId      uint
 	Nik           string    `json:"nik" form:"nik"`
 	Name          string    `json:"name" form:"name"`
 	BirthDate     time.Time `json:"birth_date" form:"birth_date"`
