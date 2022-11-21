@@ -2,10 +2,11 @@ package databases
 
 import (
 	"fmt"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 	"hms-backend/configs"
 	"hms-backend/models"
+
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
@@ -46,6 +47,7 @@ func InitialMigration() {
 		&models.Patient{},
 		&models.OutpatientSession{},
 		&models.Treatment{},
+		&models.History{},
 	)
 	if err != nil {
 		return
