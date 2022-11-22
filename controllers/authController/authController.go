@@ -57,6 +57,14 @@ func (ctrl *authController) SignUp(c echo.Context) error {
 		})
 	}
 
+	if !(payload.RoleID == 2 || payload.RoleID == 3) { // jika role bukan doctor[2] atau nurse[3] maka ditolak
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: "role id is not valid",
+			Data:    nil,
+		})
+	}
+
 	user, err := ctrl.usecase.SignUp(payload)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.Response{

@@ -10,7 +10,7 @@
     ```shell
     git clone https://github.com/Alterra-Batch3-Kelompok-11/hms-backend.git
     ```
-2. Make branch development
+2. Create branch development
    ```shell
    git branch development
    ```
@@ -22,7 +22,9 @@
     ```shell
     go mod tidy
     ```
-5. Run program
+5. Create database `hospital_mng`
+6. Make sure your configuration in file `.env` 
+7. Run program
     ```shell
     go run main.go
     ```
