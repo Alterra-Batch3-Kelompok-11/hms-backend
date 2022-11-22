@@ -10,11 +10,19 @@
     ```shell
     git clone https://github.com/Alterra-Batch3-Kelompok-11/hms-backend.git
     ```
-2. Sync dependencies
+2. Make branch development
+   ```shell
+   git branch development
+   ```
+3. Pull from development
+   ```shell
+   git pull origin development
+   ```
+4. Sync dependencies
     ```shell
     go mod tidy
     ```
-3. Run program
+5. Run program
     ```shell
     go run main.go
     ```
