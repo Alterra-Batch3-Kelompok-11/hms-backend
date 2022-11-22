@@ -68,28 +68,19 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 
 	// TODO Check License Number if Exist
 	if payload.RoleID == 2 {
-		existDoctor, err := uc.doctorRepository.GetByLicenseNumber(payload.LicenseNumber)
-		if err != nil {
-			return dto.UserRes{}, err
-		}
+		existDoctor, _ := uc.doctorRepository.GetByLicenseNumber(payload.LicenseNumber)
 		if existDoctor.ID != 0 {
 			return dto.UserRes{}, errors.New("license number already exist")
 		}
 	} else if payload.RoleID == 3 {
-		existNurse, err := uc.nurseRepository.GetByLicenseNumber(payload.LicenseNumber)
-		if err != nil {
-			return dto.UserRes{}, err
-		}
+		existNurse, _ := uc.nurseRepository.GetByLicenseNumber(payload.LicenseNumber)
 		if existNurse.ID != 0 {
 			return dto.UserRes{}, errors.New("license number already exist")
 		}
 	}
 
 	// TODO check username exist
-	usernameExist, err := uc.userRepository.GetByUsername(payload.Username)
-	if err != nil {
-		return dto.UserRes{}, err
-	}
+	usernameExist, _ := uc.userRepository.GetByUsername(payload.Username)
 	if usernameExist.ID != 0 {
 		return dto.UserRes{}, errors.New("username already taken")
 	}

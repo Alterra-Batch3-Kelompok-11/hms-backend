@@ -11,7 +11,7 @@ import (
 	"hms-backend/usecases/authUseCase"
 )
 
-func New(db *gorm.DB) *echo.Echo {
+func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	e := echo.New()
 	configs.InitConfig()
 
@@ -29,6 +29,8 @@ func New(db *gorm.DB) *echo.Echo {
 	// Middlewares
 	//jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
 	//roleMdlwr := middlewares.RoleMiddleware
+
+	e.GET("/swagger/*", echoSwagger)
 
 	// V1
 	v1 := e.Group("/v1")
