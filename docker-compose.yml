@@ -1,0 +1,26 @@
+version: "1.0.0"
+services:
+  db:
+    image: "mysql:latest"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret123"
+      MYSQL_DATABASE: "hospital_mng"
+    healthcheck:
+      test: ["CMD", "mysql", "-u", "root", "-psecret123", "-e", "show schemas"]
+      interval: 2s
+  learn_go:
+    image: "abdil12/hospital_mng"
+    depends_on:
+      db :
+        condition: service_healthy
+    ports:
+      - "8083:8083"
+    env_file:
+      - ".env"
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: "bookingfield"
+      DB_PASSWORD: "secret123"
+      API_PORT: ":8083"
