@@ -1,17 +1,19 @@
 package routes
 
 import (
-	"github.com/labstack/echo/v4"
-	"gorm.io/gorm"
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
 	"hms-backend/controllers/roleController"
+	controllers "hms-backend/controllers/userController"
 	"hms-backend/repositories/doctorRepository"
 	"hms-backend/repositories/nurseRepository"
 	"hms-backend/repositories/roleRepository"
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
 	"hms-backend/usecases/roleUseCase"
+
+	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
 )
 
 func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
@@ -47,7 +49,13 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	role.GET("/", rlCtrl.GetAll)
 	role.GET("/:id", rlCtrl.GetById)
 
-	//e.GET("/generate-hash-password/:password", controllers.GenerateHashPassword)
+	// CRUD Patients
+
+	v1.POST("/createpatient", controllers.PatientsCreate)
+	v1.GET("/indexpatient", controllers.PatientsIndex)
+	v1.GET("/indexpatient/:id", controllers.PatientShow)
+	v1.PUT("/updatepatient/:id", controllers.PatientsUpdate)
+	v1.DELETE("/deletepatient/:id", controllers.PatientsDelete)
 
 	return e
 }
