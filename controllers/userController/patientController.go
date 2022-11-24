@@ -25,7 +25,10 @@ func PatientsCreate(c echo.Context) error {
 		StatusID      uint
 	}
 
-	c.Bind(&Patient)
+	err := c.Bind(&Patient)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
 
 	post := models.Patient{Nik: Patient.NIK, Name: Patient.Name, BirthDate: tm, Gender: true, Address: Patient.Address, MaritalStatus: true, ReligionID: Patient.ReligionID, StatusID: Patient.StatusID}
 
@@ -72,7 +75,10 @@ func PatientsUpdate(c echo.Context) error {
 		StatusID      uint
 	}
 
-	c.Bind(&Patient)
+	err := c.Bind(&Patient)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
 
 	var post models.Patient
 	databases.DB.First(&post, id)
