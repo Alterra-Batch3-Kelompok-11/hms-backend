@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"hms-backend/constants"
 	"hms-backend/databases"
 	"hms-backend/models"
 	"net/http"
@@ -11,9 +12,7 @@ import (
 
 func PatientsCreate(c echo.Context) error {
 
-	const layout = "2006-01-02 15:04:05"
-
-	tm, _ := time.Parse(layout, "2021-01-01 00:00:00")
+	tm, _ := time.Parse(constants.TimeLayout, "2021-01-01 00:00:00")
 
 	var Patient struct {
 		NIK           string    `json:"nik"`

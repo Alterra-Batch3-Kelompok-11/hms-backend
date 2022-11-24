@@ -6,10 +6,16 @@
     },
     "servers": [
         {
+            "url": "http://ec2-18-142-246-127.ap-southeast-1.compute.amazonaws.com"
+        },
+        {
             "url": "http://localhost:8080"
         }
     ],
     "tags": [
+        {
+            "name": "Role"
+        },
         {
             "name": "Auth"
         },
@@ -18,6 +24,104 @@
         }
     ],
     "paths": {
+        "/v1/roles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get All Roles",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-11-23T08:51:16Z",
+                                                "updated_at": "2022-11-23T08:51:16Z",
+                                                "deleted_at": null,
+                                                "name": "Doctor"
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T08:51:16Z",
+                                                "updated_at": "2022-11-23T08:51:16Z",
+                                                "deleted_at": null,
+                                                "name": "Nurse"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/roles/1": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get Role By Id",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-23T08:51:16Z",
+                                            "updated_at": "2022-11-23T08:51:16Z",
+                                            "deleted_at": null,
+                                            "name": "Admin"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/login": {
             "post": {
                 "tags": [
@@ -55,6 +159,21 @@
                                             "role": "",
                                             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkxMzAxNTMsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.InmvPtiTAvOpmKXg_jqNkgqafYg3XjdPcUf_JvdR7sI"
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
                                     }
                                 }
                             }

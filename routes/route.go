@@ -46,7 +46,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	v1.POST("/signup", authCtrl.SignUp)
 
 	role := v1.Group("/roles")
-	role.GET("/", rlCtrl.GetAll)
+	role.GET("", rlCtrl.GetAll)
 	role.GET("/:id", rlCtrl.GetById)
 
 	// CRUD Patients
