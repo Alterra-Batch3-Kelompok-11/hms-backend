@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func RoleMiddleware(next echo.HandlerFunc, allowedRoles []uint) echo.HandlerFunc {
+func RoleDoctorMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		headerToken := c.Request().Header.Get("Authorization")
 		token := strings.Split(headerToken, " ")[1]
@@ -20,15 +20,17 @@ func RoleMiddleware(next echo.HandlerFunc, allowedRoles []uint) echo.HandlerFunc
 			return echo.NewHTTPError(http.StatusInternalServerError, "Unable to parse token")
 		}
 
-		isAllowed := true
-		if len(allowedRoles) > 0 {
-			isAllowed = false
-			for _, allowedRole := range allowedRoles {
-				if allowedRole == claims["roleId"].(uint) {
-					isAllowed = true
-				}
+		allowedRoles := [1]uint{
+			2, // Doctor
+		}
+
+		isAllowed := false
+		for _, allowedRole := range allowedRoles {
+			if allowedRole == uint(claims["roleId"].(float64)) {
+				isAllowed = true
 			}
 		}
+
 		if !isAllowed {
 			return echo.NewHTTPError(http.StatusUnauthorized, "Not authorized")
 		}

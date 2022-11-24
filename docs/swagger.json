@@ -268,6 +268,233 @@
                     }
                 }
             }
+        },
+        "/v1/specialities": {
+            "get": {
+                "tags": ["Specialities"],
+                "summary": "Get Specialities",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "created_at": "2022-11-22T21:20:27+07:00",
+                                                "updated_at": "2022-11-22T21:20:27+07:00",
+                                                "deleted_at": null,
+                                                "name": "Umum"
+                                            },
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-11-24T23:20:52.049+07:00",
+                                                "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                                "deleted_at": null,
+                                                "name": "Spesialis penyakit dalam"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Specialities"],
+                "summary": "Create Speciality",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Spesialis penyakit dalam"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "id": 2,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Spesialis penyakit dalam"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/specialities/1": {
+            "get": {
+                "tags": ["Specialities"],
+                "summary": "Get Speciality By Id",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Umum"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Specialities"],
+                "summary": "Update Speciality",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Umum 2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success update data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Umum 2"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Specialities"],
+                "summary": "Delete Speciality",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success delete data",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
