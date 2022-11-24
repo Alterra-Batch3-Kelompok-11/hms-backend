@@ -31,15 +31,15 @@ func (uc *authUseCase) Login(username, password string) (dto.LoginRes, error) {
 
 	user, err := uc.userRepository.GetByUsername(username)
 	if err != nil {
-		return dto.LoginRes{}, err
+		return dto.LoginRes{}, errors.New("username or password is wrong")
 	}
 
 	checkPass, err := helpers.CheckPasswordHash(password, user.Password)
 	if err != nil {
-		return dto.LoginRes{}, err
+		return dto.LoginRes{}, errors.New("username or password is wrong")
 	}
 	if !checkPass {
-		return dto.LoginRes{}, errors.New("record not found")
+		return dto.LoginRes{}, errors.New("username or password is wrong")
 	}
 
 	token, err := middlewares.CreateToken(user.ID, user.Username, user.RoleId)

@@ -3,13 +3,12 @@
 package docs
 
 import (
-	"fmt"
 	"github.com/swaggo/swag"
 	"os"
 )
 
 func init() {
-	var b, _ = os.ReadFile("docs/swagger.json") // just pass the file name
+	var b, _ = os.ReadFile("./docs/swagger.json") // just pass the file name
 
 	var doc = string(b) // convert content to a 'string'
 
@@ -25,7 +24,7 @@ func init() {
 		//SwaggerTemplate:  docTemplate,
 		SwaggerTemplate: doc,
 	}
-	fmt.Println("b", b)
-	fmt.Println("doc", doc)
+	//fmt.Println("b", b)
+	//fmt.Println("doc", doc)
 	swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
 }
