@@ -23,6 +23,12 @@ const SwaggerDocTemplate = `
             "name": "Auth"
         },
         {
+            "name": "Specialities"
+        },
+        {
+            "name": "Religions"
+        },
+        {
             "name": "CRUD Patients"
         }
     ],
@@ -325,6 +331,14 @@ const SwaggerDocTemplate = `
             "post": {
                 "tags": ["Specialities"],
                 "summary": "Create Speciality",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -372,12 +386,6 @@ const SwaggerDocTemplate = `
                         "in": "path",
                         "description": "ID of role",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -526,6 +534,134 @@ const SwaggerDocTemplate = `
                                         "status": 200,
                                         "message": "success delete data",
                                         "data": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/religions": {
+            "get": {
+                "tags": ["Religions"],
+                "summary": "Get Religions",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "created_at": "2022-11-22T21:20:27+07:00",
+                                                "updated_at": "2022-11-22T21:20:27+07:00",
+                                                "deleted_at": null,
+                                                "name": "Islam"
+                                            },
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-11-24T23:20:52.049+07:00",
+                                                "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                                "deleted_at": null,
+                                                "name": "Protestan"
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-24T23:20:52.049+07:00",
+                                                "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                                "deleted_at": null,
+                                                "name": "Katolik"
+                                            },
+                                            {
+                                                "id": 4,
+                                                "created_at": "2022-11-24T23:20:52.049+07:00",
+                                                "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                                "deleted_at": null,
+                                                "name": "Hindu"
+                                            },
+                                            {
+                                                "id": 5,
+                                                "created_at": "2022-11-24T23:20:52.049+07:00",
+                                                "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                                "deleted_at": null,
+                                                "name": "Buddha"
+                                            },
+                                            {
+                                                "id": 6,
+                                                "created_at": "2022-11-24T23:20:52.049+07:00",
+                                                "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                                "deleted_at": null,
+                                                "name": "Konghucu"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/religions/{id}": {
+            "get": {
+                "tags": ["Religions"],
+                "summary": "Get Religion By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of religion",
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Islam"
+                                        }
                                     }
                                 }
                             }
