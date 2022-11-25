@@ -1,3 +1,6 @@
+package constants
+
+const SwaggerDocTemplate = `
 {
     "openapi": "3.0.0",
     "info": {
@@ -548,3 +551,4 @@
         }
     }
 }
+`
