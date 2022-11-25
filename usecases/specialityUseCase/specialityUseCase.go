@@ -1,10 +1,11 @@
 package specialityUseCase
 
 import (
-	"gorm.io/gorm"
 	"hms-backend/dto"
 	"hms-backend/models"
 	"hms-backend/repositories/specialityRepository"
+
+	"gorm.io/gorm"
 )
 
 type SpecialityUseCase interface {
