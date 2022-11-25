@@ -1,3 +1,6 @@
+package constants
+
+const SwaggerDocTemplate = `
 {
     "openapi": "3.0.0",
     "info": {
@@ -322,14 +325,6 @@
             "post": {
                 "tags": ["Specialities"],
                 "summary": "Create Speciality",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -377,6 +372,12 @@
                         "in": "path",
                         "description": "ID of role",
                         "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -550,3 +551,4 @@
         }
     }
 }
+`

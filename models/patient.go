@@ -17,6 +17,4 @@ type Patient struct {
 	Address       string    `json:"address" form:"address"`
 	MaritalStatus bool      `json:"marital_status" form:"address"`
 	Religion      Religion
-	StatusID      uint `json:"status_id" form:"status_id"`
-	Status        Status
 }
