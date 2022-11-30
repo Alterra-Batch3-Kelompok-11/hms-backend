@@ -4,17 +4,20 @@ import (
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
 	"hms-backend/controllers/patientController"
+	"hms-backend/controllers/religionController"
 	"hms-backend/controllers/roleController"
 	"hms-backend/controllers/specialityController"
 	"hms-backend/middlewares"
 	"hms-backend/repositories/doctorRepository"
 	"hms-backend/repositories/nurseRepository"
 	"hms-backend/repositories/patientRepository"
+	"hms-backend/repositories/religionRepository"
 	"hms-backend/repositories/roleRepository"
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
 	"hms-backend/usecases/patientUseCase"
+	"hms-backend/usecases/religionUseCase"
 	"hms-backend/usecases/roleUseCase"
 	"hms-backend/usecases/specialityUseCase"
 
@@ -35,18 +38,21 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	rlRepo := roleRepository.New(db)
 	spcRepo := specialityRepository.New(db)
 	patRepo := patientRepository.New(db)
+	rlgRepo := religionRepository.New(db)
 
 	// Use Cases
 	authUc := authUseCase.New(usrRepo, dtrRepo, nrsRepo)
 	rlUc := roleUseCase.New(rlRepo)
 	spcUc := specialityUseCase.New(spcRepo)
 	patUc := patientUseCase.New(patRepo)
+	rlgUc := religionUseCase.New(rlgRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
 	rlCtrl := roleController.New(rlUc)
 	spcCtrl := specialityController.New(spcUc)
 	patCtrl := patientController.New(patUc)
+	rlgCtrl := religionController.New(rlgUc)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -73,6 +79,11 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	specialty.POST("", spcCtrl.Create, jwt, admMdlwr)
 	specialty.PUT("/:id", spcCtrl.Update, jwt, admMdlwr)
 	specialty.DELETE("/:id", spcCtrl.Delete, jwt, admMdlwr)
+
+	// Religions
+	religion := v1.Group("/religions")
+	religion.GET("", rlgCtrl.GetAll)
+	religion.GET("/:id", rlgCtrl.GetById)
 
 	// CRUD Patients
 

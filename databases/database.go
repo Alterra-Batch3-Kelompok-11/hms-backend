@@ -38,7 +38,6 @@ func InitialMigration() {
 	err := DB.AutoMigrate(
 		&models.Role{},
 		&models.Religion{},
-		&models.Status{},
 		&models.Speciality{},
 		&models.Doctor{},
 		&models.Nurse{},
