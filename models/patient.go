@@ -13,10 +13,9 @@ type Patient struct {
 	Nik           string    `json:"nik" form:"nik"`
 	Name          string    `json:"name" form:"name"`
 	BirthDate     time.Time `json:"birth_date" form:"birth_date"`
-	Gender        bool      `json:"gender" form:"gender"`
+	Gender        int       `json:"gender" form:"gender"`
 	Address       string    `json:"address" form:"address"`
+	Phone         string    `json:"phone_number" form:"phone_number"`
 	MaritalStatus bool      `json:"marital_status" form:"address"`
 	Religion      Religion
-	StatusID      uint `json:"status_id" form:"status_id"`
-	Status        Status
 }
