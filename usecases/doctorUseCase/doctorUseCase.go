@@ -162,6 +162,8 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 	return res, nil
 }
 func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
+	roleId := 2 // role id doctor
+
 	hashedPass, err := helpers.HashPassword(payload.Password)
 	if err != nil {
 		return dto.DoctorRes{}, err
@@ -173,6 +175,7 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 		return dto.DoctorRes{}, errors.New("license number already exist")
 	}
 	payload.Username = payload.LicenseNumber
+	payload.RoleID = uint(roleId)
 
 	// TODO check username exist
 	usernameExist, _ := uc.userRep.GetByUsername(payload.Username)
@@ -222,6 +225,7 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 	return res, err
 }
 func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, error) {
+	roleId := 2 // role id doctor
 
 	doctor, err := uc.doctorRep.GetById(id)
 	if err != nil {
@@ -239,6 +243,7 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 		return dto.DoctorRes{}, errors.New("license number already exist")
 	}
 	payload.Username = payload.LicenseNumber
+	payload.RoleID = uint(roleId)
 
 	// TODO check username exist
 	usernameExist, _ := uc.userRep.GetByUsername(payload.Username)

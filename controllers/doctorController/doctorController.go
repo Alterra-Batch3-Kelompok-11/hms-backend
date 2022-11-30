@@ -73,7 +73,7 @@ func (ctrl *doctorController) GetByLicenseNumber(c echo.Context) error {
 func (ctrl *doctorController) GetBySpecialityId(c echo.Context) error {
 	specialityId, _ := strconv.ParseInt(c.Param("speciality_id"), 16, 64)
 
-	res, err := ctrl.usecase.GetById(uint(specialityId))
+	res, err := ctrl.usecase.GetBySpecialityId(uint(specialityId))
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.Response{
 			Status:  http.StatusBadRequest,
