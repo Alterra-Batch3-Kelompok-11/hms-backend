@@ -5,6 +5,13 @@ import (
 	"time"
 )
 
+type DoctorScheduleReq struct {
+	DoctorId  uint   `json:"doctor_id"`
+	DayInt    int    `json:"day_int" form:"day_int"`
+	StartTime string `json:"start_time" form:"start_time"`
+	EndTime   string `json:"end_time" form:"end_time"`
+}
+
 type DoctorScheduleRes struct {
 	ID        uint           `json:"id" form:"id"`
 	CreatedAt time.Time      `json:"created_at" form:"created_at"`

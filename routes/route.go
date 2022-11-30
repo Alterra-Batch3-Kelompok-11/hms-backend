@@ -4,12 +4,14 @@ import (
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
 	"hms-backend/controllers/doctorController"
+	"hms-backend/controllers/doctorScheduleController"
 	"hms-backend/controllers/patientController"
 	"hms-backend/controllers/religionController"
 	"hms-backend/controllers/roleController"
 	"hms-backend/controllers/specialityController"
 	"hms-backend/middlewares"
 	"hms-backend/repositories/doctorRepository"
+	"hms-backend/repositories/doctorScheduleRepository"
 	"hms-backend/repositories/nurseRepository"
 	"hms-backend/repositories/patientRepository"
 	"hms-backend/repositories/religionRepository"
@@ -17,6 +19,7 @@ import (
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
+	"hms-backend/usecases/doctorScheduleUseCase"
 	"hms-backend/usecases/doctorUseCase"
 	"hms-backend/usecases/patientUseCase"
 	"hms-backend/usecases/religionUseCase"
@@ -41,6 +44,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	spcRepo := specialityRepository.New(db)
 	patRepo := patientRepository.New(db)
 	rlgRepo := religionRepository.New(db)
+	dtrSchedRepo := doctorScheduleRepository.New(db)
 
 	// Use Cases
 	authUc := authUseCase.New(usrRepo, dtrRepo, nrsRepo)
@@ -49,6 +53,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	patUc := patientUseCase.New(patRepo)
 	rlgUc := religionUseCase.New(rlgRepo)
 	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo)
+	dtrSchdUc := doctorScheduleUseCase.New(dtrRepo, dtrSchedRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -57,6 +62,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	patCtrl := patientController.New(patUc)
 	rlgCtrl := religionController.New(rlgUc)
 	dtrCtrl := doctorController.New(dtrUc)
+	dtrSchdCtrl := doctorScheduleController.New(dtrSchdUc)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -93,6 +99,15 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	doctor.POST("", dtrCtrl.Create, jwt, admMdlwr)
 	doctor.PUT("/:id", dtrCtrl.Update, jwt, admMdlwr)
 	doctor.DELETE("/:id", dtrCtrl.Delete, jwt, admMdlwr)
+
+	// Doctor Schedules
+	doctorSchedule := v1.Group("/doctor_schedules")
+	doctorSchedule.GET("/doctor/:doctor_id", dtrSchdCtrl.GetByDoctorId)
+	doctorSchedule.GET("/:id", dtrSchdCtrl.GetById)
+	doctorSchedule.GET("/doctor/license_number/:license_number", dtrSchdCtrl.GetByLicenseNumber)
+	doctorSchedule.POST("", dtrSchdCtrl.Create, jwt, admMdlwr)
+	doctorSchedule.PUT("/:id", dtrSchdCtrl.Update, jwt, admMdlwr)
+	doctorSchedule.DELETE("/:id", dtrSchdCtrl.Delete, jwt, admMdlwr)
 
 	// Religions
 	religion := v1.Group("/religions")
