@@ -23,6 +23,9 @@
             "name": "Specialities"
         },
         {
+            "name": "Doctors"
+        },
+        {
             "name": "Religions"
         },
         {
@@ -659,6 +662,528 @@
                                             "deleted_at": null,
                                             "name": "Islam"
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors": {
+            "get": {
+                "tags": ["Doctors"],
+                "summary": "Get Doctors",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedule": {
+                                                    "id": 0,
+                                                    "created_at": "0001-01-01T00:00:00Z",
+                                                    "updated_at": "0001-01-01T00:00:00Z",
+                                                    "deleted_at": null,
+                                                    "doctor_id": 0,
+                                                    "day_int": 0,
+                                                    "day_string": "",
+                                                    "start_time": "",
+                                                    "end_time": ""
+                                                }
+                                            },
+                                            {
+                                                "id": 4,
+                                                "created_at": "2022-11-25T13:35:19.236+07:00",
+                                                "updated_at": "2022-11-25T13:35:19.236+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "1231232",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedule": {
+                                                    "id": 0,
+                                                    "created_at": "0001-01-01T00:00:00Z",
+                                                    "updated_at": "0001-01-01T00:00:00Z",
+                                                    "deleted_at": null,
+                                                    "doctor_id": 0,
+                                                    "day_int": 0,
+                                                    "day_string": "",
+                                                    "start_time": "",
+                                                    "end_time": ""
+                                                }
+                                            },
+                                            {
+                                                "id": 5,
+                                                "created_at": "2022-11-25T13:35:43.268+07:00",
+                                                "updated_at": "2022-11-25T13:35:43.268+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedule": {
+                                                    "id": 0,
+                                                    "created_at": "0001-01-01T00:00:00Z",
+                                                    "updated_at": "0001-01-01T00:00:00Z",
+                                                    "deleted_at": null,
+                                                    "doctor_id": 0,
+                                                    "day_int": 0,
+                                                    "day_string": "",
+                                                    "start_time": "",
+                                                    "end_time": ""
+                                                }
+                                            },
+                                            {
+                                                "id": 6,
+                                                "created_at": "2022-11-28T08:54:44.924+07:00",
+                                                "updated_at": "2022-11-28T08:54:44.924+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulannn",
+                                                "speciality_id": 1,
+                                                "license_number": "12312333",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedule": {
+                                                    "id": 0,
+                                                    "created_at": "0001-01-01T00:00:00Z",
+                                                    "updated_at": "0001-01-01T00:00:00Z",
+                                                    "deleted_at": null,
+                                                    "doctor_id": 0,
+                                                    "day_int": 0,
+                                                    "day_string": "",
+                                                    "start_time": "",
+                                                    "end_time": ""
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Doctors"],
+                "summary": "Create Doctor",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Spesialis penyakit dalam"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "id": 2,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Spesialis penyakit dalam"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors/{id}": {
+            "get": {
+                "tags": ["Specialities"],
+                "summary": "Get Speciality By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of role",
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Umum"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Specialities"],
+                "summary": "Update Speciality",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of role",
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Umum 2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success update data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Umum 2"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Specialities"],
+                "summary": "Delete Speciality",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of role",
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success delete data",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors/speciality/{speciality_id}/": {
+            "get": {
+                "tags": ["Specialities"],
+                "summary": "Get Speciality By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of role",
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Umum"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Specialities"],
+                "summary": "Update Speciality",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of role",
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Umum 2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success update data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "2022-11-24T23:20:52.049+07:00",
+                                            "updated_at": "2022-11-24T23:20:52.049+07:00",
+                                            "deleted_at": null,
+                                            "name": "Umum 2"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Specialities"],
+                "summary": "Delete Speciality",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of role",
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success delete data",
+                                        "data": null
                                     }
                                 }
                             }

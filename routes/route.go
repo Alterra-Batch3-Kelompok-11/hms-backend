@@ -3,6 +3,7 @@ package routes
 import (
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
+	"hms-backend/controllers/doctorController"
 	"hms-backend/controllers/patientController"
 	"hms-backend/controllers/religionController"
 	"hms-backend/controllers/roleController"
@@ -16,6 +17,7 @@ import (
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
+	"hms-backend/usecases/doctorUseCase"
 	"hms-backend/usecases/patientUseCase"
 	"hms-backend/usecases/religionUseCase"
 	"hms-backend/usecases/roleUseCase"
@@ -46,6 +48,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	spcUc := specialityUseCase.New(spcRepo)
 	patUc := patientUseCase.New(patRepo)
 	rlgUc := religionUseCase.New(rlgRepo)
+	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -53,6 +56,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	spcCtrl := specialityController.New(spcUc)
 	patCtrl := patientController.New(patUc)
 	rlgCtrl := religionController.New(rlgUc)
+	dtrCtrl := doctorController.New(dtrUc)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -79,6 +83,16 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	specialty.POST("", spcCtrl.Create, jwt, admMdlwr)
 	specialty.PUT("/:id", spcCtrl.Update, jwt, admMdlwr)
 	specialty.DELETE("/:id", spcCtrl.Delete, jwt, admMdlwr)
+
+	// Doctors
+	doctor := v1.Group("/doctors")
+	doctor.GET("", dtrCtrl.GetAll)
+	doctor.GET("/:id", dtrCtrl.GetById)
+	doctor.GET("/speciality/:speciality_id", dtrCtrl.GetBySpecialityId)
+	doctor.GET("/license_number/:license_number", dtrCtrl.GetByLicenseNumber)
+	doctor.POST("", dtrCtrl.Create, jwt, admMdlwr)
+	doctor.PUT("/:id", dtrCtrl.Update, jwt, admMdlwr)
+	doctor.DELETE("/:id", dtrCtrl.Delete, jwt, admMdlwr)
 
 	// Religions
 	religion := v1.Group("/religions")
