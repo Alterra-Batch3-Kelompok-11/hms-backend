@@ -8,6 +8,7 @@ import (
 type DoctorScheduleRepository interface {
 	GetById(id uint) (models.DoctorSchedule, error)
 	GetByDoctorId(doctorId uint) ([]models.DoctorSchedule, error)
+	GetByDay(dayInt int) ([]models.DoctorSchedule, error)
 	Create(sched models.DoctorSchedule) (models.DoctorSchedule, error)
 	Update(id uint, sched models.DoctorSchedule) (models.DoctorSchedule, error)
 	Delete(id uint) error
@@ -31,9 +32,18 @@ func (rep *doctorScheduleRepository) GetById(id uint) (models.DoctorSchedule, er
 	return sched, nil
 }
 func (rep *doctorScheduleRepository) GetByDoctorId(doctorId uint) ([]models.DoctorSchedule, error) {
-	scheds := []models.DoctorSchedule{}
+	var scheds []models.DoctorSchedule
 
-	if err := rep.db.Model(models.DoctorSchedule{}).Where("doctor_id = ?", doctorId).Find(&scheds).Error; err != nil {
+	if err := rep.db.Model(models.DoctorSchedule{}).Where("doctor_id = ?", doctorId).Order("day").Order("start_time").Find(&scheds).Error; err != nil {
+		return scheds, err
+	}
+
+	return scheds, nil
+}
+func (rep *doctorScheduleRepository) GetByDay(dayInt int) ([]models.DoctorSchedule, error) {
+	var scheds []models.DoctorSchedule
+
+	if err := rep.db.Model(models.DoctorSchedule{}).Where("day = ?", dayInt).Order("day").Order("start_time").Find(&scheds).Error; err != nil {
 		return scheds, err
 	}
 

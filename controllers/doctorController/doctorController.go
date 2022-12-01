@@ -88,6 +88,22 @@ func (ctrl *doctorController) GetBySpecialityId(c echo.Context) error {
 		Data:    res,
 	})
 }
+func (ctrl *doctorController) GetToday(c echo.Context) error {
+	res, err := ctrl.usecase.GetToday()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, dto.Response{
+		Status:  http.StatusOK,
+		Message: "success get data",
+		Data:    res,
+	})
+}
 func (ctrl *doctorController) Create(c echo.Context) error {
 	var payload dto.UserReq
 

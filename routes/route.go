@@ -52,7 +52,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	spcUc := specialityUseCase.New(spcRepo)
 	patUc := patientUseCase.New(patRepo)
 	rlgUc := religionUseCase.New(rlgRepo)
-	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo)
+	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo, dtrSchedRepo)
 	dtrSchdUc := doctorScheduleUseCase.New(dtrRepo, dtrSchedRepo)
 
 	// Controllers
@@ -96,6 +96,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	doctor.GET("/:id", dtrCtrl.GetById)
 	doctor.GET("/speciality/:speciality_id", dtrCtrl.GetBySpecialityId)
 	doctor.GET("/license_number/:license_number", dtrCtrl.GetByLicenseNumber)
+	doctor.GET("/today", dtrCtrl.GetToday)
 	doctor.POST("", dtrCtrl.Create, jwt, admMdlwr)
 	doctor.PUT("/:id", dtrCtrl.Update, jwt, admMdlwr)
 	doctor.DELETE("/:id", dtrCtrl.Delete, jwt, admMdlwr)
