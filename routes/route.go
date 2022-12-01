@@ -4,6 +4,7 @@ import (
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
 	"hms-backend/controllers/doctorController"
+	"hms-backend/controllers/nurseController"
 	"hms-backend/controllers/patientController"
 	"hms-backend/controllers/religionController"
 	"hms-backend/controllers/roleController"
@@ -18,6 +19,7 @@ import (
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
 	"hms-backend/usecases/doctorUseCase"
+	"hms-backend/usecases/nurseUseCase"
 	"hms-backend/usecases/patientUseCase"
 	"hms-backend/usecases/religionUseCase"
 	"hms-backend/usecases/roleUseCase"
@@ -41,6 +43,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	spcRepo := specialityRepository.New(db)
 	patRepo := patientRepository.New(db)
 	rlgRepo := religionRepository.New(db)
+	nurRepo := nurseRepository.New(db)
 
 	// Use Cases
 	authUc := authUseCase.New(usrRepo, dtrRepo, nrsRepo)
@@ -49,6 +52,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	patUc := patientUseCase.New(patRepo)
 	rlgUc := religionUseCase.New(rlgRepo)
 	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo)
+	nurUC := nurseUseCase.New(nurRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -57,6 +61,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	patCtrl := patientController.New(patUc)
 	rlgCtrl := religionController.New(rlgUc)
 	dtrCtrl := doctorController.New(dtrUc)
+	nurCtrl := nurseController.New(nurUC)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -99,22 +104,22 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	religion.GET("", rlgCtrl.GetAll)
 	religion.GET("/:id", rlgCtrl.GetById)
 
-	// CRUD Patients
-
-	//v1.POST("/createpatient", controllers.PatientsCreate)
-	//v1.GET("/indexpatient", controllers.PatientsIndex)
-	//v1.GET("/indexpatient/:id", controllers.PatientShow)
-	//v1.PUT("/updatepatient/:id", controllers.PatientsUpdate)
-	//v1.DELETE("/deletepatient/:id", controllers.PatientsDelete)
-
-	// Patient
-
+	// Patients
 	patient := v1.Group("/patients")
 	patient.GET("", patCtrl.GetAll)
 	patient.GET("/:id", patCtrl.GetById)
 	patient.POST("", patCtrl.Create, jwt, admMdlwr)
 	patient.PUT("/:id", patCtrl.Update, jwt, admMdlwr)
 	patient.DELETE("/:id", patCtrl.Delete, jwt, admMdlwr)
+
+	// Nurses
+	nurse := v1.Group("/nurses")
+	nurse.GET("", nurCtrl.GetAll)
+	nurse.GET("/:id", nurCtrl.GetById)
+	nurse.GET("/license_number/:license_number", nurCtrl.GetByLicenseNumber)
+	nurse.POST("", nurCtrl.Create, jwt, admMdlwr)
+	nurse.PUT("/:id", nurCtrl.Update, jwt, admMdlwr)
+	nurse.DELETE("/:id", nurCtrl.Delete, jwt, admMdlwr)
 
 	return e
 }
