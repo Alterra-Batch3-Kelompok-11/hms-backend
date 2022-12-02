@@ -254,7 +254,7 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 	var res []dto.DoctorRes
 
-	jakartaTime, err := helpers.TimeIn(time.Now(), "Asia/Bangkok")
+	jakartaTime, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 	today := jakartaTime.Weekday()
 
 	todayScheds, err := uc.scdRep.GetByDay(int(today))
