@@ -2,13 +2,14 @@ package doctorUseCase
 
 import (
 	"errors"
-	"gorm.io/gorm"
 	"hms-backend/dto"
 	"hms-backend/helpers"
 	"hms-backend/models"
 	"hms-backend/repositories/doctorRepository"
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
+
+	"gorm.io/gorm"
 )
 
 type DoctorUseCase interface {
