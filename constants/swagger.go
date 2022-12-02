@@ -29,7 +29,10 @@ const SwaggerDocTemplate = `
             "name": "Religions"
         },
         {
-            "name": "CRUD Patients"
+            "name": "Patients"
+        },
+		{
+            "name": "Doctors"
         }
     ],
     "paths": {
@@ -680,6 +683,478 @@ const SwaggerDocTemplate = `
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        },
+		"/v1/doctors": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get All",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 1,
+                                                        "created_at": "2022-11-30T18:19:24.22+07:00",
+                                                        "updated_at": "2022-11-30T18:19:24.22+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 0,
+                                                        "day_string": "Minggu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "created_at": "2022-11-30T18:19:31.138+07:00",
+                                                        "updated_at": "2022-11-30T18:19:31.138+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 3,
+                                                        "created_at": "2022-11-30T18:19:34.567+07:00",
+                                                        "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 4,
+                                                        "created_at": "2022-11-30T18:58:30.652+07:00",
+                                                        "updated_at": "2022-11-30T18:58:30.652+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "11:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 4,
+                                                "created_at": "2022-11-25T13:35:19.236+07:00",
+                                                "updated_at": "2022-11-25T13:35:19.236+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "1231232",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 5,
+                                                "created_at": "2022-11-25T13:35:43.268+07:00",
+                                                "updated_at": "2022-11-25T13:35:43.268+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 6,
+                                                "created_at": "2022-11-28T08:54:44.924+07:00",
+                                                "updated_at": "2022-11-28T08:54:44.924+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulannn",
+                                                "speciality_id": 1,
+                                                "license_number": "12312333",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "John Doe",
+                                    "license_number": "1234567890",
+                                    "password": "john123",
+                                    "speciality_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "id": 8,
+                                            "created_at": "2022-12-02T00:05:36.226+07:00",
+                                            "updated_at": "2022-12-02T00:05:36.226+07:00",
+                                            "deleted_at": null,
+                                            "name": "John Doe",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567890",
+                                            "speciality_name": "Umum",
+                                            "doctor_schedules": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "license number already exist",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors/{id}": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 8,
+                                            "created_at": "2022-12-02T00:05:36.226+07:00",
+                                            "updated_at": "2022-12-02T00:05:36.226+07:00",
+                                            "deleted_at": null,
+                                            "name": "John Doe",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567890",
+                                            "speciality_name": "Umum",
+                                            "doctor_schedules": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Fulan",
+                                    "license_number": "780198012345",
+                                    "password": "fulan123",
+                                    "speciality_id": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success update data",
+                                        "data": {
+                                            "id": 0,
+                                            "created_at": "0001-01-01T00:00:00Z",
+                                            "updated_at": "0001-01-01T00:00:00Z",
+                                            "deleted_at": null,
+                                            "name": "John Doe",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567891",
+                                            "speciality_name": "Umum",
+                                            "doctor_schedules": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors/license_number/{license_number}": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get By license number",
+                "parameters": [
+                    {
+                        "name": "license_number",
+                        "in": "path",
+                        "description": "license number of doctor",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1234567891"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 1,
+                                            "created_at": "0001-01-01T00:00:00Z",
+                                            "updated_at": "0001-01-01T00:00:00Z",
+                                            "deleted_at": null,
+                                            "name": "John Doe",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567891",
+                                            "speciality_name": "Umum",
+                                            "doctor_schedules": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors/speciality/{speciality_id}": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get By Speciality Id",
+                "parameters": [
+                    {
+                        "name": "speciality_id",
+                        "in": "path",
+                        "description": "ID of speciality",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctors/today": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Today",
+                "description": "Get today doctors",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
                         }
                     }
                 }
