@@ -27,6 +27,7 @@ import (
 	"hms-backend/usecases/religionUseCase"
 	"hms-backend/usecases/roleUseCase"
 	"hms-backend/usecases/specialityUseCase"
+	"net/http"
 
 	"github.com/labstack/echo/v4/middleware"
 
@@ -38,7 +39,8 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
-		AllowHeaders: []string{"*"},
+		AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPost, http.MethodDelete},
+		AllowHeaders: []string{echo.HeaderAccessControlAllowOrigin, echo.HeaderContentType},
 	}))
 
 	configs.InitConfig()
