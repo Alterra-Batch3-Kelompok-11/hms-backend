@@ -36,6 +36,11 @@ import (
 
 func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	e := echo.New()
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
+
 	configs.InitConfig()
 
 	// Repositories
@@ -76,10 +81,6 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	//nrsMdlwr := middlewares.RoleNurseMiddleware
 
 	e.GET("/swagger/*", echoSwagger)
-	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"*"},
-		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
-	}))
 
 	// V1
 	v1 := e.Group("/v1")
