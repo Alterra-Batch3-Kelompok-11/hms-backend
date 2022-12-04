@@ -10,9 +10,10 @@ import (
 )
 
 func main() {
-	databases.InitDB()
+	fmt.Println("Hello World")
 	configs.InitConfig()
-
+	databases.InitDB()
+	//
 	e := routes.New(databases.DB, echoSwagger.WrapHandler)
 	e.Logger.Fatal(e.Start(fmt.Sprintf("%s%s", ":", configs.Cfg.ApiPort)))
 }
