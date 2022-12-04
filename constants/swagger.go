@@ -17,10 +17,13 @@ const SwaggerDocTemplate = `
     ],
     "tags": [
         {
-            "name": "Roles"
+            "name": "Auth"
         },
         {
-            "name": "Auth"
+            "name": "Patients"
+        },
+        {
+            "name": "Role"
         },
         {
             "name": "Specialities"
@@ -29,10 +32,16 @@ const SwaggerDocTemplate = `
             "name": "Religions"
         },
         {
-            "name": "Patients"
-        },
-		{
             "name": "Doctors"
+        },
+        {
+            "name": "Doctor Schedules"
+        },
+        {
+            "name": "Nurse"
+        },
+        {
+            "name": "Outpatient Sessions"
         }
     ],
     "paths": {
@@ -688,7 +697,7 @@ const SwaggerDocTemplate = `
                 }
             }
         },
-		"/v1/doctors": {
+        "/v1/doctors": {
             "get": {
                 "tags": [
                     "Doctors"
@@ -1112,6 +1121,21 @@ const SwaggerDocTemplate = `
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1137,7 +1161,106 @@ const SwaggerDocTemplate = `
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 1,
+                                                        "created_at": "2022-11-30T18:19:24.22+07:00",
+                                                        "updated_at": "2022-11-30T18:19:24.22+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 0,
+                                                        "day_string": "Minggu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "created_at": "2022-11-30T18:19:31.138+07:00",
+                                                        "updated_at": "2022-11-30T18:19:31.138+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 3,
+                                                        "created_at": "2022-11-30T18:19:34.567+07:00",
+                                                        "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 4,
+                                                        "created_at": "2022-11-30T18:58:30.652+07:00",
+                                                        "updated_at": "2022-11-30T18:58:30.652+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "11:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 4,
+                                                "created_at": "2022-11-25T13:35:19.236+07:00",
+                                                "updated_at": "2022-11-25T13:35:19.236+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "1231232",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 5,
+                                                "created_at": "2022-11-25T13:35:43.268+07:00",
+                                                "updated_at": "2022-11-25T13:35:43.268+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 6,
+                                                "created_at": "2022-11-28T08:54:44.924+07:00",
+                                                "updated_at": "2022-11-28T08:54:44.924+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulannn",
+                                                "speciality_id": 1,
+                                                "license_number": "12312333",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1154,7 +1277,1367 @@ const SwaggerDocTemplate = `
                     "200": {
                         "description": "Successful response",
                         "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 1,
+                                                        "created_at": "2022-11-30T18:19:24.22+07:00",
+                                                        "updated_at": "2022-11-30T18:19:24.22+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 0,
+                                                        "day_string": "Minggu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "created_at": "2022-11-30T18:19:31.138+07:00",
+                                                        "updated_at": "2022-11-30T18:19:31.138+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 3,
+                                                        "created_at": "2022-11-30T18:19:34.567+07:00",
+                                                        "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 4,
+                                                        "created_at": "2022-11-30T18:58:30.652+07:00",
+                                                        "updated_at": "2022-11-30T18:58:30.652+07:00",
+                                                        "deleted_at": null,
+                                                        "doctor_id": 3,
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "11:00"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor_schedules/{id}": {
+            "get": {
+                "tags": [
+                    "Doctor Schedules"
+                ],
+                "summary": "Get By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor schedule",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 3,
+                                            "created_at": "2022-11-30T18:19:34.567+07:00",
+                                            "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                            "deleted_at": null,
+                                            "doctor_id": 3,
+                                            "day_int": 2,
+                                            "day_string": "Selasa",
+                                            "start_time": "08:00",
+                                            "end_time": "15:00"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Doctor Schedules"
+                ],
+                "summary": "Update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Fulan",
+                                    "license_number": "780198012345",
+                                    "password": "fulan123",
+                                    "speciality_id": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor schedule",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 3,
+                                            "created_at": "2022-11-30T18:19:34.567+07:00",
+                                            "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                            "deleted_at": null,
+                                            "doctor_id": 3,
+                                            "day_int": 2,
+                                            "day_string": "Selasa",
+                                            "start_time": "08:00",
+                                            "end_time": "15:00"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Doctor Schedules"
+                ],
+                "summary": "Delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor schedule",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success delete data",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor_schedules/doctor/{doctor_id}": {
+            "get": {
+                "tags": [
+                    "Doctor Schedules"
+                ],
+                "summary": "Get By Doctor Id",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "created_at": "2022-11-30T18:19:24.22+07:00",
+                                                "updated_at": "2022-11-30T18:19:24.22+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 0,
+                                                "day_string": "Minggu",
+                                                "start_time": "08:00",
+                                                "end_time": "15:00"
+                                            },
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-11-30T18:19:31.138+07:00",
+                                                "updated_at": "2022-11-30T18:19:31.138+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 1,
+                                                "day_string": "Senin",
+                                                "start_time": "08:00",
+                                                "end_time": "15:00"
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-30T18:19:34.567+07:00",
+                                                "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 2,
+                                                "day_string": "Selasa",
+                                                "start_time": "08:00",
+                                                "end_time": "15:00"
+                                            },
+                                            {
+                                                "id": 4,
+                                                "created_at": "2022-11-30T18:58:30.652+07:00",
+                                                "updated_at": "2022-11-30T18:58:30.652+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 4,
+                                                "day_string": "Kamis",
+                                                "start_time": "08:00",
+                                                "end_time": "11:00"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor_schedules/doctor/license_number/{license_number}": {
+            "get": {
+                "tags": [
+                    "Doctor Schedules"
+                ],
+                "summary": "Get By License Number",
+                "parameters": [
+                    {
+                        "name": "license_number",
+                        "in": "path",
+                        "description": "Doctor's License Number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 123123
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "created_at": "2022-11-30T18:19:24.22+07:00",
+                                                "updated_at": "2022-11-30T18:19:24.22+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 0,
+                                                "day_string": "Minggu",
+                                                "start_time": "08:00",
+                                                "end_time": "15:00"
+                                            },
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-11-30T18:19:31.138+07:00",
+                                                "updated_at": "2022-11-30T18:19:31.138+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 1,
+                                                "day_string": "Senin",
+                                                "start_time": "08:00",
+                                                "end_time": "15:00"
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-11-30T18:19:34.567+07:00",
+                                                "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 2,
+                                                "day_string": "Selasa",
+                                                "start_time": "08:00",
+                                                "end_time": "15:00"
+                                            },
+                                            {
+                                                "id": 4,
+                                                "created_at": "2022-11-30T18:58:30.652+07:00",
+                                                "updated_at": "2022-11-30T18:58:30.652+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "day_int": 4,
+                                                "day_string": "Kamis",
+                                                "start_time": "08:00",
+                                                "end_time": "11:00"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor_schedules": {
+            "post": {
+                "tags": [
+                    "Doctor Schedules"
+                ],
+                "summary": "Create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "doctor_id": 3,
+                                    "day_int": 2,
+                                    "start_time": "08:00",
+                                    "end_time": "15:00"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 3,
+                                            "created_at": "2022-11-30T18:19:34.567+07:00",
+                                            "updated_at": "2022-11-30T18:19:34.567+07:00",
+                                            "deleted_at": null,
+                                            "doctor_id": 3,
+                                            "day_int": 2,
+                                            "day_string": "Selasa",
+                                            "start_time": "08:00",
+                                            "end_time": "15:00"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get All",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "patient_id": 1,
+                                    "doctor_id": 3,
+                                    "complaint": "batuk berdahak",
+                                    "schedule_date": "2022-12-04",
+                                    "schedule_time": "10:00:00"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "doctor_id": 3,
+                                            "patient_id": 1,
+                                            "schedule": "2022-12-04T10:00:00+07:00",
+                                            "complaint": "batuk berdahak",
+                                            "is_approved": 0,
+                                            "is_finish": false,
+                                            "finished_at": "0001-01-01T00:00:00Z",
+                                            "schedule_date": "2022-12-04",
+                                            "schedule_time": "10:00",
+                                            "patient": {
+                                                "nik": "12341234",
+                                                "name": "John tor",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 1,
+                                                "phone": "0812121212",
+                                                "address": "Bekasi",
+                                                "marital_status": true,
+                                                "religion_id": 1
+                                            },
+                                            "doctor": {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/{id}": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of outpatient session",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 2,
+                                            "created_at": "2022-12-04T22:54:54.411+07:00",
+                                            "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                            "deleted_at": null,
+                                            "doctor_id": 3,
+                                            "patient_id": 1,
+                                            "schedule": "2022-12-04T10:00:00+07:00",
+                                            "complaint": "batuk berdahak",
+                                            "is_approved": 0,
+                                            "is_finish": false,
+                                            "finished_at": "0001-01-01T00:00:00Z",
+                                            "schedule_date": "2022-12-04",
+                                            "schedule_time": "10:00",
+                                            "patient": {
+                                                "nik": "12341234",
+                                                "name": "John tor",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 1,
+                                                "phone": "0812121212",
+                                                "address": "Bekasi",
+                                                "marital_status": true,
+                                                "religion_id": 1
+                                            },
+                                            "doctor": {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "patient_id": 1,
+                                    "doctor_id": 3,
+                                    "complaint": "batuk berdahak",
+                                    "schedule_date": "2022-12-04",
+                                    "schedule_time": "11:00:00"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of outpatient sessions",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 2,
+                                            "created_at": "2022-12-04T22:54:54.411+07:00",
+                                            "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                            "deleted_at": null,
+                                            "doctor_id": 3,
+                                            "patient_id": 1,
+                                            "schedule": "2022-12-04T10:00:00+07:00",
+                                            "complaint": "batuk berdahak",
+                                            "is_approved": 0,
+                                            "is_finish": false,
+                                            "finished_at": "0001-01-01T00:00:00Z",
+                                            "schedule_date": "2022-12-04",
+                                            "schedule_time": "10:00",
+                                            "patient": {
+                                                "nik": "12341234",
+                                                "name": "John tor",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 1,
+                                                "phone": "0812121212",
+                                                "address": "Bekasi",
+                                                "marital_status": true,
+                                                "religion_id": 1
+                                            },
+                                            "doctor": {
+                                                "id": 3,
+                                                "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulan",
+                                                "speciality_id": 1,
+                                                "license_number": "123123",
+                                                "speciality_name": "Umum",
+                                                "doctor_schedules": null
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of outpatient sessions",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status" : 200,
+                                        "message" : "success delete data",
+                                        "data" : null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/patient/{patient_id}": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get By Patient Id",
+                "parameters": [
+                    {
+                        "name": "patient_id",
+                        "in": "path",
+                        "description": "ID of patient",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/doctor/{doctor_id}": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get By Doctor Id",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/doctor/{doctor_id}/unprocesseds": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get Unprocesseds By Doctor Id",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/doctor/{doctor_id}/processeds": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get Processeds By Doctor Id",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 1,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/{id}/approval": {
+            "put": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Approval",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "is_approved": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of outpatient session",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
                             "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
                         }
                     }
                 }
