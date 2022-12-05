@@ -7,6 +7,7 @@ import (
 )
 
 type NurseRes struct {
+	ID            uint           `json:"id" form:"id"`
 	UserID        uint           `json:"user_id" form:"user_id"`
 	LicenseNumber string         `json:"license_number" form:"license_number"`
 	CreatedAt     time.Time      `json:"created_at" form:"created_at"`

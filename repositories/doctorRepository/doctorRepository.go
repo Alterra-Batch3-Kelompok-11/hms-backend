@@ -8,6 +8,7 @@ import (
 type DoctorRepository interface {
 	GetAll() ([]models.Doctor, error)
 	GetById(id uint) (models.Doctor, error)
+	GetByUserId(userId uint) (models.Doctor, error)
 	GetByLicenseNumber(licenseNumber string) (models.Doctor, error)
 	GetByLicenseNumberOther(licenseNumber string, id uint) (models.Doctor, error)
 	GetBySpecialityId(specialityId uint) ([]models.Doctor, error)
@@ -37,6 +38,15 @@ func (rep *doctorRepository) GetById(id uint) (models.Doctor, error) {
 	doctor := models.Doctor{}
 
 	if err := rep.db.Model(models.Doctor{}).Where("ID = ?", id).First(&doctor).Error; err != nil {
+		return doctor, err
+	}
+
+	return doctor, nil
+}
+func (rep *doctorRepository) GetByUserId(userId uint) (models.Doctor, error) {
+	doctor := models.Doctor{}
+
+	if err := rep.db.Model(models.Doctor{}).Where("user_id = ?", userId).First(&doctor).Error; err != nil {
 		return doctor, err
 	}
 

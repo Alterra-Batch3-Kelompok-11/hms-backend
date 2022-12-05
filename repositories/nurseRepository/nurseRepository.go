@@ -8,6 +8,7 @@ import (
 type NurseRepository interface {
 	GetAll() ([]models.Nurse, error)
 	GetById(id uint) (models.Nurse, error)
+	GetByUserId(userId uint) (models.Nurse, error)
 	GetByLicenseNumber(licenseNumber string) (models.Nurse, error)
 	Create(user models.Nurse) (models.Nurse, error)
 	Update(id uint, user models.Nurse) (models.Nurse, error)
@@ -35,6 +36,15 @@ func (rep *nurseRepository) GetById(id uint) (models.Nurse, error) {
 	nurse := models.Nurse{}
 
 	if err := rep.db.Model(models.Nurse{}).Where("ID = ?", id).First(&nurse).Error; err != nil {
+		return nurse, err
+	}
+
+	return nurse, nil
+}
+func (rep *nurseRepository) GetByUserId(userId uint) (models.Nurse, error) {
+	nurse := models.Nurse{}
+
+	if err := rep.db.Model(models.Nurse{}).Where("user_id = ?", userId).First(&nurse).Error; err != nil {
 		return nurse, err
 	}
 
