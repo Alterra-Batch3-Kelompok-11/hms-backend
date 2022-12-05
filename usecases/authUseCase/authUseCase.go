@@ -63,13 +63,34 @@ func (uc *authUseCase) Login(username, password string) (dto.LoginRes, error) {
 		if err != nil {
 			return dto.LoginRes{}, err
 		}
-		res.Doctor = doctor
+		resDoctor := dto.DoctorRes{
+			ID:              doctor.ID,
+			CreatedAt:       doctor.CreatedAt,
+			UpdatedAt:       doctor.UpdatedAt,
+			DeletedAt:       doctor.DeletedAt,
+			Name:            user.Name,
+			SpecialityId:    doctor.SpecialityId,
+			LicenseNumber:   doctor.LicenseNumber,
+			SpecialityName:  "",
+			DoctorSchedules: nil,
+		}
+
+		res.Doctor = resDoctor
 	} else if user.RoleId == 3 {
 		nurse, err := uc.nurseRepository.GetByUserId(user.ID)
 		if err != nil {
 			return dto.LoginRes{}, err
 		}
-		res.Nurse = nurse
+
+		resNurse := dto.NurseRes{
+			ID:            nurse.ID,
+			CreatedAt:     nurse.CreatedAt,
+			UpdatedAt:     nurse.UpdatedAt,
+			DeletedAt:     nurse.DeletedAt,
+			LicenseNumber: nurse.LicenseNumber,
+		}
+
+		res.Nurse = resNurse
 	}
 
 	return res, nil

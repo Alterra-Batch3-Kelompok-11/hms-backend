@@ -20,7 +20,7 @@
             "name": "Patients"
         },
         {
-            "name": "Role"
+            "name": "Roles"
         },
         {
             "name": "Specialities"
@@ -160,8 +160,8 @@
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "username": "admin",
-                                    "password": "admin123"
+                                    "username": "1029384756",
+                                    "password": "john123"
                                 }
                             }
                         }
@@ -178,12 +178,24 @@
                                         "status": 200,
                                         "message": "login success",
                                         "data": {
-                                            "id": 3,
-                                            "name": "admin",
-                                            "username": "admin",
-                                            "role_id": 1,
+                                            "user_id": 8,
+                                            "name": "John Doe",
+                                            "username": "1029384756",
+                                            "role_id": 2,
                                             "role": "",
-                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkxMzAxNTMsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.InmvPtiTAvOpmKXg_jqNkgqafYg3XjdPcUf_JvdR7sI"
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzAyMTY4NjQsInJvbGVJZCI6MiwidXNlcklkIjo4LCJ1c2VybmFtZSI6IjEwMjkzODQ3NTYifQ.mEvjUHcX8BtP0LhGwwzU9ZwXGmwdfwDLdQ5RwIf-j90",
+                                            "doctor": {
+                                                "id": 7,
+                                                "created_at": "2022-11-30T13:05:43.168+07:00",
+                                                "updated_at": "2022-11-30T13:05:43.168+07:00",
+                                                "deleted_at": null,
+                                                "name": "John Doe",
+                                                "speciality_id": 1,
+                                                "license_number": "1029384756",
+                                                "speciality_name": "",
+                                                "doctor_schedules": null
+                                            },
+                                            "nurse": null
                                         }
                                     }
                                 }
