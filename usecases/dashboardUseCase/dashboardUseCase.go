@@ -102,6 +102,10 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 
 	var todayOutPatientSessions []dto.OutpatientSessionDashboardRes
 	outPatientSessions, err := uc.outptnRep.GetByDate(jakartaTime)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outPatientSession := range outPatientSessions {
 		patient, err := uc.patientRep.GetById(outPatientSession.PatientId)
 		if err != nil {
@@ -174,6 +178,10 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 
 	var patients []dto.OutpatientSessionDashboardRes
 	outPatientSessionDescs, err := uc.outptnRep.GetDesc(10)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outPatientSessionDesc := range outPatientSessionDescs {
 		patient, err := uc.patientRep.GetById(outPatientSessionDesc.PatientId)
 		if err != nil {
