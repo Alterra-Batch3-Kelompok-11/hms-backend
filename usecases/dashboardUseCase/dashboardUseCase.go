@@ -2,6 +2,7 @@ package dashboardUseCase
 
 import (
 	"fmt"
+	"hms-backend/constants"
 	"hms-backend/dto"
 	"hms-backend/helpers"
 	"hms-backend/repositories/doctorRepository"
@@ -92,6 +93,10 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 			Name:           user.Name,
 			LicenseNumber:  doctor.LicenseNumber,
 			SpecialityName: speciality.Name,
+			DayInt:         todaySched.Day,
+			DayString:      constants.Hari[todaySched.Day],
+			StartTime:      todaySched.StartTime,
+			EndTime:        todaySched.EndTime,
 		})
 	}
 
