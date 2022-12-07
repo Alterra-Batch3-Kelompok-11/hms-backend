@@ -273,40 +273,6 @@
                 }
             }
         },
-        "/v1/create": {
-            "post": {
-                "tags": [
-                    "CRUD Patients"
-                ],
-                "summary": "Create Patient",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "example": {
-                                    "Nik": "12341234",
-                                    "Name": "John Doe john",
-                                    "Gender": 2,
-                                    "Address": "Bekasi",
-                                    "MaritalStatus": 2,
-                                    "ReligionID": 2,
-                                    "StatusID": 2
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {}
-                        }
-                    }
-                }
-            }
-        },
         "/v1/specialities": {
             "get": {
                 "tags": ["Specialities"],
