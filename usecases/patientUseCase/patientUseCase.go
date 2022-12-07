@@ -33,6 +33,7 @@ func (uc *patientUseCase) GetAll() ([]dto.Patient, error) {
 
 	for _, role := range roles {
 		res = append(res, dto.Patient{
+			ID:            role.ID,
 			NIK:           role.Nik,
 			Name:          role.Name,
 			BirthDate:     role.BirthDate,
@@ -54,6 +55,7 @@ func (uc *patientUseCase) GetById(id uint) (dto.Patient, error) {
 		return res, err
 	}
 
+	res.ID = role.ID
 	res.NIK = role.Nik
 	res.Name = role.Name
 	res.BirthDate = role.BirthDate

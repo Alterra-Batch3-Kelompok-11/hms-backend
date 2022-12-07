@@ -3,6 +3,7 @@ package dto
 import "time"
 
 type Patient struct {
+	ID            uint      `json:"id"`
 	NIK           string    `json:"nik"`
 	Name          string    `json:"name"`
 	BirthDate     time.Time `json:"birth_date"`
