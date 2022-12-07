@@ -10,6 +10,7 @@ type NurseRepository interface {
 	GetById(id uint) (models.Nurse, error)
 	GetByUserId(userId uint) (models.Nurse, error)
 	GetByLicenseNumber(licenseNumber string) (models.Nurse, error)
+	Count() (int64, error)
 	Create(user models.Nurse) (models.Nurse, error)
 	Update(id uint, user models.Nurse) (models.Nurse, error)
 	Delete(id uint) error
@@ -58,6 +59,15 @@ func (rep *nurseRepository) GetByLicenseNumber(licenseNumber string) (models.Nur
 	}
 
 	return nurse, nil
+}
+func (rep *nurseRepository) Count() (int64, error) {
+	var count int64
+
+	if err := rep.db.Model([]models.Nurse{}).Count(&count).Error; err != nil {
+		return count, err
+	}
+
+	return count, nil
 }
 func (rep *nurseRepository) Create(nurse models.Nurse) (models.Nurse, error) {
 	err := rep.db.Create(&nurse).Error
