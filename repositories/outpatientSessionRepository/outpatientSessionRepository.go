@@ -1,17 +1,22 @@
 package outpatientSessionRepository
 
 import (
+	"fmt"
 	"gorm.io/gorm"
 	"hms-backend/models"
+	"strconv"
+	"time"
 )
 
 type OutpatientSessionRepository interface {
 	GetAll() ([]models.OutpatientSession, error)
+	GetDesc(limit int) ([]models.OutpatientSession, error)
 	GetById(id uint) (models.OutpatientSession, error)
 	GetByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetByPatientId(patientId uint) ([]models.OutpatientSession, error)
 	GetUnprocessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetProcessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
+	GetByDate(date time.Time) ([]models.OutpatientSession, error)
 	Create(user models.OutpatientSession) (models.OutpatientSession, error)
 	Update(id uint, user models.OutpatientSession) (models.OutpatientSession, error)
 	Delete(id uint) error
@@ -74,6 +79,35 @@ func (rep *outpatientSessionRepository) GetProcessedByDoctorId(doctorId uint) ([
 	var outpatientSessions []models.OutpatientSession
 
 	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_approved != 0", doctorId).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetByDate(date time.Time) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	dateString := strconv.Itoa(date.Year()) + "-" + strconv.Itoa(int(date.Month())) + "-"
+	startTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day())+"T00:00:00+07:00")
+	if err != nil {
+		return nil, err
+	}
+
+	endTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day()+1)+"T00:00:00+07:00")
+	if err != nil {
+		return nil, err
+	}
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("is_approved != 2 AND schedule BETWEEN ? AND ?", startTime, endTime).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetDesc(limit int) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("is_approved != 2").Order("schedule desc").Limit(limit).Find(&outpatientSessions).Error; err != nil {
 		return outpatientSessions, err
 	}
 

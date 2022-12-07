@@ -9,6 +9,7 @@ import (
 type PatientRepository interface {
 	GetAll() ([]models.Patient, error)
 	GetById(id uint) (models.Patient, error)
+	Count() (int64, error)
 	Create(payload models.Patient) (models.Patient, error)
 	Update(id uint, payload models.Patient) (models.Patient, error)
 	Delete(id uint) error
@@ -41,7 +42,15 @@ func (rep *patientRepository) GetById(id uint) (models.Patient, error) {
 
 	return patient, nil
 }
+func (rep *patientRepository) Count() (int64, error) {
+	var count int64
 
+	if err := rep.db.Model([]models.Patient{}).Count(&count).Error; err != nil {
+		return count, err
+	}
+
+	return count, nil
+}
 func (rep *patientRepository) Create(payload models.Patient) (models.Patient, error) {
 	err := rep.db.Create(&payload).Error
 	return payload, err

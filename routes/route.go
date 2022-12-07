@@ -3,6 +3,7 @@ package routes
 import (
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
+	"hms-backend/controllers/dashboardController"
 	"hms-backend/controllers/doctorController"
 	"hms-backend/controllers/doctorScheduleController"
 	"hms-backend/controllers/nurseController"
@@ -22,6 +23,7 @@ import (
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
+	"hms-backend/usecases/dashboardUseCase"
 	"hms-backend/usecases/doctorScheduleUseCase"
 	"hms-backend/usecases/doctorUseCase"
 	"hms-backend/usecases/nurseUseCase"
@@ -70,6 +72,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dtrSchdUc := doctorScheduleUseCase.New(dtrRepo, dtrSchedRepo)
 	nurUC := nurseUseCase.New(nurRepo)
 	outPatientSessionUC := outpatientSessionUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo)
+	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -81,6 +84,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dtrSchdCtrl := doctorScheduleController.New(dtrSchdUc)
 	nurCtrl := nurseController.New(nurUC)
 	outpatientSessionCtrl := outpatientSessionController.New(outPatientSessionUC)
+	dashboardCtrl := dashboardController.New(dashboardUC)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -162,6 +166,10 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	outpatientSession.PUT("/:id", outpatientSessionCtrl.Update, jwt, admMdlwr)
 	outpatientSession.PUT("/:id/approval", outpatientSessionCtrl.Approval, jwt, dctrMdlwr)
 	outpatientSession.DELETE("/:id", outpatientSessionCtrl.Delete, jwt, admMdlwr)
+
+	// For Dashboard
+	dashboard := v1.Group("/dashboard")
+	dashboard.GET("/web", dashboardCtrl.GetDataDashboardWeb)
 
 	return e
 }
