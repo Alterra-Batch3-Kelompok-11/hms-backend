@@ -16,3 +16,13 @@ type DoctorRes struct {
 	SpecialityName  string              `json:"speciality_name" form:"speciality_name"`
 	DoctorSchedules []DoctorScheduleRes `json:"doctor_schedules" form:"doctor_schedules"`
 }
+
+type TodayDoctorRes struct {
+	Name           string `json:"name"`
+	LicenseNumber  string `json:"license_number" form:"license_number"`
+	SpecialityName string `json:"speciality_name" form:"speciality_name"`
+	DayInt         int    `json:"day_int" form:"day_int"`
+	DayString      string `json:"day_string" form:"day_string"`
+	StartTime      string `json:"start_time" form:"start_time"`
+	EndTime        string `json:"end_time" form:"end_time"`
+}
