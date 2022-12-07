@@ -202,7 +202,7 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 		timeString := fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Hour()) + ":" +
 			fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Minute())
 
-		todayOutPatientSessions = append(todayOutPatientSessions, dto.OutpatientSessionDashboardRes{
+		patients = append(patients, dto.OutpatientSessionDashboardRes{
 			Patient: struct {
 				NIK           string    `json:"nik"`
 				Name          string    `json:"name"`
