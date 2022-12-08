@@ -23,3 +23,14 @@ type DoctorScheduleRes struct {
 	StartTime string         `json:"start_time" form:"start_time"`
 	EndTime   string         `json:"end_time" form:"end_time"`
 }
+
+type DoctorProfileScheduleRes struct {
+	ID        uint      `json:"id" form:"id"`
+	DoctorId  uint      `json:"doctor_id"`
+	Date      time.Time `json:"date" form:"date"`
+	DateIndo  string    `json:"date_indo" form:"date_indo"`
+	DayInt    int       `json:"day_int" form:"day_int"`
+	DayString string    `json:"day_string" form:"day_string"`
+	StartTime string    `json:"start_time" form:"start_time"`
+	EndTime   string    `json:"end_time" form:"end_time"`
+}

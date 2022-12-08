@@ -1370,7 +1370,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1422,7 +1422,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1664,7 +1664,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1724,7 +1724,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1810,7 +1810,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1885,7 +1885,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1993,7 +1993,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2085,7 +2085,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2144,7 +2144,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2240,7 +2240,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2336,7 +2336,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2432,7 +2432,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2540,7 +2540,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2560,6 +2560,47 @@ const SwaggerDocTemplate = `
                                         "status": 400,
                                         "message": "record not found",
                                         "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients": {
+            "get": {
+                "tags": ["Patients"],
+                "summary": "Get Patients",
+                "requestBody": {
+                    "content": {
+                        "application/json" : {}
+                    }
+                    
+                },
+                "responses": {
+                    "200": {
+                        "description" : "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "nik": "12341234",
+                                                "name": "John doe",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 2,
+                                                "phone": "813121212",
+                                                "address": "Bekasi",
+                                                "marital_status": true,
+                                                "religion_id": 1
+                                            }
+                                        ]
                                     }
                                 }
                             }

@@ -3,6 +3,7 @@ package outpatientSessionUseCase
 import (
 	"fmt"
 	"gorm.io/gorm"
+	"hms-backend/constants"
 	"hms-backend/dto"
 	"hms-backend/models"
 	"hms-backend/repositories/doctorRepository"
@@ -79,20 +80,25 @@ func (uc *outpatientSessionUseCase) GetAll() ([]dto.OutpatientSessionRes, error)
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
+
 		res = append(res, dto.OutpatientSessionRes{
-			ID:           outpatientSession.ID,
-			CreatedAt:    outpatientSession.CreatedAt,
-			UpdatedAt:    outpatientSession.UpdatedAt,
-			DeletedAt:    outpatientSession.DeletedAt,
-			DoctorId:     outpatientSession.DoctorId,
-			PatientId:    outpatientSession.PatientId,
-			Schedule:     outpatientSession.Schedule,
-			Complaint:    outpatientSession.Complaint,
-			IsApproved:   outpatientSession.IsApproved,
-			IsFinish:     outpatientSession.IsFinish,
-			FinishedAt:   outpatientSession.FinishedAt,
-			ScheduleDate: dateString,
-			ScheduleTime: timeString,
+			ID:               outpatientSession.ID,
+			CreatedAt:        outpatientSession.CreatedAt,
+			UpdatedAt:        outpatientSession.UpdatedAt,
+			DeletedAt:        outpatientSession.DeletedAt,
+			DoctorId:         outpatientSession.DoctorId,
+			PatientId:        outpatientSession.PatientId,
+			Schedule:         outpatientSession.Schedule,
+			Complaint:        outpatientSession.Complaint,
+			IsApproved:       outpatientSession.IsApproved,
+			IsFinish:         outpatientSession.IsFinish,
+			FinishedAt:       outpatientSession.FinishedAt,
+			ScheduleDate:     dateString,
+			ScheduleDateIndo: dateIndoString,
+			ScheduleTime:     timeString,
 			Patient: dto.Patient{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -149,20 +155,25 @@ func (uc *outpatientSessionUseCase) GetById(id uint) (dto.OutpatientSessionRes, 
 	dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
 	timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
+	dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+		constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+		strconv.Itoa(outpatientSession.Schedule.Year())
+
 	res = dto.OutpatientSessionRes{
-		ID:           outpatientSession.ID,
-		CreatedAt:    outpatientSession.CreatedAt,
-		UpdatedAt:    outpatientSession.UpdatedAt,
-		DeletedAt:    outpatientSession.DeletedAt,
-		DoctorId:     outpatientSession.DoctorId,
-		PatientId:    outpatientSession.PatientId,
-		Schedule:     outpatientSession.Schedule,
-		Complaint:    outpatientSession.Complaint,
-		IsApproved:   outpatientSession.IsApproved,
-		IsFinish:     outpatientSession.IsFinish,
-		FinishedAt:   outpatientSession.FinishedAt,
-		ScheduleDate: dateString,
-		ScheduleTime: timeString,
+		ID:               outpatientSession.ID,
+		CreatedAt:        outpatientSession.CreatedAt,
+		UpdatedAt:        outpatientSession.UpdatedAt,
+		DeletedAt:        outpatientSession.DeletedAt,
+		DoctorId:         outpatientSession.DoctorId,
+		PatientId:        outpatientSession.PatientId,
+		Schedule:         outpatientSession.Schedule,
+		Complaint:        outpatientSession.Complaint,
+		IsApproved:       outpatientSession.IsApproved,
+		IsFinish:         outpatientSession.IsFinish,
+		FinishedAt:       outpatientSession.FinishedAt,
+		ScheduleDate:     dateString,
+		ScheduleDateIndo: dateIndoString,
+		ScheduleTime:     timeString,
 		Patient: dto.Patient{
 			NIK:           patient.Nik,
 			Name:          patient.Name,
@@ -219,20 +230,25 @@ func (uc *outpatientSessionUseCase) GetByDoctorId(doctorId uint) ([]dto.Outpatie
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
+
 		res = append(res, dto.OutpatientSessionRes{
-			ID:           outpatientSession.ID,
-			CreatedAt:    outpatientSession.CreatedAt,
-			UpdatedAt:    outpatientSession.UpdatedAt,
-			DeletedAt:    outpatientSession.DeletedAt,
-			DoctorId:     outpatientSession.DoctorId,
-			PatientId:    outpatientSession.PatientId,
-			Schedule:     outpatientSession.Schedule,
-			Complaint:    outpatientSession.Complaint,
-			IsApproved:   outpatientSession.IsApproved,
-			IsFinish:     outpatientSession.IsFinish,
-			FinishedAt:   outpatientSession.FinishedAt,
-			ScheduleDate: dateString,
-			ScheduleTime: timeString,
+			ID:               outpatientSession.ID,
+			CreatedAt:        outpatientSession.CreatedAt,
+			UpdatedAt:        outpatientSession.UpdatedAt,
+			DeletedAt:        outpatientSession.DeletedAt,
+			DoctorId:         outpatientSession.DoctorId,
+			PatientId:        outpatientSession.PatientId,
+			Schedule:         outpatientSession.Schedule,
+			Complaint:        outpatientSession.Complaint,
+			IsApproved:       outpatientSession.IsApproved,
+			IsFinish:         outpatientSession.IsFinish,
+			FinishedAt:       outpatientSession.FinishedAt,
+			ScheduleDate:     dateString,
+			ScheduleDateIndo: dateIndoString,
+			ScheduleTime:     timeString,
 			Patient: dto.Patient{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -290,20 +306,25 @@ func (uc *outpatientSessionUseCase) GetByPatientId(patientId uint) ([]dto.Outpat
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
+
 		res = append(res, dto.OutpatientSessionRes{
-			ID:           outpatientSession.ID,
-			CreatedAt:    outpatientSession.CreatedAt,
-			UpdatedAt:    outpatientSession.UpdatedAt,
-			DeletedAt:    outpatientSession.DeletedAt,
-			DoctorId:     outpatientSession.DoctorId,
-			PatientId:    outpatientSession.PatientId,
-			Schedule:     outpatientSession.Schedule,
-			Complaint:    outpatientSession.Complaint,
-			IsApproved:   outpatientSession.IsApproved,
-			IsFinish:     outpatientSession.IsFinish,
-			FinishedAt:   outpatientSession.FinishedAt,
-			ScheduleDate: dateString,
-			ScheduleTime: timeString,
+			ID:               outpatientSession.ID,
+			CreatedAt:        outpatientSession.CreatedAt,
+			UpdatedAt:        outpatientSession.UpdatedAt,
+			DeletedAt:        outpatientSession.DeletedAt,
+			DoctorId:         outpatientSession.DoctorId,
+			PatientId:        outpatientSession.PatientId,
+			Schedule:         outpatientSession.Schedule,
+			Complaint:        outpatientSession.Complaint,
+			IsApproved:       outpatientSession.IsApproved,
+			IsFinish:         outpatientSession.IsFinish,
+			FinishedAt:       outpatientSession.FinishedAt,
+			ScheduleDate:     dateString,
+			ScheduleDateIndo: dateIndoString,
+			ScheduleTime:     timeString,
 			Patient: dto.Patient{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -361,20 +382,25 @@ func (uc *outpatientSessionUseCase) GetUnprocessedByDoctorId(doctorId uint) ([]d
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
+
 		res = append(res, dto.OutpatientSessionRes{
-			ID:           outpatientSession.ID,
-			CreatedAt:    outpatientSession.CreatedAt,
-			UpdatedAt:    outpatientSession.UpdatedAt,
-			DeletedAt:    outpatientSession.DeletedAt,
-			DoctorId:     outpatientSession.DoctorId,
-			PatientId:    outpatientSession.PatientId,
-			Schedule:     outpatientSession.Schedule,
-			Complaint:    outpatientSession.Complaint,
-			IsApproved:   outpatientSession.IsApproved,
-			IsFinish:     outpatientSession.IsFinish,
-			FinishedAt:   outpatientSession.FinishedAt,
-			ScheduleDate: dateString,
-			ScheduleTime: timeString,
+			ID:               outpatientSession.ID,
+			CreatedAt:        outpatientSession.CreatedAt,
+			UpdatedAt:        outpatientSession.UpdatedAt,
+			DeletedAt:        outpatientSession.DeletedAt,
+			DoctorId:         outpatientSession.DoctorId,
+			PatientId:        outpatientSession.PatientId,
+			Schedule:         outpatientSession.Schedule,
+			Complaint:        outpatientSession.Complaint,
+			IsApproved:       outpatientSession.IsApproved,
+			IsFinish:         outpatientSession.IsFinish,
+			FinishedAt:       outpatientSession.FinishedAt,
+			ScheduleDate:     dateString,
+			ScheduleDateIndo: dateIndoString,
+			ScheduleTime:     timeString,
 			Patient: dto.Patient{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -432,20 +458,25 @@ func (uc *outpatientSessionUseCase) GetProcessedByDoctorId(doctorId uint) ([]dto
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
+
 		res = append(res, dto.OutpatientSessionRes{
-			ID:           outpatientSession.ID,
-			CreatedAt:    outpatientSession.CreatedAt,
-			UpdatedAt:    outpatientSession.UpdatedAt,
-			DeletedAt:    outpatientSession.DeletedAt,
-			DoctorId:     outpatientSession.DoctorId,
-			PatientId:    outpatientSession.PatientId,
-			Schedule:     outpatientSession.Schedule,
-			Complaint:    outpatientSession.Complaint,
-			IsApproved:   outpatientSession.IsApproved,
-			IsFinish:     outpatientSession.IsFinish,
-			FinishedAt:   outpatientSession.FinishedAt,
-			ScheduleDate: dateString,
-			ScheduleTime: timeString,
+			ID:               outpatientSession.ID,
+			CreatedAt:        outpatientSession.CreatedAt,
+			UpdatedAt:        outpatientSession.UpdatedAt,
+			DeletedAt:        outpatientSession.DeletedAt,
+			DoctorId:         outpatientSession.DoctorId,
+			PatientId:        outpatientSession.PatientId,
+			Schedule:         outpatientSession.Schedule,
+			Complaint:        outpatientSession.Complaint,
+			IsApproved:       outpatientSession.IsApproved,
+			IsFinish:         outpatientSession.IsFinish,
+			FinishedAt:       outpatientSession.FinishedAt,
+			ScheduleDate:     dateString,
+			ScheduleDateIndo: dateIndoString,
+			ScheduleTime:     timeString,
 			Patient: dto.Patient{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -521,20 +552,25 @@ func (uc *outpatientSessionUseCase) Create(payload dto.OutpatientSessionReq) (dt
 	dateString := strconv.Itoa(resUc.Schedule.Year()) + "-" + strconv.Itoa(int(resUc.Schedule.Month())) + "-" + fmt.Sprintf("%02d", resUc.Schedule.Day())
 	timeString := fmt.Sprintf("%02d", resUc.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", resUc.Schedule.Minute())
 
+	dateIndoString := fmt.Sprintf("%02d", resUc.Schedule.Day()) + " " +
+		constants.Bulan[int(resUc.Schedule.Month())] + " " +
+		strconv.Itoa(resUc.Schedule.Year())
+
 	res = dto.OutpatientSessionRes{
-		ID:           resUc.ID,
-		CreatedAt:    resUc.CreatedAt,
-		UpdatedAt:    resUc.UpdatedAt,
-		DeletedAt:    resUc.DeletedAt,
-		DoctorId:     resUc.DoctorId,
-		PatientId:    resUc.PatientId,
-		Schedule:     resUc.Schedule,
-		Complaint:    resUc.Complaint,
-		IsApproved:   resUc.IsApproved,
-		IsFinish:     resUc.IsFinish,
-		FinishedAt:   resUc.FinishedAt,
-		ScheduleDate: dateString,
-		ScheduleTime: timeString,
+		ID:               resUc.ID,
+		CreatedAt:        resUc.CreatedAt,
+		UpdatedAt:        resUc.UpdatedAt,
+		DeletedAt:        resUc.DeletedAt,
+		DoctorId:         resUc.DoctorId,
+		PatientId:        resUc.PatientId,
+		Schedule:         resUc.Schedule,
+		Complaint:        resUc.Complaint,
+		IsApproved:       resUc.IsApproved,
+		IsFinish:         resUc.IsFinish,
+		FinishedAt:       resUc.FinishedAt,
+		ScheduleDate:     dateString,
+		ScheduleDateIndo: dateIndoString,
+		ScheduleTime:     timeString,
 		Patient: dto.Patient{
 			NIK:           patient.Nik,
 			Name:          patient.Name,
@@ -609,20 +645,25 @@ func (uc *outpatientSessionUseCase) Update(id uint, payload dto.OutpatientSessio
 	dateString := strconv.Itoa(resUc.Schedule.Year()) + "-" + strconv.Itoa(int(resUc.Schedule.Month())) + "-" + fmt.Sprintf("%02d", resUc.Schedule.Day())
 	timeString := fmt.Sprintf("%02d", resUc.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", resUc.Schedule.Minute())
 
+	dateIndoString := fmt.Sprintf("%02d", resUc.Schedule.Day()) + " " +
+		constants.Bulan[int(resUc.Schedule.Month())] + " " +
+		strconv.Itoa(resUc.Schedule.Year())
+
 	res = dto.OutpatientSessionRes{
-		ID:           resUc.ID,
-		CreatedAt:    resUc.CreatedAt,
-		UpdatedAt:    resUc.UpdatedAt,
-		DeletedAt:    resUc.DeletedAt,
-		DoctorId:     resUc.DoctorId,
-		PatientId:    resUc.PatientId,
-		Schedule:     resUc.Schedule,
-		Complaint:    resUc.Complaint,
-		IsApproved:   resUc.IsApproved,
-		IsFinish:     resUc.IsFinish,
-		FinishedAt:   resUc.FinishedAt,
-		ScheduleDate: dateString,
-		ScheduleTime: timeString,
+		ID:               resUc.ID,
+		CreatedAt:        resUc.CreatedAt,
+		UpdatedAt:        resUc.UpdatedAt,
+		DeletedAt:        resUc.DeletedAt,
+		DoctorId:         resUc.DoctorId,
+		PatientId:        resUc.PatientId,
+		Schedule:         resUc.Schedule,
+		Complaint:        resUc.Complaint,
+		IsApproved:       resUc.IsApproved,
+		IsFinish:         resUc.IsFinish,
+		FinishedAt:       resUc.FinishedAt,
+		ScheduleDate:     dateString,
+		ScheduleDateIndo: dateIndoString,
+		ScheduleTime:     timeString,
 		Patient: dto.Patient{
 			NIK:           patient.Nik,
 			Name:          patient.Name,
@@ -696,20 +737,25 @@ func (uc *outpatientSessionUseCase) Approval(id uint, payload dto.ApprovalReq) (
 	dateString := strconv.Itoa(resUc.Schedule.Year()) + "-" + strconv.Itoa(int(resUc.Schedule.Month())) + "-" + fmt.Sprintf("%02d", resUc.Schedule.Day())
 	timeString := fmt.Sprintf("%02d", resUc.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", resUc.Schedule.Minute())
 
+	dateIndoString := fmt.Sprintf("%02d", resUc.Schedule.Day()) + " " +
+		constants.Bulan[int(resUc.Schedule.Month())] + " " +
+		strconv.Itoa(resUc.Schedule.Year())
+
 	res = dto.OutpatientSessionRes{
-		ID:           resUc.ID,
-		CreatedAt:    resUc.CreatedAt,
-		UpdatedAt:    resUc.UpdatedAt,
-		DeletedAt:    resUc.DeletedAt,
-		DoctorId:     resUc.DoctorId,
-		PatientId:    resUc.PatientId,
-		Schedule:     resUc.Schedule,
-		Complaint:    resUc.Complaint,
-		IsApproved:   resUc.IsApproved,
-		IsFinish:     resUc.IsFinish,
-		FinishedAt:   resUc.FinishedAt,
-		ScheduleDate: dateString,
-		ScheduleTime: timeString,
+		ID:               resUc.ID,
+		CreatedAt:        resUc.CreatedAt,
+		UpdatedAt:        resUc.UpdatedAt,
+		DeletedAt:        resUc.DeletedAt,
+		DoctorId:         resUc.DoctorId,
+		PatientId:        resUc.PatientId,
+		Schedule:         resUc.Schedule,
+		Complaint:        resUc.Complaint,
+		IsApproved:       resUc.IsApproved,
+		IsFinish:         resUc.IsFinish,
+		FinishedAt:       resUc.FinishedAt,
+		ScheduleDate:     dateString,
+		ScheduleDateIndo: dateIndoString,
+		ScheduleTime:     timeString,
 		Patient: dto.Patient{
 			NIK:           patient.Nik,
 			Name:          patient.Name,
