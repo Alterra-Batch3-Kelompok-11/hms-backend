@@ -46,9 +46,6 @@ func New(
 func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 	var res []dto.DoctorRes
 
-	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
-	today := jakartaTimeNow.Weekday()
-
 	doctors, err := uc.doctorRep.GetAll()
 	if err != nil {
 		return res, err
@@ -65,11 +62,13 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 			return res, err
 		}
 
+		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
+
 		var schedules []dto.DoctorProfileScheduleRes
 		for i := 0; i > 7; i++ {
 
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(today)+i)
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
+			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
 
 			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 				constants.Bulan[int(iDay.Month())] + " " +
@@ -107,9 +106,6 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 	var res dto.DoctorRes
 
-	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
-	today := jakartaTimeNow.Weekday()
-
 	doctor, err := uc.doctorRep.GetById(id)
 	if err != nil {
 		return res, err
@@ -125,11 +121,13 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 		return res, err
 	}
 
+	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
+
 	var schedules []dto.DoctorProfileScheduleRes
 	for i := 0; i > 7; i++ {
 
-		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(today)+i)
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
 
 		dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 			constants.Bulan[int(iDay.Month())] + " " +
@@ -182,13 +180,12 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 	}
 
 	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
-	today := jakartaTimeNow.Weekday()
 
 	var schedules []dto.DoctorProfileScheduleRes
 	for i := 0; i > 7; i++ {
 
-		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(today)+i)
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
 
 		dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 			constants.Bulan[int(iDay.Month())] + " " +
@@ -241,13 +238,12 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 		}
 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
-		today := jakartaTimeNow.Weekday()
 
 		var schedules []dto.DoctorProfileScheduleRes
 		for i := 0; i > 7; i++ {
 
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(today)+i)
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
+			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
 
 			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 				constants.Bulan[int(iDay.Month())] + " " +
@@ -310,13 +306,12 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 		}
 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
-		today := jakartaTimeNow.Weekday()
 
 		var schedules []dto.DoctorProfileScheduleRes
 		for i := 0; i > 7; i++ {
 
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(today)+i)
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
+			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
 
 			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 				constants.Bulan[int(iDay.Month())] + " " +
@@ -469,13 +464,12 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 	speciality, _ := uc.spcRep.GetById(resUpdtDtr.SpecialityId)
 
 	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
-	today := jakartaTimeNow.Weekday()
 
 	var schedules []dto.DoctorProfileScheduleRes
 	for i := 0; i > 7; i++ {
 
-		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(today)+i)
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
 
 		dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 			constants.Bulan[int(iDay.Month())] + " " +
