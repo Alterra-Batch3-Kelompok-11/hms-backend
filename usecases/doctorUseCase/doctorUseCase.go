@@ -309,27 +309,24 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 		var schedules []dto.DoctorProfileScheduleRes
-		for i := 0; i < 7; i++ {
 
-			iDay := jakartaTimeNow.AddDate(0, 0, i)
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(jakartaTimeNow.Weekday()))
 
-			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
-				constants.Bulan[int(iDay.Month())] + " " +
-				strconv.Itoa(iDay.Year())
+		dateIndoString := fmt.Sprintf("%02d", jakartaTimeNow.Day()) + " " +
+			constants.Bulan[int(jakartaTimeNow.Month())] + " " +
+			strconv.Itoa(jakartaTimeNow.Year())
 
-			if sched.ID != 0 {
-				schedules = append(schedules, dto.DoctorProfileScheduleRes{
-					ID:        sched.ID,
-					DoctorId:  sched.DoctorId,
-					Date:      iDay,
-					DateIndo:  dateIndoString,
-					DayInt:    sched.Day,
-					DayString: constants.Hari[sched.Day],
-					StartTime: sched.StartTime,
-					EndTime:   sched.EndTime,
-				})
-			}
+		if sched.ID != 0 {
+			schedules = append(schedules, dto.DoctorProfileScheduleRes{
+				ID:        sched.ID,
+				DoctorId:  sched.DoctorId,
+				Date:      jakartaTimeNow,
+				DateIndo:  dateIndoString,
+				DayInt:    sched.Day,
+				DayString: constants.Hari[sched.Day],
+				StartTime: sched.StartTime,
+				EndTime:   sched.EndTime,
+			})
 		}
 
 		res = append(res, dto.DoctorRes{
