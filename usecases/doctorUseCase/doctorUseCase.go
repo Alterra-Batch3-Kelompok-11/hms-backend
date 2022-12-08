@@ -65,7 +65,8 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 		var schedules []dto.DoctorProfileScheduleRes
-		for i := 0; i > 7; i++ {
+
+		for i := 0; i < 7; i++ {
 
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
 			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
@@ -124,7 +125,7 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 	var schedules []dto.DoctorProfileScheduleRes
-	for i := 0; i > 7; i++ {
+	for i := 0; i < 7; i++ {
 
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
 		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
@@ -182,7 +183,7 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 	var schedules []dto.DoctorProfileScheduleRes
-	for i := 0; i > 7; i++ {
+	for i := 0; i < 7; i++ {
 
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
 		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
@@ -240,7 +241,7 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 		var schedules []dto.DoctorProfileScheduleRes
-		for i := 0; i > 7; i++ {
+		for i := 0; i < 7; i++ {
 
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
 			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
@@ -308,7 +309,7 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 		var schedules []dto.DoctorProfileScheduleRes
-		for i := 0; i > 7; i++ {
+		for i := 0; i < 7; i++ {
 
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
 			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
@@ -466,7 +467,7 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 	jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
 	var schedules []dto.DoctorProfileScheduleRes
-	for i := 0; i > 7; i++ {
+	for i := 0; i < 7; i++ {
 
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
 		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
