@@ -8,6 +8,7 @@ import (
 type DoctorScheduleRepository interface {
 	GetById(id uint) (models.DoctorSchedule, error)
 	GetByDoctorId(doctorId uint) ([]models.DoctorSchedule, error)
+	GetByDoctorIdDay(doctorId uint, dayInt int) (models.DoctorSchedule, error)
 	GetByDay(dayInt int) ([]models.DoctorSchedule, error)
 	Create(sched models.DoctorSchedule) (models.DoctorSchedule, error)
 	Update(id uint, sched models.DoctorSchedule) (models.DoctorSchedule, error)
@@ -35,6 +36,15 @@ func (rep *doctorScheduleRepository) GetByDoctorId(doctorId uint) ([]models.Doct
 	var scheds []models.DoctorSchedule
 
 	if err := rep.db.Model(models.DoctorSchedule{}).Where("doctor_id = ?", doctorId).Order("day").Order("start_time").Find(&scheds).Error; err != nil {
+		return scheds, err
+	}
+
+	return scheds, nil
+}
+func (rep *doctorScheduleRepository) GetByDoctorIdDay(doctorId uint, dayInt int) (models.DoctorSchedule, error) {
+	var scheds models.DoctorSchedule
+
+	if err := rep.db.Model(models.DoctorSchedule{}).Where("doctor_id = ? AND day = ?", doctorId, dayInt).Last(&scheds).Error; err != nil {
 		return scheds, err
 	}
 

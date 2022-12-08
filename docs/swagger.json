@@ -1367,7 +1367,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1419,7 +1419,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1661,7 +1661,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1721,7 +1721,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1807,7 +1807,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1882,7 +1882,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1990,7 +1990,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2082,7 +2082,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2141,7 +2141,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2237,7 +2237,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2333,7 +2333,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2429,7 +2429,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2537,7 +2537,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
