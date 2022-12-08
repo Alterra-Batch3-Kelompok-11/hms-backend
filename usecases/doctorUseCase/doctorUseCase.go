@@ -68,7 +68,7 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 		for i := 0; i > 7; i++ {
 
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
+			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
 
 			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 				constants.Bulan[int(iDay.Month())] + " " +
@@ -127,7 +127,7 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 	for i := 0; i > 7; i++ {
 
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
-		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
 
 		dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 			constants.Bulan[int(iDay.Month())] + " " +
@@ -185,7 +185,7 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 	for i := 0; i > 7; i++ {
 
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
-		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
 
 		dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 			constants.Bulan[int(iDay.Month())] + " " +
@@ -243,7 +243,7 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 		for i := 0; i > 7; i++ {
 
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
+			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
 
 			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 				constants.Bulan[int(iDay.Month())] + " " +
@@ -311,7 +311,7 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 		for i := 0; i > 7; i++ {
 
 			iDay := jakartaTimeNow.AddDate(0, 0, i)
-			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
+			sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
 
 			dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 				constants.Bulan[int(iDay.Month())] + " " +
@@ -469,7 +469,7 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 	for i := 0; i > 7; i++ {
 
 		iDay := jakartaTimeNow.AddDate(0, 0, i)
-		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday())+i)
+		sched, _ := uc.scdRep.GetByDoctorIdDay(doctor.ID, int(iDay.Weekday()))
 
 		dateIndoString := fmt.Sprintf("%02d", iDay.Day()) + " " +
 			constants.Bulan[int(iDay.Month())] + " " +
