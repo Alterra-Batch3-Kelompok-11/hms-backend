@@ -1,6 +1,7 @@
 package patientConditionUseCase
 
 import (
+	"errors"
 	"fmt"
 	"gorm.io/gorm"
 	"hms-backend/constants"
@@ -443,6 +444,24 @@ func (uc *patientConditionUseCase) Create(payload dto.InsertPatientCondition) (d
 
 	jakartaTime, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
+	// TODO Check if treatment exist in this out patient session
+	existedTreatment, _ := uc.treatmentRepo.GetByOutpatientSessionId(payload.OutpatientSessionId)
+	if existedTreatment.ID > 0 {
+		return res, errors.New("this outpatient session is finished")
+	}
+
+	outpatientSession, err := uc.outptnRep.GetById(payload.OutpatientSessionId)
+	if err != nil {
+		return res, err
+	}
+
+	// TODO check if this outpatient session is approved by doctor
+	if outpatientSession.IsApproved != 1 {
+		return res, errors.New("this outpatient session is not approved")
+	}
+
+	// TODO Preparing to insert into treatment
+
 	treatment := models.Treatment{
 		Model:       gorm.Model{},
 		SessionId:   payload.OutpatientSessionId,
@@ -450,11 +469,6 @@ func (uc *patientConditionUseCase) Create(payload dto.InsertPatientCondition) (d
 		Description: payload.Description,
 		Medicine:    payload.Medicine,
 		Allergy:     payload.Allergy,
-	}
-
-	outpatientSession, err := uc.outptnRep.GetById(treatment.SessionId)
-	if err != nil {
-		return res, err
 	}
 
 	outpatientSession.IsFinish = true
@@ -469,6 +483,8 @@ func (uc *patientConditionUseCase) Create(payload dto.InsertPatientCondition) (d
 	if err != nil {
 		return res, err
 	}
+
+	// TODO insert into history
 
 	history := models.History{
 		Model:       gorm.Model{},

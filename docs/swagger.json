@@ -14,6 +14,9 @@
     ],
     "tags": [
         {
+            "name": "Dashboard"
+        },
+        {
             "name": "Auth"
         },
         {
@@ -39,9 +42,105 @@
         },
         {
             "name": "Outpatient Sessions"
+        },
+        {
+            "name": "Patient Conditions"
         }
     ],
     "paths": {
+        "/v1/dashboard/web": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Data Dashboard For Web",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "total_doctors": 5,
+                                            "total_nurses": 0,
+                                            "total_patients": 1,
+                                            "today_doctors": null,
+                                            "today_outpatient_sessions": null,
+                                            "patients": [
+                                                {
+                                                    "patient": {
+                                                        "nik": "12341234",
+                                                        "name": "John tor",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121212",
+                                                        "address": "Bekasi",
+                                                        "marital_status": true,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "Dr Mulan",
+                                                        "license_number": "123123",
+                                                        "speciality_name": "Umum"
+                                                    },
+                                                    "schedule": "2022-12-07T10:00:00+07:00",
+                                                    "complaint": "sakit mata",
+                                                    "is_approved": 0,
+                                                    "is_finish": false,
+                                                    "finished_at": "0001-01-01T00:00:00Z",
+                                                    "schedule_date": "2022-12-07",
+                                                    "schedule_time": "10:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "12341234",
+                                                        "name": "John tor",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121212",
+                                                        "address": "Bekasi",
+                                                        "marital_status": true,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "Dr Mulan",
+                                                        "license_number": "123123",
+                                                        "speciality_name": "Umum"
+                                                    },
+                                                    "schedule": "2022-12-04T10:00:00+07:00",
+                                                    "complaint": "batuk berdahak",
+                                                    "is_approved": 0,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-09T18:48:21.559+07:00",
+                                                    "schedule_date": "2022-12-04",
+                                                    "schedule_time": "10:00"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/roles": {
             "get": {
                 "tags": [
@@ -2835,6 +2934,80 @@
                                                 "religion_id": 1
                                             }
                                         ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients_conditions": {
+            "post": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Insert Patient Condition",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "outpatient_session_id": 2,
+                                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                    "medicine": "paracetamol",
+                                    "allergy": "debu"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "outpatient_session_id": 2,
+                                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                            "medicine": "paracetamol",
+                                            "allergy": "debu",
+                                            "is_finish": true,
+                                            "finished_at": "2022-12-09T18:48:21.559971+07:00",
+                                            "finished_at_indo": "09 Desember 2022"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "this outpatient session is not approved",
+                                        "data": null
                                     }
                                 }
                             }
