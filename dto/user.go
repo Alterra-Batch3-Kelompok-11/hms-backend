@@ -12,6 +12,7 @@ type UserReq struct {
 	Password      string `json:"password" form:"password"`
 	RoleID        uint   `json:"role_id" form:"role_id"`
 	SpecialityID  uint   `json:"speciality_id" form:"speciality_id"`
+	ProfilePic    string `json:"profile_pic" form:"profile_pic"`
 }
 
 type UserRes struct {

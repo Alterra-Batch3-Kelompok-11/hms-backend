@@ -98,6 +98,7 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 			SpecialityId:    doctor.SpecialityId,
 			LicenseNumber:   doctor.LicenseNumber,
 			SpecialityName:  speciality.Name,
+			ProfilePic:      doctor.ProfilePic,
 			DoctorSchedules: schedules,
 		})
 	}
@@ -157,6 +158,7 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 		SpecialityId:    doctor.SpecialityId,
 		LicenseNumber:   doctor.LicenseNumber,
 		SpecialityName:  speciality.Name,
+		ProfilePic:      doctor.ProfilePic,
 		DoctorSchedules: schedules,
 	}
 
@@ -215,6 +217,7 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 		SpecialityId:    doctor.SpecialityId,
 		LicenseNumber:   doctor.LicenseNumber,
 		SpecialityName:  speciality.Name,
+		ProfilePic:      doctor.ProfilePic,
 		DoctorSchedules: schedules,
 	}
 
@@ -273,6 +276,7 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 			SpecialityId:    doctor.SpecialityId,
 			LicenseNumber:   doctor.LicenseNumber,
 			SpecialityName:  speciality.Name,
+			ProfilePic:      doctor.ProfilePic,
 			DoctorSchedules: schedules,
 		})
 	}
@@ -338,6 +342,7 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 			SpecialityId:    doctor.SpecialityId,
 			LicenseNumber:   doctor.LicenseNumber,
 			SpecialityName:  speciality.Name,
+			ProfilePic:      doctor.ProfilePic,
 			DoctorSchedules: schedules,
 		})
 	}
@@ -384,6 +389,7 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 		UserId:        resCreateUsr.ID,
 		SpecialityId:  payload.SpecialityID,
 		LicenseNumber: payload.LicenseNumber,
+		ProfilePic:    payload.ProfilePic,
 	}
 
 	resCreateDtr, err := uc.doctorRep.Create(doctor)
@@ -402,6 +408,7 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 		SpecialityId:    resCreateDtr.SpecialityId,
 		LicenseNumber:   resCreateDtr.LicenseNumber,
 		SpecialityName:  speciality.Name,
+		ProfilePic:      doctor.ProfilePic,
 		DoctorSchedules: []dto.DoctorProfileScheduleRes{},
 	}
 
@@ -452,6 +459,7 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 		UserId:        doctor.UserId,
 		SpecialityId:  payload.SpecialityID,
 		LicenseNumber: payload.LicenseNumber,
+		ProfilePic:    payload.ProfilePic,
 	}
 
 	resUpdtDtr, err := uc.doctorRep.Update(id, doctor)
@@ -497,6 +505,7 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 		LicenseNumber:   resUpdtDtr.LicenseNumber,
 		SpecialityName:  speciality.Name,
 		DoctorSchedules: schedules,
+		ProfilePic:      doctor.ProfilePic,
 	}
 
 	return res, err
