@@ -919,7 +919,8 @@ const SwaggerDocTemplate = `
                                     "name": "John Doe",
                                     "license_number": "1234567890",
                                     "password": "john123",
-                                    "speciality_id": 1
+                                    "speciality_id": 1,
+                                    "profile_pic": ""
                                 }
                             }
                         }
@@ -1106,7 +1107,8 @@ const SwaggerDocTemplate = `
                                     "name": "Fulan",
                                     "license_number": "780198012345",
                                     "password": "fulan123",
-                                    "speciality_id": 2
+                                    "speciality_id": 2,
+                                    "profile_pic": ""
                                 }
                             }
                         }
