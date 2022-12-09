@@ -281,20 +281,9 @@
                                             "name": "John Doe",
                                             "username": "1029384756",
                                             "role_id": 2,
-                                            "role": "",
                                             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzAyMTY4NjQsInJvbGVJZCI6MiwidXNlcklkIjo4LCJ1c2VybmFtZSI6IjEwMjkzODQ3NTYifQ.mEvjUHcX8BtP0LhGwwzU9ZwXGmwdfwDLdQ5RwIf-j90",
-                                            "doctor": {
-                                                "id": 7,
-                                                "created_at": "2022-11-30T13:05:43.168+07:00",
-                                                "updated_at": "2022-11-30T13:05:43.168+07:00",
-                                                "deleted_at": null,
-                                                "name": "John Doe",
-                                                "speciality_id": 1,
-                                                "license_number": "1029384756",
-                                                "speciality_name": "",
-                                                "doctor_schedules": null
-                                            },
-                                            "nurse": null
+                                            "doctor_id": 7,
+                                            "nurse_id": null
                                         }
                                     }
                                 }
@@ -310,6 +299,65 @@
                                     "example": {
                                         "status": 400,
                                         "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/refresh": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refresh Token",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "login success",
+                                        "data": {
+                                            "user_id": 8,
+                                            "name": "John Doe",
+                                            "username": "1029384756",
+                                            "role_id": 2,
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzAyMTY4NjQsInJvbGVJZCI6MiwidXNlcklkIjo4LCJ1c2VybmFtZSI6IjEwMjkzODQ3NTYifQ.mEvjUHcX8BtP0LhGwwzU9ZwXGmwdfwDLdQ5RwIf-j90",
+                                            "doctor_id": 7,
+                                            "nurse_id": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "user not found",
                                         "data": null
                                     }
                                 }

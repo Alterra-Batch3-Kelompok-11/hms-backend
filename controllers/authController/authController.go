@@ -1,10 +1,13 @@
 package authController
 
 import (
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/labstack/echo/v4"
+	"hms-backend/configs"
 	"hms-backend/dto"
 	"hms-backend/usecases/authUseCase"
 	"net/http"
+	"strings"
 )
 
 type authController struct {
@@ -45,7 +48,6 @@ func (ctrl *authController) Login(c echo.Context) error {
 	})
 
 }
-
 func (ctrl *authController) SignUp(c echo.Context) error {
 	payload := dto.UserReq{}
 
@@ -78,6 +80,32 @@ func (ctrl *authController) SignUp(c echo.Context) error {
 		Status:  http.StatusOK,
 		Message: "signup success",
 		Data:    user,
+	})
+
+}
+func (ctrl *authController) RefreshToken(c echo.Context) error {
+
+	headerToken := c.Request().Header.Get("Authorization")
+	token := strings.Split(headerToken, " ")[1]
+	claims := jwt.MapClaims{}
+	_, err := jwt.ParseWithClaims(token, claims, func(*jwt.Token) (interface{}, error) {
+		return []byte(configs.Cfg.JwtKey), nil
+	})
+
+	loginRes, err := ctrl.usecase.RefreshToken(uint(claims["userId"].(float64)))
+
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, dto.Response{
+		Status:  http.StatusOK,
+		Message: "login success",
+		Data:    loginRes,
 	})
 
 }
