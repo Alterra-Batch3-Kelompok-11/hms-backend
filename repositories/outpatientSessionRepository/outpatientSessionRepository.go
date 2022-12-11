@@ -18,6 +18,7 @@ type OutpatientSessionRepository interface {
 	GetProcessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetProcessedAllByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetApprovedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
+	GetApprovedAllByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetRejectedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetByDate(date time.Time) ([]models.OutpatientSession, error)
 	GetFinishedByPatientIdDesc(patientId uint) ([]models.OutpatientSession, error)
@@ -102,6 +103,15 @@ func (rep *outpatientSessionRepository) GetApprovedByDoctorId(doctorId uint) ([]
 	var outpatientSessions []models.OutpatientSession
 
 	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = ? AND is_approved = 1", doctorId, false).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetApprovedAllByDoctorId(doctorId uint) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_approved = 1", doctorId).Find(&outpatientSessions).Error; err != nil {
 		return outpatientSessions, err
 	}
 

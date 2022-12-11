@@ -11,8 +11,6 @@ type HistoryRepository interface {
 	GetByPatientId(patientId uint) ([]models.History, error)
 	GetByDoctorId(doctorId uint) ([]models.History, error)
 	Create(payload models.History) (models.History, error)
-	Update(id uint, payload models.History) (models.History, error)
-	Delete(id uint) error
 }
 
 type historyRepository struct {
@@ -62,12 +60,4 @@ func (rep *historyRepository) GetByDoctorId(doctorId uint) ([]models.History, er
 func (rep *historyRepository) Create(payload models.History) (models.History, error) {
 	err := rep.db.Create(&payload).Error
 	return payload, err
-}
-func (rep *historyRepository) Update(id uint, payload models.History) (models.History, error) {
-	err := rep.db.Model(models.History{}).Where("ID = ?", id).Updates(&payload).Error
-	return payload, err
-}
-func (rep *historyRepository) Delete(id uint) error {
-	var history models.History
-	return rep.db.Delete(&history, id).Error
 }
