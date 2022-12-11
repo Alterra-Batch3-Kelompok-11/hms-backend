@@ -144,6 +144,60 @@
                 }
             }
         },
+        "/v1/dashboard/mobile/doctor/{doctor_id}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Data Dashboard For Web",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "example": 7
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "total_queue_today": 1,
+                                            "total_finished_today": 0,
+                                            "patients_today": [
+                                                {
+                                                    "name": "John tor",
+                                                    "schedule_date": "2022-12-11",
+                                                    "schedule_date_indo": "11 Desember 2022",
+                                                    "schedule_time": "10:00",
+                                                    "schedule": "2022-12-11T10:00:00+07:00",
+                                                    "complaint": "sakit gigi"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/roles": {
             "get": {
                 "tags": [

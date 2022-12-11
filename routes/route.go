@@ -198,6 +198,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	// For Dashboard
 	dashboard := v1.Group("/dashboard")
 	dashboard.GET("/web", dashboardCtrl.GetDataDashboardWeb, jwt)
+	dashboard.GET("/mobile/doctor/:doctor_id", dashboardCtrl.GetDataDashboardMobile, jwt)
 
 	return e
 }
