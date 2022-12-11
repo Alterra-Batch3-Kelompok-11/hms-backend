@@ -152,7 +152,7 @@ const SwaggerDocTemplate = `
                 "tags": [
                     "Dashboard"
                 ],
-                "summary": "Data Dashboard For Web",
+                "summary": "Data Dashboard For Mobile",
                 "parameters": [
                     {
                         "name": "doctor_id",
