@@ -106,6 +106,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	v1 := e.Group("/v1")
 	v1.POST("/login", authCtrl.Login)
 	v1.POST("/signup", authCtrl.SignUp)
+	v1.POST("/auth/refresh", authCtrl.RefreshToken)
 
 	// Roles
 	role := v1.Group("/roles")
@@ -170,6 +171,8 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	outpatientSession.GET("/doctor/:doctor_id", outpatientSessionCtrl.GetByDoctorId, jwt)
 	outpatientSession.GET("/doctor/:doctor_id/unprocesseds", outpatientSessionCtrl.GetUnprocessedByDoctorId, jwt)
 	outpatientSession.GET("/doctor/:doctor_id/processeds", outpatientSessionCtrl.GetProcessedByDoctorId, jwt)
+	outpatientSession.GET("/doctor/:doctor_id/approveds", outpatientSessionCtrl.GetApprovedByDoctorId, jwt)
+	outpatientSession.GET("/doctor/:doctor_id/rejecteds", outpatientSessionCtrl.GetRejectedByDoctorId, jwt)
 	outpatientSession.POST("", outpatientSessionCtrl.Create, jwt, admMdlwr)
 	outpatientSession.PUT("/:id", outpatientSessionCtrl.Update, jwt, admMdlwr)
 	outpatientSession.PUT("/:id/approval", outpatientSessionCtrl.Approval, jwt, dctrMdlwr)
