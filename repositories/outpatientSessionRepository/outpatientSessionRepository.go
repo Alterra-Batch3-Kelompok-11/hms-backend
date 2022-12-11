@@ -21,7 +21,10 @@ type OutpatientSessionRepository interface {
 	GetApprovedAllByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetRejectedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetByDate(date time.Time) ([]models.OutpatientSession, error)
+	GetUnfinishedByDateByDoctorId(doctorId uint, date time.Time) ([]models.OutpatientSession, error)
 	GetFinishedByPatientIdDesc(patientId uint) ([]models.OutpatientSession, error)
+	CountUnfinishedToday(doctorId uint, date time.Time) (int64, error)
+	CountFinishedToday(doctorId uint, date time.Time) (int64, error)
 	Create(user models.OutpatientSession) (models.OutpatientSession, error)
 	Update(id uint, user models.OutpatientSession) (models.OutpatientSession, error)
 	Approval(id uint, isApproved int) (models.OutpatientSession, error)
@@ -172,6 +175,66 @@ func (rep *outpatientSessionRepository) GetFinishedByPatientIdDesc(patientId uin
 	}
 
 	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetUnfinishedByDateByDoctorId(doctorId uint, date time.Time) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	dateString := strconv.Itoa(date.Year()) + "-" + strconv.Itoa(int(date.Month())) + "-"
+	startTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day())+"T00:00:00+07:00")
+	if err != nil {
+		return nil, err
+	}
+
+	endTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day()+1)+"T00:00:00+07:00")
+	if err != nil {
+		return nil, err
+	}
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_approved = 1 AND schedule BETWEEN ? AND ?", doctorId, startTime, endTime).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) CountUnfinishedToday(doctorId uint, date time.Time) (int64, error) {
+	var count int64
+
+	dateString := strconv.Itoa(date.Year()) + "-" + strconv.Itoa(int(date.Month())) + "-"
+	startTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day())+"T00:00:00+07:00")
+	if err != nil {
+		return 0, err
+	}
+
+	endTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day()+1)+"T00:00:00+07:00")
+	if err != nil {
+		return 0, err
+	}
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = false AND is_approved = 1 AND schedule BETWEEN ? AND ?", doctorId, startTime, endTime).Count(&count).Error; err != nil {
+		return count, err
+	}
+
+	return count, nil
+}
+func (rep *outpatientSessionRepository) CountFinishedToday(doctorId uint, date time.Time) (int64, error) {
+	var count int64
+
+	dateString := strconv.Itoa(date.Year()) + "-" + strconv.Itoa(int(date.Month())) + "-"
+	startTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day())+"T00:00:00+07:00")
+	if err != nil {
+		return 0, err
+	}
+
+	endTime, err := time.Parse(time.RFC3339, dateString+fmt.Sprintf("%02d", date.Day()+1)+"T00:00:00+07:00")
+	if err != nil {
+		return 0, err
+	}
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = true AND schedule BETWEEN ? AND ?", doctorId, startTime, endTime).Count(&count).Error; err != nil {
+		return count, err
+	}
+
+	return count, nil
 }
 func (rep *outpatientSessionRepository) Create(outpatientSession models.OutpatientSession) (models.OutpatientSession, error) {
 	err := rep.db.Create(&outpatientSession).Error

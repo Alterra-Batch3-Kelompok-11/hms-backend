@@ -19,6 +19,7 @@ import (
 
 type DashboardUseCase interface {
 	GetDataDashboardWeb() (dto.DashboardWeb, error)
+	GetDataDashboardMobile(doctorId uint) (dto.DashboardMobile, error)
 }
 
 type dashboardUseCase struct {
@@ -263,6 +264,59 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 		TodayDoctors:            todayDoctors,
 		TodayOutpatientSessions: todayOutPatientSessions,
 		Patients:                patients,
+	}
+
+	return res, nil
+}
+func (uc *dashboardUseCase) GetDataDashboardMobile(doctorId uint) (dto.DashboardMobile, error) {
+	var res dto.DashboardMobile
+
+	jakartaTime, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
+
+	countUnfinished, err := uc.outptnRep.CountUnfinishedToday(doctorId, jakartaTime)
+	if err != nil {
+		return res, err
+	}
+
+	countFinished, err := uc.outptnRep.CountFinishedToday(doctorId, jakartaTime)
+	if err != nil {
+		return res, err
+	}
+
+	outpatientSessions, err := uc.outptnRep.GetUnfinishedByDateByDoctorId(doctorId, jakartaTime)
+	if err != nil {
+		return res, err
+	}
+
+	var patients []dto.PatientToday
+
+	for _, outpatientSession := range outpatientSessions {
+		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
+		if err != nil {
+			return res, nil
+		}
+
+		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
+
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
+
+		patients = append(patients, dto.PatientToday{
+			Name:             patient.Name,
+			ScheduleDate:     dateString,
+			ScheduleDateIndo: dateIndoString,
+			ScheduleTime:     timeString,
+			Schedule:         outpatientSession.Schedule,
+			Complaint:        outpatientSession.Complaint,
+		})
+	}
+
+	res = dto.DashboardMobile{
+		TotalQueueToday:    countUnfinished,
+		TotalFinishedToday: countFinished,
+		PatientsToday:      patients,
 	}
 
 	return res, nil
