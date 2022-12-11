@@ -171,6 +171,8 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	outpatientSession.GET("/doctor/:doctor_id", outpatientSessionCtrl.GetByDoctorId, jwt)
 	outpatientSession.GET("/doctor/:doctor_id/unprocesseds", outpatientSessionCtrl.GetUnprocessedByDoctorId, jwt)
 	outpatientSession.GET("/doctor/:doctor_id/processeds", outpatientSessionCtrl.GetProcessedByDoctorId, jwt)
+	outpatientSession.GET("/doctor/:doctor_id/approveds", outpatientSessionCtrl.GetApprovedByDoctorId, jwt)
+	outpatientSession.GET("/doctor/:doctor_id/rejecteds", outpatientSessionCtrl.GetRejectedByDoctorId, jwt)
 	outpatientSession.POST("", outpatientSessionCtrl.Create, jwt, admMdlwr)
 	outpatientSession.PUT("/:id", outpatientSessionCtrl.Update, jwt, admMdlwr)
 	outpatientSession.PUT("/:id/approval", outpatientSessionCtrl.Approval, jwt, dctrMdlwr)

@@ -16,9 +16,13 @@ type OutpatientSessionRepository interface {
 	GetByPatientId(patientId uint) ([]models.OutpatientSession, error)
 	GetUnprocessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetProcessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
+	GetProcessedAllByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
+	GetApprovedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
+	GetRejectedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetByDate(date time.Time) ([]models.OutpatientSession, error)
 	Create(user models.OutpatientSession) (models.OutpatientSession, error)
 	Update(id uint, user models.OutpatientSession) (models.OutpatientSession, error)
+	Approval(id uint, isApproved int) (models.OutpatientSession, error)
 	Delete(id uint) error
 }
 
@@ -69,7 +73,7 @@ func (rep *outpatientSessionRepository) GetByPatientId(patientId uint) ([]models
 func (rep *outpatientSessionRepository) GetUnprocessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error) {
 	var outpatientSessions []models.OutpatientSession
 
-	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_approved = 0", doctorId).Find(&outpatientSessions).Error; err != nil {
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = ? AND is_approved = 0", doctorId, false).Find(&outpatientSessions).Error; err != nil {
 		return outpatientSessions, err
 	}
 
@@ -78,7 +82,34 @@ func (rep *outpatientSessionRepository) GetUnprocessedByDoctorId(doctorId uint) 
 func (rep *outpatientSessionRepository) GetProcessedByDoctorId(doctorId uint) ([]models.OutpatientSession, error) {
 	var outpatientSessions []models.OutpatientSession
 
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = ? AND is_approved != 0", doctorId, false).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetProcessedAllByDoctorId(doctorId uint) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
 	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_approved != 0", doctorId).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetApprovedByDoctorId(doctorId uint) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = ? AND is_approved = 1", doctorId, false).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetRejectedByDoctorId(doctorId uint) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_approved = 2", doctorId).Find(&outpatientSessions).Error; err != nil {
 		return outpatientSessions, err
 	}
 
@@ -119,6 +150,20 @@ func (rep *outpatientSessionRepository) Create(outpatientSession models.Outpatie
 }
 func (rep *outpatientSessionRepository) Update(id uint, outpatientSession models.OutpatientSession) (models.OutpatientSession, error) {
 	err := rep.db.Model(models.OutpatientSession{}).Where("ID = ?", id).Updates(&outpatientSession).Error
+	return outpatientSession, err
+}
+func (rep *outpatientSessionRepository) Approval(id uint, isApproved int) (models.OutpatientSession, error) {
+	var outpatientSession models.OutpatientSession
+
+	err := rep.db.Model(models.OutpatientSession{}).Where("ID = ?", id).Select("is_approved").Updates(models.OutpatientSession{IsApproved: isApproved}).Error
+	if err != nil {
+		return outpatientSession, err
+	}
+
+	if err = rep.db.Model([]models.OutpatientSession{}).Where("ID = ?", id).First(&outpatientSession).Error; err != nil {
+		return outpatientSession, err
+	}
+
 	return outpatientSession, err
 }
 func (rep *outpatientSessionRepository) Delete(id uint) error {
