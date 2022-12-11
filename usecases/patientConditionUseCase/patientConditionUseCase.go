@@ -102,6 +102,7 @@ func (uc *patientConditionUseCase) GetAll() ([]dto.PatientConditionRes, error) {
 		patientAge := helpers.Age(patient.BirthDate, jakartaTime)
 
 		res = append(res, dto.PatientConditionRes{
+			ID: treatment.ID,
 			Patient: struct {
 				NIK           string    `json:"nik"`
 				Name          string    `json:"name"`
@@ -197,6 +198,7 @@ func (uc *patientConditionUseCase) GetById(id uint) (dto.PatientConditionRes, er
 	patientAge := helpers.Age(patient.BirthDate, jakartaTime)
 
 	res = dto.PatientConditionRes{
+		ID: treatment.ID,
 		Patient: struct {
 			NIK           string    `json:"nik"`
 			Name          string    `json:"name"`
@@ -294,6 +296,7 @@ func (uc *patientConditionUseCase) GetByDoctorId(doctorId uint) ([]dto.PatientCo
 		patientAge := helpers.Age(patient.BirthDate, jakartaTime)
 
 		res = append(res, dto.PatientConditionRes{
+			ID: treatment.ID,
 			Patient: struct {
 				NIK           string    `json:"nik"`
 				Name          string    `json:"name"`
@@ -346,7 +349,7 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 
 	jakartaTime, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
 
-	outpatientSessions, err := uc.outptnRep.GetByPatientId(patientId)
+	outpatientSessions, err := uc.outptnRep.GetFinishedByPatientIdDesc(patientId)
 	if err != nil {
 		return res, err
 	}
@@ -392,6 +395,7 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 		patientAge := helpers.Age(patient.BirthDate, jakartaTime)
 
 		res = append(res, dto.PatientConditionRes{
+			ID: treatment.ID,
 			Patient: struct {
 				NIK           string    `json:"nik"`
 				Name          string    `json:"name"`
@@ -479,7 +483,7 @@ func (uc *patientConditionUseCase) Create(payload dto.InsertPatientCondition) (d
 		return res, err
 	}
 
-	_, err = uc.treatmentRepo.Create(treatment)
+	createTreatment, err := uc.treatmentRepo.Create(treatment)
 	if err != nil {
 		return res, err
 	}
@@ -507,6 +511,7 @@ func (uc *patientConditionUseCase) Create(payload dto.InsertPatientCondition) (d
 		strconv.Itoa(outpatientSession.FinishedAt.Year())
 
 	res = dto.InsertPatientConditionRes{
+		ID:                  createTreatment.ID,
 		OutpatientSessionId: payload.OutpatientSessionId,
 		Description:         payload.Description,
 		Medicine:            payload.Medicine,

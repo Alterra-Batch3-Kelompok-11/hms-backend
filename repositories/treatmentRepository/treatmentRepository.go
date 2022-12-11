@@ -43,7 +43,7 @@ func (rep *treatmentRepository) GetById(id uint) (models.Treatment, error) {
 func (rep *treatmentRepository) GetByOutpatientSessionId(outpatientSessionId uint) (models.Treatment, error) {
 	treatment := models.Treatment{}
 
-	if err := rep.db.Model(models.Treatment{}).Where("outpatient_session_id = ?", outpatientSessionId).First(&treatment).Error; err != nil {
+	if err := rep.db.Model(models.Treatment{}).Where("session_id = ?", outpatientSessionId).First(&treatment).Error; err != nil {
 		return treatment, err
 	}
 

@@ -3227,6 +3227,7 @@
                                         "status": 200,
                                         "message": "success create data",
                                         "data": {
+                                            "treatment_id": 1,
                                             "outpatient_session_id": 2,
                                             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
                                             "medicine": "paracetamol",
@@ -3249,6 +3250,170 @@
                                     "example": {
                                         "status": 400,
                                         "message": "this outpatient session is not approved",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients_conditions/{treatment_id}": {
+            "get": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Get Patient Condition By Treatment Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "treatment_id": 1,
+                                            "patient": {
+                                                "nik": "1324354657",
+                                                "name": "Abdil Tegar Arifin",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 1,
+                                                "age": 2021,
+                                                "phone": "081234567890",
+                                                "address": "Jember",
+                                                "marital_status": true,
+                                                "religion_name": "11 Desember 2022"
+                                            },
+                                            "doctor": {
+                                                "name": "John Doe",
+                                                "license_number": "1029384756",
+                                                "speciality_name": "Umum 2"
+                                            },
+                                            "schedule": "2022-12-07T03:00:00+07:00",
+                                            "schedule_date": "2022-12-07",
+                                            "schedule_date_indo": "07 Desember 2022",
+                                            "schedule_time": "03:00",
+                                            "complaint": "batuk berdahak",
+                                            "is_approved": 1,
+                                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                            "medicine": "paracetamol",
+                                            "allergy": "debu",
+                                            "is_finish": true,
+                                            "finished_at": "2022-12-11T16:12:37.25+07:00",
+                                            "finished_at_indo": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients_conditions/patient/{patient_id}": {
+            "get": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Get Patient Condition By Patient Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "treatment_id": 1,
+                                                "patient": {
+                                                    "nik": "1324354657",
+                                                    "name": "Abdil Tegar Arifin",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "age": 2021,
+                                                    "phone": "081234567890",
+                                                    "address": "Jember",
+                                                    "marital_status": true,
+                                                    "religion_name": "11 Desember 2022"
+                                                },
+                                                "doctor": {
+                                                    "name": "John Doe",
+                                                    "license_number": "1029384756",
+                                                    "speciality_name": "Umum 2"
+                                                },
+                                                "schedule": "2022-12-07T03:00:00+07:00",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "03:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 1,
+                                                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                                "medicine": "paracetamol",
+                                                "allergy": "debu",
+                                                "is_finish": true,
+                                                "finished_at": "2022-12-11T16:12:37.25+07:00",
+                                                "finished_at_indo": ""
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
                                         "data": null
                                     }
                                 }

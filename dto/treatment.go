@@ -10,6 +10,7 @@ type InsertPatientCondition struct {
 }
 
 type InsertPatientConditionRes struct {
+	ID                  uint      `json:"treatment_id"`
 	OutpatientSessionId uint      `json:"outpatient_session_id" form:"outpatient_session_id"`
 	Description         string    `json:"description" form:"description"`
 	Medicine            string    `json:"medicine" form:"medicine"`
@@ -20,6 +21,7 @@ type InsertPatientConditionRes struct {
 }
 
 type PatientConditionRes struct {
+	ID      uint `json:"treatment_id"`
 	Patient struct {
 		NIK           string    `json:"nik"`
 		Name          string    `json:"name"`
