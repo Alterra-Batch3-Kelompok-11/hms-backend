@@ -20,6 +20,7 @@ type OutpatientSessionRepository interface {
 	GetApprovedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetRejectedByDoctorId(doctorId uint) ([]models.OutpatientSession, error)
 	GetByDate(date time.Time) ([]models.OutpatientSession, error)
+	GetFinishedByPatientIdDesc(patientId uint) ([]models.OutpatientSession, error)
 	Create(user models.OutpatientSession) (models.OutpatientSession, error)
 	Update(id uint, user models.OutpatientSession) (models.OutpatientSession, error)
 	Approval(id uint, isApproved int) (models.OutpatientSession, error)
@@ -139,6 +140,24 @@ func (rep *outpatientSessionRepository) GetDesc(limit int) ([]models.OutpatientS
 	var outpatientSessions []models.OutpatientSession
 
 	if err := rep.db.Model([]models.OutpatientSession{}).Where("is_approved != 2").Order("schedule desc").Limit(limit).Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetFinishedByDoctorIdDesc(patientId uint) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("doctor_id = ? AND is_finish = ?", patientId, true).Order("schedule desc").Find(&outpatientSessions).Error; err != nil {
+		return outpatientSessions, err
+	}
+
+	return outpatientSessions, nil
+}
+func (rep *outpatientSessionRepository) GetFinishedByPatientIdDesc(patientId uint) ([]models.OutpatientSession, error) {
+	var outpatientSessions []models.OutpatientSession
+
+	if err := rep.db.Model([]models.OutpatientSession{}).Where("patient_id = ? AND is_finish = ?", patientId, true).Order("schedule desc").Find(&outpatientSessions).Error; err != nil {
 		return outpatientSessions, err
 	}
 
