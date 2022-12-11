@@ -92,6 +92,14 @@ func (ctrl *authController) RefreshToken(c echo.Context) error {
 		return []byte(configs.Cfg.JwtKey), nil
 	})
 
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
 	loginRes, err := ctrl.usecase.RefreshToken(uint(claims["userId"].(float64)))
 
 	if err != nil {
