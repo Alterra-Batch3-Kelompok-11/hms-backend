@@ -6,6 +6,7 @@ import (
 	"hms-backend/controllers/dashboardController"
 	"hms-backend/controllers/doctorController"
 	"hms-backend/controllers/doctorScheduleController"
+	"hms-backend/controllers/historyController"
 	"hms-backend/controllers/nurseController"
 	"hms-backend/controllers/outpatientSessionController"
 	"hms-backend/controllers/patientConditionController"
@@ -29,6 +30,7 @@ import (
 	"hms-backend/usecases/dashboardUseCase"
 	"hms-backend/usecases/doctorScheduleUseCase"
 	"hms-backend/usecases/doctorUseCase"
+	"hms-backend/usecases/historyUseCase"
 	"hms-backend/usecases/nurseUseCase"
 	"hms-backend/usecases/outpatientSessionUseCase"
 	"hms-backend/usecases/patientConditionUseCase"
@@ -80,6 +82,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	outPatientSessionUC := outpatientSessionUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo)
 	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
 	patientConditionUC := patientConditionUseCase.New(treatmentRepo, outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo, historyRepo)
+	historyUC := historyUseCase.New(outPatientSessionRepo, patRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -93,6 +96,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	outpatientSessionCtrl := outpatientSessionController.New(outPatientSessionUC)
 	dashboardCtrl := dashboardController.New(dashboardUC)
 	patientConditionCtrl := patientConditionController.New(patientConditionUC)
+	historyCtrl := historyController.New(historyUC)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -185,6 +189,11 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	patientCondition.GET("/patient/:patient_id", patientConditionCtrl.GetByPatientId, jwt)
 	patientCondition.GET("/doctor/:doctor_id", patientConditionCtrl.GetByDoctorId, jwt)
 	patientCondition.POST("", patientConditionCtrl.Create, jwt)
+
+	// Histories
+	history := v1.Group("/histories")
+	history.GET("/doctor/:doctor_id/outpatient_sessions", historyCtrl.GetOutpatientSessionHistory, jwt)
+	history.GET("/doctor/:doctor_id/approvals", historyCtrl.GetApprovalHistory, jwt)
 
 	// For Dashboard
 	dashboard := v1.Group("/dashboard")

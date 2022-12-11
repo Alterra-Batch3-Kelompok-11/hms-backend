@@ -45,6 +45,9 @@
         },
         {
             "name": "Patient Conditions"
+        },
+        {
+            "name": "Histories"
         }
     ],
     "paths": {
@@ -3407,6 +3410,142 @@
                     },
                     "400": {
                         "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/histories/doctor/{doctor_id}/outpatient_sessions": {
+            "get": {
+                "tags": [
+                    "Histories"
+                ],
+                "summary": "Get Outpatient Session Histories",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 7
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "patient_name": "Abdil Tegar Arifin",
+                                                "schedule": "2022-12-07T03:00:00+07:00",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "03:00",
+                                                "status": "Selesai"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/histories/doctor/{doctor_id}/approvals": {
+            "get": {
+                "tags": [
+                    "Histories"
+                ],
+                "summary": "Get Approval Histories",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "patient_name": "John tor",
+                                                "schedule": "2022-12-06T03:00:00+07:00",
+                                                "schedule_date": "2022-12-06",
+                                                "schedule_date_indo": "06 Desember 2022",
+                                                "schedule_time": "03:00",
+                                                "status": "Kunjungan Ditolak"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
