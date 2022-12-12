@@ -3242,8 +3242,63 @@ const SwaggerDocTemplate = `
                         }
                     }
                 }
-            }
-        },
+            },
+            "post": {
+                "tags" : ["Patients"],
+                "summary": "Create Patients",
+                "parameters": [
+                {
+                    "name": "Authorization",
+                    "in": "header",
+                    "description": "Authorization header token from login",
+                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                }
+             ],
+             "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "nik": "12341234",
+                                "name": "John doe",
+                                "gender": 1,
+                                "address": "Bekasi",
+                                "phone": "813121212",
+                                "marital_status": true,
+                                "religion_id": 1
+                            }
+                        }
+                    }
+                }
+             },
+             "responses": {
+                "200": {
+                    "description": "Successful response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example" : {
+                                    "status": 200,
+                                    "message": "success create data",
+                                    "data": {
+                                        "nik": "12341234",
+                                        "name": "John doe",
+                                        "gender": 1,
+                                        "address": "Bekasi",
+                                        "phone": "813121212",
+                                        "marital_status": true,
+                                        "religion_id": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+             }
+         },
         "/v1/patients_conditions": {
             "post": {
                 "tags": [
@@ -3603,6 +3658,192 @@ const SwaggerDocTemplate = `
                     },
                     "400": {
                         "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vi/patients/{id}" : {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Get Patient by Id",
+                "parameters": [
+                {
+                    "name" : "id",
+                    "in" : "path",
+                    "description" : "ID of patient"
+                }
+
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "messages": "success get data",
+                                        "data":{
+                                            "id": 0,
+                                            "user_id": 3,
+                                            "license_number": "123124",
+                                            "created_at": "2022-12-01T13:26:45.924+07:00",
+                                            "updated_at": "2022-12-01T13:35:49.342+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put" : {
+                "tags" : ["Patients"],
+                "summary" : "Update Patient",
+                "parameters" : [
+                    {
+                        "name" : "id",
+                        "in" : "path",
+                        "description" : "ID of patient"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "user_id": 3,
+                                    "license_number": "123124"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "messages": "success update data",
+                                        "data":{
+                                            "id": 0,
+                                            "user_id": 3,
+                                            "license_number": "123124",
+                                            "created_at": "2022-12-01T13:26:45.924+07:00",
+                                            "updated_at": "2022-12-01T13:35:49.342+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags" : ["Patients"],
+                "summary" : "Delete Patient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of patient",
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "messages": "success delete data",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
