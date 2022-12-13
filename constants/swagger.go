@@ -17,6 +17,9 @@ const SwaggerDocTemplate = `
     ],
     "tags": [
         {
+            "name": "Dashboard"
+        },
+        {
             "name": "Auth"
         },
         {
@@ -42,9 +45,162 @@ const SwaggerDocTemplate = `
         },
         {
             "name": "Outpatient Sessions"
+        },
+        {
+            "name": "Patient Conditions"
+        },
+        {
+            "name": "Histories"
         }
     ],
     "paths": {
+        "/v1/dashboard/web": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Data Dashboard For Web",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "total_doctors": 5,
+                                            "total_nurses": 0,
+                                            "total_patients": 1,
+                                            "today_doctors": null,
+                                            "today_outpatient_sessions": null,
+                                            "patients": [
+                                                {
+                                                    "patient": {
+                                                        "nik": "12341234",
+                                                        "name": "John tor",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121212",
+                                                        "address": "Bekasi",
+                                                        "marital_status": true,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "Dr Mulan",
+                                                        "license_number": "123123",
+                                                        "speciality_name": "Umum"
+                                                    },
+                                                    "schedule": "2022-12-07T10:00:00+07:00",
+                                                    "complaint": "sakit mata",
+                                                    "is_approved": 0,
+                                                    "is_finish": false,
+                                                    "finished_at": "0001-01-01T00:00:00Z",
+                                                    "schedule_date": "2022-12-07",
+                                                    "schedule_time": "10:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "12341234",
+                                                        "name": "John tor",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121212",
+                                                        "address": "Bekasi",
+                                                        "marital_status": true,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "Dr Mulan",
+                                                        "license_number": "123123",
+                                                        "speciality_name": "Umum"
+                                                    },
+                                                    "schedule": "2022-12-04T10:00:00+07:00",
+                                                    "complaint": "batuk berdahak",
+                                                    "is_approved": 0,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-09T18:48:21.559+07:00",
+                                                    "schedule_date": "2022-12-04",
+                                                    "schedule_time": "10:00"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/dashboard/mobile/doctor/{doctor_id}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Data Dashboard For Mobile",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "example": 7
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "total_queue_today": 1,
+                                            "total_finished_today": 0,
+                                            "patients_today": [
+                                                {
+                                                    "name": "John tor",
+                                                    "schedule_date": "2022-12-11",
+                                                    "schedule_date_indo": "11 Desember 2022",
+                                                    "schedule_time": "10:00",
+                                                    "schedule": "2022-12-11T10:00:00+07:00",
+                                                    "complaint": "sakit gigi"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/roles": {
             "get": {
                 "tags": [
@@ -185,20 +341,9 @@ const SwaggerDocTemplate = `
                                             "name": "John Doe",
                                             "username": "1029384756",
                                             "role_id": 2,
-                                            "role": "",
                                             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzAyMTY4NjQsInJvbGVJZCI6MiwidXNlcklkIjo4LCJ1c2VybmFtZSI6IjEwMjkzODQ3NTYifQ.mEvjUHcX8BtP0LhGwwzU9ZwXGmwdfwDLdQ5RwIf-j90",
-                                            "doctor": {
-                                                "id": 7,
-                                                "created_at": "2022-11-30T13:05:43.168+07:00",
-                                                "updated_at": "2022-11-30T13:05:43.168+07:00",
-                                                "deleted_at": null,
-                                                "name": "John Doe",
-                                                "speciality_id": 1,
-                                                "license_number": "1029384756",
-                                                "speciality_name": "",
-                                                "doctor_schedules": null
-                                            },
-                                            "nurse": null
+                                            "doctor_id": 7,
+                                            "nurse_id": null
                                         }
                                     }
                                 }
@@ -214,6 +359,65 @@ const SwaggerDocTemplate = `
                                     "example": {
                                         "status": 400,
                                         "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/refresh": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refresh Token",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "login success",
+                                        "data": {
+                                            "user_id": 8,
+                                            "name": "John Doe",
+                                            "username": "1029384756",
+                                            "role_id": 2,
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzAyMTY4NjQsInJvbGVJZCI6MiwidXNlcklkIjo4LCJ1c2VybmFtZSI6IjEwMjkzODQ3NTYifQ.mEvjUHcX8BtP0LhGwwzU9ZwXGmwdfwDLdQ5RwIf-j90",
+                                            "doctor_id": 7,
+                                            "nurse_id": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "user not found",
                                         "data": null
                                     }
                                 }
@@ -648,13 +852,23 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": [
                                                     {
-                                                        "id": 1,
-                                                        "created_at": "2022-11-30T18:19:24.22+07:00",
-                                                        "updated_at": "2022-11-30T18:19:24.22+07:00",
-                                                        "deleted_at": null,
+                                                        "id": 4,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-08T21:22:48.9093239+07:00",
+                                                        "date_indo": "08 Desember 2022",
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "11:00"
+                                                    },
+                                                    {
+                                                        "id": 1,
+                                                        "doctor_id": 3,
+                                                        "date": "2022-12-11T21:22:48.9093239+07:00",
+                                                        "date_indo": "11 Desember 2022",
                                                         "day_int": 0,
                                                         "day_string": "Minggu",
                                                         "start_time": "08:00",
@@ -662,10 +876,9 @@ const SwaggerDocTemplate = `
                                                     },
                                                     {
                                                         "id": 2,
-                                                        "created_at": "2022-11-30T18:19:31.138+07:00",
-                                                        "updated_at": "2022-11-30T18:19:31.138+07:00",
-                                                        "deleted_at": null,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-12T21:22:48.9093239+07:00",
+                                                        "date_indo": "12 Desember 2022",
                                                         "day_int": 1,
                                                         "day_string": "Senin",
                                                         "start_time": "08:00",
@@ -673,25 +886,23 @@ const SwaggerDocTemplate = `
                                                     },
                                                     {
                                                         "id": 3,
-                                                        "created_at": "2022-11-30T18:19:34.567+07:00",
-                                                        "updated_at": "2022-11-30T18:19:34.567+07:00",
-                                                        "deleted_at": null,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-13T21:22:48.9093239+07:00",
+                                                        "date_indo": "13 Desember 2022",
                                                         "day_int": 2,
                                                         "day_string": "Selasa",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     },
                                                     {
-                                                        "id": 4,
-                                                        "created_at": "2022-11-30T18:58:30.652+07:00",
-                                                        "updated_at": "2022-11-30T18:58:30.652+07:00",
-                                                        "deleted_at": null,
+                                                        "id": 5,
                                                         "doctor_id": 3,
-                                                        "day_int": 4,
-                                                        "day_string": "Kamis",
+                                                        "date": "2022-12-14T21:22:48.9093239+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
-                                                        "end_time": "11:00"
+                                                        "end_time": "15:00"
                                                     }
                                                 ]
                                             },
@@ -704,6 +915,7 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "1231232",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             },
                                             {
@@ -715,6 +927,7 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             },
                                             {
@@ -726,6 +939,19 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "12312333",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 8,
+                                                "created_at": "2022-12-02T00:05:36.226+07:00",
+                                                "updated_at": "2022-12-02T00:10:14.22+07:00",
+                                                "deleted_at": null,
+                                                "name": "John Doe",
+                                                "speciality_id": 1,
+                                                "license_number": "1234567891",
+                                                "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             }
                                         ]
@@ -750,7 +976,8 @@ const SwaggerDocTemplate = `
                                     "name": "John Doe",
                                     "license_number": "1234567890",
                                     "password": "john123",
-                                    "speciality_id": 1
+                                    "speciality_id": 1,
+                                    "profile_pic": ""
                                 }
                             }
                         }
@@ -825,7 +1052,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "integer"
                         },
-                        "example": 1
+                        "example": 3
                     }
                 ],
                 "responses": {
@@ -839,15 +1066,67 @@ const SwaggerDocTemplate = `
                                         "status": 200,
                                         "message": "success get data",
                                         "data": {
-                                            "id": 8,
-                                            "created_at": "2022-12-02T00:05:36.226+07:00",
-                                            "updated_at": "2022-12-02T00:05:36.226+07:00",
+                                            "id": 3,
+                                            "created_at": "2022-11-23T12:32:38.222+07:00",
+                                            "updated_at": "2022-11-23T12:32:38.222+07:00",
                                             "deleted_at": null,
-                                            "name": "John Doe",
+                                            "name": "Dr Mulan",
                                             "speciality_id": 1,
-                                            "license_number": "1234567890",
+                                            "license_number": "123123",
                                             "speciality_name": "Umum",
-                                            "doctor_schedules": []
+                                            "profile_pic": "",
+                                            "doctor_schedules": [
+                                                {
+                                                    "id": 4,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-08T21:23:11.522967+07:00",
+                                                    "date_indo": "08 Desember 2022",
+                                                    "day_int": 4,
+                                                    "day_string": "Kamis",
+                                                    "start_time": "08:00",
+                                                    "end_time": "11:00"
+                                                },
+                                                {
+                                                    "id": 1,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-11T21:23:11.522967+07:00",
+                                                    "date_indo": "11 Desember 2022",
+                                                    "day_int": 0,
+                                                    "day_string": "Minggu",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-12T21:23:11.522967+07:00",
+                                                    "date_indo": "12 Desember 2022",
+                                                    "day_int": 1,
+                                                    "day_string": "Senin",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                },
+                                                {
+                                                    "id": 3,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-13T21:23:11.522967+07:00",
+                                                    "date_indo": "13 Desember 2022",
+                                                    "day_int": 2,
+                                                    "day_string": "Selasa",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                },
+                                                {
+                                                    "id": 5,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-14T21:23:11.522967+07:00",
+                                                    "date_indo": "14 Desember 2022",
+                                                    "day_int": 3,
+                                                    "day_string": "Rabu",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -885,7 +1164,8 @@ const SwaggerDocTemplate = `
                                     "name": "Fulan",
                                     "license_number": "780198012345",
                                     "password": "fulan123",
-                                    "speciality_id": 2
+                                    "speciality_id": 2,
+                                    "profile_pic": ""
                                 }
                             }
                         }
@@ -1032,15 +1312,67 @@ const SwaggerDocTemplate = `
                                         "status": 200,
                                         "message": "success get data",
                                         "data": {
-                                            "id": 1,
-                                            "created_at": "0001-01-01T00:00:00Z",
-                                            "updated_at": "0001-01-01T00:00:00Z",
+                                            "id": 3,
+                                            "created_at": "2022-11-23T12:32:38.222+07:00",
+                                            "updated_at": "2022-11-23T12:32:38.222+07:00",
                                             "deleted_at": null,
-                                            "name": "John Doe",
+                                            "name": "Dr Mulan",
                                             "speciality_id": 1,
-                                            "license_number": "1234567891",
+                                            "license_number": "123123",
                                             "speciality_name": "Umum",
-                                            "doctor_schedules": null
+                                            "profile_pic": "",
+                                            "doctor_schedules": [
+                                                {
+                                                    "id": 4,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-08T21:24:37.1713061+07:00",
+                                                    "date_indo": "08 Desember 2022",
+                                                    "day_int": 4,
+                                                    "day_string": "Kamis",
+                                                    "start_time": "08:00",
+                                                    "end_time": "11:00"
+                                                },
+                                                {
+                                                    "id": 1,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-11T21:24:37.1713061+07:00",
+                                                    "date_indo": "11 Desember 2022",
+                                                    "day_int": 0,
+                                                    "day_string": "Minggu",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-12T21:24:37.1713061+07:00",
+                                                    "date_indo": "12 Desember 2022",
+                                                    "day_int": 1,
+                                                    "day_string": "Senin",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                },
+                                                {
+                                                    "id": 3,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-13T21:24:37.1713061+07:00",
+                                                    "date_indo": "13 Desember 2022",
+                                                    "day_int": 2,
+                                                    "day_string": "Selasa",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                },
+                                                {
+                                                    "id": 5,
+                                                    "doctor_id": 3,
+                                                    "date": "2022-12-14T21:24:37.1713061+07:00",
+                                                    "date_indo": "14 Desember 2022",
+                                                    "day_int": 3,
+                                                    "day_string": "Rabu",
+                                                    "start_time": "08:00",
+                                                    "end_time": "15:00"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -1102,13 +1434,23 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": [
                                                     {
-                                                        "id": 1,
-                                                        "created_at": "2022-11-30T18:19:24.22+07:00",
-                                                        "updated_at": "2022-11-30T18:19:24.22+07:00",
-                                                        "deleted_at": null,
+                                                        "id": 4,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-08T21:23:48.0021063+07:00",
+                                                        "date_indo": "08 Desember 2022",
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "11:00"
+                                                    },
+                                                    {
+                                                        "id": 1,
+                                                        "doctor_id": 3,
+                                                        "date": "2022-12-11T21:23:48.0021063+07:00",
+                                                        "date_indo": "11 Desember 2022",
                                                         "day_int": 0,
                                                         "day_string": "Minggu",
                                                         "start_time": "08:00",
@@ -1116,10 +1458,9 @@ const SwaggerDocTemplate = `
                                                     },
                                                     {
                                                         "id": 2,
-                                                        "created_at": "2022-11-30T18:19:31.138+07:00",
-                                                        "updated_at": "2022-11-30T18:19:31.138+07:00",
-                                                        "deleted_at": null,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-12T21:23:48.0021063+07:00",
+                                                        "date_indo": "12 Desember 2022",
                                                         "day_int": 1,
                                                         "day_string": "Senin",
                                                         "start_time": "08:00",
@@ -1127,25 +1468,23 @@ const SwaggerDocTemplate = `
                                                     },
                                                     {
                                                         "id": 3,
-                                                        "created_at": "2022-11-30T18:19:34.567+07:00",
-                                                        "updated_at": "2022-11-30T18:19:34.567+07:00",
-                                                        "deleted_at": null,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-13T21:23:48.0021063+07:00",
+                                                        "date_indo": "13 Desember 2022",
                                                         "day_int": 2,
                                                         "day_string": "Selasa",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     },
                                                     {
-                                                        "id": 4,
-                                                        "created_at": "2022-11-30T18:58:30.652+07:00",
-                                                        "updated_at": "2022-11-30T18:58:30.652+07:00",
-                                                        "deleted_at": null,
+                                                        "id": 5,
                                                         "doctor_id": 3,
-                                                        "day_int": 4,
-                                                        "day_string": "Kamis",
+                                                        "date": "2022-12-14T21:23:48.0021063+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
-                                                        "end_time": "11:00"
+                                                        "end_time": "15:00"
                                                     }
                                                 ]
                                             },
@@ -1158,6 +1497,7 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "1231232",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             },
                                             {
@@ -1169,6 +1509,7 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             },
                                             {
@@ -1180,6 +1521,19 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "12312333",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 8,
+                                                "created_at": "2022-12-02T00:05:36.226+07:00",
+                                                "updated_at": "2022-12-02T00:10:14.22+07:00",
+                                                "deleted_at": null,
+                                                "name": "John Doe",
+                                                "speciality_id": 1,
+                                                "license_number": "1234567891",
+                                                "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             }
                                         ]
@@ -1218,46 +1572,13 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": [
                                                     {
-                                                        "id": 1,
-                                                        "created_at": "2022-11-30T18:19:24.22+07:00",
-                                                        "updated_at": "2022-11-30T18:19:24.22+07:00",
-                                                        "deleted_at": null,
-                                                        "doctor_id": 3,
-                                                        "day_int": 0,
-                                                        "day_string": "Minggu",
-                                                        "start_time": "08:00",
-                                                        "end_time": "15:00"
-                                                    },
-                                                    {
-                                                        "id": 2,
-                                                        "created_at": "2022-11-30T18:19:31.138+07:00",
-                                                        "updated_at": "2022-11-30T18:19:31.138+07:00",
-                                                        "deleted_at": null,
-                                                        "doctor_id": 3,
-                                                        "day_int": 1,
-                                                        "day_string": "Senin",
-                                                        "start_time": "08:00",
-                                                        "end_time": "15:00"
-                                                    },
-                                                    {
-                                                        "id": 3,
-                                                        "created_at": "2022-11-30T18:19:34.567+07:00",
-                                                        "updated_at": "2022-11-30T18:19:34.567+07:00",
-                                                        "deleted_at": null,
-                                                        "doctor_id": 3,
-                                                        "day_int": 2,
-                                                        "day_string": "Selasa",
-                                                        "start_time": "08:00",
-                                                        "end_time": "15:00"
-                                                    },
-                                                    {
                                                         "id": 4,
-                                                        "created_at": "2022-11-30T18:58:30.652+07:00",
-                                                        "updated_at": "2022-11-30T18:58:30.652+07:00",
-                                                        "deleted_at": null,
                                                         "doctor_id": 3,
+                                                        "date": "2022-12-08T21:20:14.0343053+07:00",
+                                                        "date_indo": "08 Desember 2022",
                                                         "day_int": 4,
                                                         "day_string": "Kamis",
                                                         "start_time": "08:00",
@@ -1370,7 +1691,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1422,7 +1743,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1664,7 +1985,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1724,7 +2045,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1751,6 +2072,7 @@ const SwaggerDocTemplate = `
                                                 "is_finish": false,
                                                 "finished_at": "0001-01-01T00:00:00Z",
                                                 "schedule_date": "2022-12-04",
+                                                "schedule_date_indo": "04 Desember 2022",
                                                 "schedule_time": "10:00",
                                                 "patient": {
                                                     "nik": "12341234",
@@ -1771,6 +2093,45 @@ const SwaggerDocTemplate = `
                                                     "speciality_id": 1,
                                                     "license_number": "123123",
                                                     "speciality_name": "Umum",
+                                                    "profile_pic": "",
+                                                    "doctor_schedules": null
+                                                }
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-12-07T18:23:32.412+07:00",
+                                                "updated_at": "2022-12-07T18:23:32.412+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-07T10:00:00+07:00",
+                                                "complaint": "sakit mata",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "profile_pic": "",
                                                     "doctor_schedules": null
                                                 }
                                             }
@@ -1810,7 +2171,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1885,7 +2246,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1911,6 +2272,7 @@ const SwaggerDocTemplate = `
                                             "is_finish": false,
                                             "finished_at": "0001-01-01T00:00:00Z",
                                             "schedule_date": "2022-12-04",
+                                            "schedule_date_indo": "04 Desember 2022",
                                             "schedule_time": "10:00",
                                             "patient": {
                                                 "nik": "12341234",
@@ -1931,6 +2293,7 @@ const SwaggerDocTemplate = `
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
                                                 "speciality_name": "Umum",
+                                                "profile_pic": "",
                                                 "doctor_schedules": null
                                             }
                                         }
@@ -1993,7 +2356,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2085,7 +2448,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2144,7 +2507,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2171,6 +2534,7 @@ const SwaggerDocTemplate = `
                                                 "is_finish": false,
                                                 "finished_at": "0001-01-01T00:00:00Z",
                                                 "schedule_date": "2022-12-04",
+                                                "schedule_date_indo": "04 Desember 2022",
                                                 "schedule_time": "10:00",
                                                 "patient": {
                                                     "nik": "12341234",
@@ -2191,6 +2555,45 @@ const SwaggerDocTemplate = `
                                                     "speciality_id": 1,
                                                     "license_number": "123123",
                                                     "speciality_name": "Umum",
+                                                    "profile_pic": "",
+                                                    "doctor_schedules": null
+                                                }
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-12-07T18:23:32.412+07:00",
+                                                "updated_at": "2022-12-07T18:23:32.412+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-07T10:00:00+07:00",
+                                                "complaint": "sakit mata",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "profile_pic": "",
                                                     "doctor_schedules": null
                                                 }
                                             }
@@ -2240,7 +2643,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2267,6 +2670,7 @@ const SwaggerDocTemplate = `
                                                 "is_finish": false,
                                                 "finished_at": "0001-01-01T00:00:00Z",
                                                 "schedule_date": "2022-12-04",
+                                                "schedule_date_indo": "04 Desember 2022",
                                                 "schedule_time": "10:00",
                                                 "patient": {
                                                     "nik": "12341234",
@@ -2287,6 +2691,45 @@ const SwaggerDocTemplate = `
                                                     "speciality_id": 1,
                                                     "license_number": "123123",
                                                     "speciality_name": "Umum",
+                                                    "profile_pic": "",
+                                                    "doctor_schedules": null
+                                                }
+                                            },
+                                            {
+                                                "id": 3,
+                                                "created_at": "2022-12-07T18:23:32.412+07:00",
+                                                "updated_at": "2022-12-07T18:23:32.412+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-07T10:00:00+07:00",
+                                                "complaint": "sakit mata",
+                                                "is_approved": 0,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "profile_pic": "",
                                                     "doctor_schedules": null
                                                 }
                                             }
@@ -2336,7 +2779,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2432,7 +2875,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2456,6 +2899,198 @@ const SwaggerDocTemplate = `
                                                 "schedule": "2022-12-04T10:00:00+07:00",
                                                 "complaint": "batuk berdahak",
                                                 "is_approved": 1,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/doctor/{doctor_id}/approveds": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get Approved Outpatient Sessions By Doctor Id",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 1,
+                                                "is_finish": false,
+                                                "finished_at": "0001-01-01T00:00:00Z",
+                                                "schedule_date": "2022-12-04",
+                                                "schedule_time": "10:00",
+                                                "patient": {
+                                                    "nik": "12341234",
+                                                    "name": "John tor",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "phone": "0812121212",
+                                                    "address": "Bekasi",
+                                                    "marital_status": true,
+                                                    "religion_id": 1
+                                                },
+                                                "doctor": {
+                                                    "id": 3,
+                                                    "created_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                                    "deleted_at": null,
+                                                    "name": "Dr Mulan",
+                                                    "speciality_id": 1,
+                                                    "license_number": "123123",
+                                                    "speciality_name": "Umum",
+                                                    "doctor_schedules": null
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/outpatient_sessions/doctor/{doctor_id}/rejecteds": {
+            "get": {
+                "tags": [
+                    "Outpatient Sessions"
+                ],
+                "summary": "Get Rejected Outpatient Sessions By Doctor Id",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-04T22:54:54.411+07:00",
+                                                "updated_at": "2022-12-04T22:54:54.411+07:00",
+                                                "deleted_at": null,
+                                                "doctor_id": 3,
+                                                "patient_id": 1,
+                                                "schedule": "2022-12-04T10:00:00+07:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 2,
                                                 "is_finish": false,
                                                 "finished_at": "0001-01-01T00:00:00Z",
                                                 "schedule_date": "2022-12-04",
@@ -2540,7 +3175,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Bearer {{TOKEN}}"
+                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2552,6 +3187,663 @@ const SwaggerDocTemplate = `
                     },
                     "400": {
                         "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients": {
+            "get": {
+                "tags": ["Patients"],
+                "summary": "Get Patients",
+                "requestBody": {
+                    "content": {
+                        "application/json" : {}
+                    }
+                    
+                },
+                "responses": {
+                    "200": {
+                        "description" : "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "nik": "12341234",
+                                                "name": "John doe",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 2,
+                                                "phone": "813121212",
+                                                "address": "Bekasi",
+                                                "marital_status": true,
+                                                "religion_id": 1
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags" : ["Patients"],
+                "summary": "Create Patients",
+                "parameters": [
+                {
+                    "name": "Authorization",
+                    "in": "header",
+                    "description": "Authorization header token from login",
+                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                }
+             ],
+             "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "nik": "12341234",
+                                "name": "John doe",
+                                "gender": 1,
+                                "address": "Bekasi",
+                                "phone": "813121212",
+                                "marital_status": true,
+                                "religion_id": 1
+                            }
+                        }
+                    }
+                }
+             },
+             "responses": {
+                "200": {
+                    "description": "Successful response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example" : {
+                                    "status": 200,
+                                    "message": "success create data",
+                                    "data": {
+                                        "nik": "12341234",
+                                        "name": "John doe",
+                                        "gender": 1,
+                                        "address": "Bekasi",
+                                        "phone": "813121212",
+                                        "marital_status": true,
+                                        "religion_id": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+             }
+         },
+        "/v1/patients_conditions": {
+            "post": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Insert Patient Condition",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "outpatient_session_id": 2,
+                                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                    "medicine": "paracetamol",
+                                    "allergy": "debu"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "treatment_id": 1,
+                                            "outpatient_session_id": 2,
+                                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                            "medicine": "paracetamol",
+                                            "allergy": "debu",
+                                            "is_finish": true,
+                                            "finished_at": "2022-12-09T18:48:21.559971+07:00",
+                                            "finished_at_indo": "09 Desember 2022"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "this outpatient session is not approved",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients_conditions/{treatment_id}": {
+            "get": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Get Patient Condition By Treatment Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "treatment_id": 1,
+                                            "patient": {
+                                                "nik": "1324354657",
+                                                "name": "Abdil Tegar Arifin",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 1,
+                                                "age": 2021,
+                                                "phone": "081234567890",
+                                                "address": "Jember",
+                                                "marital_status": true,
+                                                "religion_name": "11 Desember 2022"
+                                            },
+                                            "doctor": {
+                                                "name": "John Doe",
+                                                "license_number": "1029384756",
+                                                "speciality_name": "Umum 2"
+                                            },
+                                            "schedule": "2022-12-07T03:00:00+07:00",
+                                            "schedule_date": "2022-12-07",
+                                            "schedule_date_indo": "07 Desember 2022",
+                                            "schedule_time": "03:00",
+                                            "complaint": "batuk berdahak",
+                                            "is_approved": 1,
+                                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                            "medicine": "paracetamol",
+                                            "allergy": "debu",
+                                            "is_finish": true,
+                                            "finished_at": "2022-12-11T16:12:37.25+07:00",
+                                            "finished_at_indo": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients_conditions/patient/{patient_id}": {
+            "get": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Get Patient Condition By Patient Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "treatment_id": 1,
+                                                "patient": {
+                                                    "nik": "1324354657",
+                                                    "name": "Abdil Tegar Arifin",
+                                                    "birth_date": "0001-01-01T00:00:00Z",
+                                                    "gender": 1,
+                                                    "age": 2021,
+                                                    "phone": "081234567890",
+                                                    "address": "Jember",
+                                                    "marital_status": true,
+                                                    "religion_name": "11 Desember 2022"
+                                                },
+                                                "doctor": {
+                                                    "name": "John Doe",
+                                                    "license_number": "1029384756",
+                                                    "speciality_name": "Umum 2"
+                                                },
+                                                "schedule": "2022-12-07T03:00:00+07:00",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "03:00",
+                                                "complaint": "batuk berdahak",
+                                                "is_approved": 1,
+                                                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                                "medicine": "paracetamol",
+                                                "allergy": "debu",
+                                                "is_finish": true,
+                                                "finished_at": "2022-12-11T16:12:37.25+07:00",
+                                                "finished_at_indo": ""
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/histories/doctor/{doctor_id}/outpatient_sessions": {
+            "get": {
+                "tags": [
+                    "Histories"
+                ],
+                "summary": "Get Outpatient Session Histories",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 7
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "patient_name": "Abdil Tegar Arifin",
+                                                "schedule": "2022-12-07T03:00:00+07:00",
+                                                "schedule_date": "2022-12-07",
+                                                "schedule_date_indo": "07 Desember 2022",
+                                                "schedule_time": "03:00",
+                                                "status": "Selesai"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/histories/doctor/{doctor_id}/approvals": {
+            "get": {
+                "tags": [
+                    "Histories"
+                ],
+                "summary": "Get Approval Histories",
+                "parameters": [
+                    {
+                        "name": "doctor_id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer {TOKEN}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "patient_name": "John tor",
+                                                "schedule": "2022-12-06T03:00:00+07:00",
+                                                "schedule_date": "2022-12-06",
+                                                "schedule_date_indo": "06 Desember 2022",
+                                                "schedule_time": "03:00",
+                                                "status": "Kunjungan Ditolak"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vi/patients/{id}" : {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Get Patient by Id",
+                "parameters": [
+                {
+                    "name" : "id",
+                    "in" : "path",
+                    "description" : "ID of patient"
+                }
+
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "messages": "success get data",
+                                        "data":{
+                                            "id": 0,
+                                            "user_id": 3,
+                                            "license_number": "123124",
+                                            "created_at": "2022-12-01T13:26:45.924+07:00",
+                                            "updated_at": "2022-12-01T13:35:49.342+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put" : {
+                "tags" : ["Patients"],
+                "summary" : "Update Patient",
+                "parameters" : [
+                    {
+                        "name" : "id",
+                        "in" : "path",
+                        "description" : "ID of patient"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "user_id": 3,
+                                    "license_number": "123124"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "messages": "success update data",
+                                        "data":{
+                                            "id": 0,
+                                            "user_id": 3,
+                                            "license_number": "123124",
+                                            "created_at": "2022-12-01T13:26:45.924+07:00",
+                                            "updated_at": "2022-12-01T13:35:49.342+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags" : ["Patients"],
+                "summary" : "Delete Patient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of patient",
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "messages": "success delete data",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {

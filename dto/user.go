@@ -12,6 +12,7 @@ type UserReq struct {
 	Password      string `json:"password" form:"password"`
 	RoleID        uint   `json:"role_id" form:"role_id"`
 	SpecialityID  uint   `json:"speciality_id" form:"speciality_id"`
+	ProfilePic    string `json:"profile_pic" form:"profile_pic"`
 }
 
 type UserRes struct {
@@ -28,12 +29,12 @@ type UserRes struct {
 }
 
 type LoginRes struct {
-	ID       uint        `json:"user_id" form:"user_id"`
-	Name     string      `json:"name" form:"name"`
-	Username string      `json:"username" form:"username"`
-	RoleID   uint        `json:"role_id" form:"role_id"`
-	Role     string      `json:"role" form:"role"`
-	Token    string      `json:"token" form:"token"`
-	Doctor   interface{} `json:"doctor" form:"doctor"`
-	Nurse    interface{} `json:"nurse" form:"nurse"`
+	ID            uint        `json:"user_id" form:"user_id"`
+	Name          string      `json:"name" form:"name"`
+	Username      string      `json:"username" form:"username"`
+	RoleID        uint        `json:"role_id" form:"role_id"`
+	Token         string      `json:"token" form:"token"`
+	LicenseNumber string      `json:"license_number" form:"license_number"`
+	DoctorID      interface{} `json:"doctor_id" form:"doctor_id"`
+	NurseID       interface{} `json:"nurse_id" form:"nurse_id"`
 }

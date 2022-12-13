@@ -12,6 +12,7 @@ type DoctorRepository interface {
 	GetByLicenseNumber(licenseNumber string) (models.Doctor, error)
 	GetByLicenseNumberOther(licenseNumber string, id uint) (models.Doctor, error)
 	GetBySpecialityId(specialityId uint) ([]models.Doctor, error)
+	Count() (int64, error)
 	Create(user models.Doctor) (models.Doctor, error)
 	Update(id uint, user models.Doctor) (models.Doctor, error)
 	Delete(id uint) error
@@ -78,6 +79,15 @@ func (rep *doctorRepository) GetBySpecialityId(specialityId uint) ([]models.Doct
 	}
 
 	return doctors, nil
+}
+func (rep *doctorRepository) Count() (int64, error) {
+	var count int64
+
+	if err := rep.db.Model([]models.Doctor{}).Count(&count).Error; err != nil {
+		return count, err
+	}
+
+	return count, nil
 }
 func (rep *doctorRepository) Create(doctor models.Doctor) (models.Doctor, error) {
 	err := rep.db.Create(&doctor).Error

@@ -123,6 +123,42 @@ func (ctrl *outpatientSessionController) GetProcessedByDoctorId(c echo.Context) 
 		Data:    res,
 	})
 }
+func (ctrl *outpatientSessionController) GetApprovedByDoctorId(c echo.Context) error {
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+
+	res, err := ctrl.usecase.GetApprovedByDoctorId(uint(doctorId))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, dto.Response{
+		Status:  http.StatusOK,
+		Message: "success get data",
+		Data:    res,
+	})
+}
+func (ctrl *outpatientSessionController) GetRejectedByDoctorId(c echo.Context) error {
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+
+	res, err := ctrl.usecase.GetRejectedByDoctorId(uint(doctorId))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, dto.Response{
+		Status:  http.StatusOK,
+		Message: "success get data",
+		Data:    res,
+	})
+}
 func (ctrl *outpatientSessionController) Create(c echo.Context) error {
 	var payload dto.OutpatientSessionReq
 

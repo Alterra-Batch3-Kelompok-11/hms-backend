@@ -3,10 +3,13 @@ package routes
 import (
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
+	"hms-backend/controllers/dashboardController"
 	"hms-backend/controllers/doctorController"
 	"hms-backend/controllers/doctorScheduleController"
+	"hms-backend/controllers/historyController"
 	"hms-backend/controllers/nurseController"
 	"hms-backend/controllers/outpatientSessionController"
+	"hms-backend/controllers/patientConditionController"
 	"hms-backend/controllers/patientController"
 	"hms-backend/controllers/religionController"
 	"hms-backend/controllers/roleController"
@@ -14,18 +17,23 @@ import (
 	"hms-backend/middlewares"
 	"hms-backend/repositories/doctorRepository"
 	"hms-backend/repositories/doctorScheduleRepository"
+	"hms-backend/repositories/historyRepository"
 	"hms-backend/repositories/nurseRepository"
 	"hms-backend/repositories/outpatientSessionRepository"
 	"hms-backend/repositories/patientRepository"
 	"hms-backend/repositories/religionRepository"
 	"hms-backend/repositories/roleRepository"
 	"hms-backend/repositories/specialityRepository"
+	"hms-backend/repositories/treatmentRepository"
 	"hms-backend/repositories/userRepository"
 	"hms-backend/usecases/authUseCase"
+	"hms-backend/usecases/dashboardUseCase"
 	"hms-backend/usecases/doctorScheduleUseCase"
 	"hms-backend/usecases/doctorUseCase"
+	"hms-backend/usecases/historyUseCase"
 	"hms-backend/usecases/nurseUseCase"
 	"hms-backend/usecases/outpatientSessionUseCase"
+	"hms-backend/usecases/patientConditionUseCase"
 	"hms-backend/usecases/patientUseCase"
 	"hms-backend/usecases/religionUseCase"
 	"hms-backend/usecases/roleUseCase"
@@ -59,6 +67,8 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dtrSchedRepo := doctorScheduleRepository.New(db)
 	nurRepo := nurseRepository.New(db)
 	outPatientSessionRepo := outpatientSessionRepository.New(db)
+	treatmentRepo := treatmentRepository.New(db)
+	historyRepo := historyRepository.New(db)
 
 	// Use Cases
 	authUc := authUseCase.New(usrRepo, dtrRepo, nrsRepo)
@@ -70,6 +80,9 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dtrSchdUc := doctorScheduleUseCase.New(dtrRepo, dtrSchedRepo)
 	nurUC := nurseUseCase.New(nurRepo)
 	outPatientSessionUC := outpatientSessionUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo)
+	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
+	patientConditionUC := patientConditionUseCase.New(treatmentRepo, outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo, historyRepo)
+	historyUC := historyUseCase.New(outPatientSessionRepo, patRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -81,6 +94,9 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dtrSchdCtrl := doctorScheduleController.New(dtrSchdUc)
 	nurCtrl := nurseController.New(nurUC)
 	outpatientSessionCtrl := outpatientSessionController.New(outPatientSessionUC)
+	dashboardCtrl := dashboardController.New(dashboardUC)
+	patientConditionCtrl := patientConditionController.New(patientConditionUC)
+	historyCtrl := historyController.New(historyUC)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -94,6 +110,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	v1 := e.Group("/v1")
 	v1.POST("/login", authCtrl.Login)
 	v1.POST("/signup", authCtrl.SignUp)
+	v1.POST("/auth/refresh", authCtrl.RefreshToken)
 
 	// Roles
 	role := v1.Group("/roles")
@@ -158,10 +175,30 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	outpatientSession.GET("/doctor/:doctor_id", outpatientSessionCtrl.GetByDoctorId, jwt)
 	outpatientSession.GET("/doctor/:doctor_id/unprocesseds", outpatientSessionCtrl.GetUnprocessedByDoctorId, jwt)
 	outpatientSession.GET("/doctor/:doctor_id/processeds", outpatientSessionCtrl.GetProcessedByDoctorId, jwt)
+	outpatientSession.GET("/doctor/:doctor_id/approveds", outpatientSessionCtrl.GetApprovedByDoctorId, jwt)
+	outpatientSession.GET("/doctor/:doctor_id/rejecteds", outpatientSessionCtrl.GetRejectedByDoctorId, jwt)
 	outpatientSession.POST("", outpatientSessionCtrl.Create, jwt, admMdlwr)
 	outpatientSession.PUT("/:id", outpatientSessionCtrl.Update, jwt, admMdlwr)
 	outpatientSession.PUT("/:id/approval", outpatientSessionCtrl.Approval, jwt, dctrMdlwr)
 	outpatientSession.DELETE("/:id", outpatientSessionCtrl.Delete, jwt, admMdlwr)
+
+	// Patient Conditions / Treatments
+	patientCondition := v1.Group("/patient_conditions")
+	patientCondition.GET("", patientConditionCtrl.GetAll, jwt)
+	patientCondition.GET("/:id", patientConditionCtrl.GetById, jwt)
+	patientCondition.GET("/patient/:patient_id", patientConditionCtrl.GetByPatientId, jwt)
+	patientCondition.GET("/doctor/:doctor_id", patientConditionCtrl.GetByDoctorId, jwt)
+	patientCondition.POST("", patientConditionCtrl.Create, jwt)
+
+	// Histories
+	history := v1.Group("/histories")
+	history.GET("/doctor/:doctor_id/outpatient_sessions", historyCtrl.GetOutpatientSessionHistory, jwt)
+	history.GET("/doctor/:doctor_id/approvals", historyCtrl.GetApprovalHistory, jwt)
+
+	// For Dashboard
+	dashboard := v1.Group("/dashboard")
+	dashboard.GET("/web", dashboardCtrl.GetDataDashboardWeb, jwt)
+	dashboard.GET("/mobile/doctor/:doctor_id", dashboardCtrl.GetDataDashboardMobile, jwt)
 
 	return e
 }

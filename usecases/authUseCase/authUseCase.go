@@ -15,6 +15,7 @@ import (
 type AuthUseCase interface {
 	Login(username, password string) (dto.LoginRes, error)
 	SignUp(payload dto.UserReq) (dto.UserRes, error)
+	RefreshToken(id uint) (dto.LoginRes, error)
 }
 
 type authUseCase struct {
@@ -52,10 +53,9 @@ func (uc *authUseCase) Login(username, password string) (dto.LoginRes, error) {
 		Name:     user.Name,
 		Username: user.Username,
 		RoleID:   user.RoleId,
-		Role:     user.Role.Name,
 		Token:    token,
-		Doctor:   nil,
-		Nurse:    nil,
+		DoctorID: nil,
+		NurseID:  nil,
 	}
 
 	if user.RoleId == 2 {
@@ -63,39 +63,19 @@ func (uc *authUseCase) Login(username, password string) (dto.LoginRes, error) {
 		if err != nil {
 			return dto.LoginRes{}, err
 		}
-		resDoctor := dto.DoctorRes{
-			ID:              doctor.ID,
-			CreatedAt:       doctor.CreatedAt,
-			UpdatedAt:       doctor.UpdatedAt,
-			DeletedAt:       doctor.DeletedAt,
-			Name:            user.Name,
-			SpecialityId:    doctor.SpecialityId,
-			LicenseNumber:   doctor.LicenseNumber,
-			SpecialityName:  "",
-			DoctorSchedules: nil,
-		}
 
-		res.Doctor = resDoctor
+		res.DoctorID = doctor.ID
 	} else if user.RoleId == 3 {
 		nurse, err := uc.nurseRepository.GetByUserId(user.ID)
 		if err != nil {
 			return dto.LoginRes{}, err
 		}
 
-		resNurse := dto.NurseRes{
-			ID:            nurse.ID,
-			CreatedAt:     nurse.CreatedAt,
-			UpdatedAt:     nurse.UpdatedAt,
-			DeletedAt:     nurse.DeletedAt,
-			LicenseNumber: nurse.LicenseNumber,
-		}
-
-		res.Nurse = resNurse
+		res.NurseID = nurse.ID
 	}
 
 	return res, nil
 }
-
 func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 
 	hashedPass, err := helpers.HashPassword(payload.Password)
@@ -180,4 +160,44 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 	}
 
 	return res, err
+}
+func (uc *authUseCase) RefreshToken(id uint) (dto.LoginRes, error) {
+
+	user, err := uc.userRepository.GetById(id)
+	if err != nil {
+		return dto.LoginRes{}, errors.New("user not found")
+	}
+
+	token, err := middlewares.CreateToken(user.ID, user.Username, user.RoleId)
+	if err != nil {
+		return dto.LoginRes{}, err
+	}
+
+	res := dto.LoginRes{
+		ID:       user.ID,
+		Name:     user.Name,
+		Username: user.Username,
+		RoleID:   user.RoleId,
+		Token:    token,
+		DoctorID: nil,
+		NurseID:  nil,
+	}
+
+	if user.RoleId == 2 {
+		doctor, err := uc.doctorRepository.GetByUserId(user.ID)
+		if err != nil {
+			return dto.LoginRes{}, err
+		}
+
+		res.DoctorID = doctor.ID
+	} else if user.RoleId == 3 {
+		nurse, err := uc.nurseRepository.GetByUserId(user.ID)
+		if err != nil {
+			return dto.LoginRes{}, err
+		}
+
+		res.NurseID = nurse.ID
+	}
+
+	return res, nil
 }
