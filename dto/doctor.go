@@ -7,6 +7,18 @@ import (
 	"gorm.io/gorm"
 )
 
+type DoctorReq struct {
+	Name          string `json:"name" form:"name" validate:"required"`
+	LicenseNumber string `json:"license_number" form:"license_number" validate:"required"`
+	Password      string `json:"password" form:"password" validate:"required"`
+	SpecialityID  uint   `json:"speciality_id" form:"speciality_id" validate:"required"`
+	ProfilePic    string `json:"profile_pic" form:"profile_pic"`
+	BirthDate     string `json:"birth_date" form:"birth_date"`
+	Phone         string `json:"phone" form:"phone" validate:"required"`
+	MaritalStatus bool   `json:"marital_status" form:"address"`
+	Email         string `json:"email" form:"email"`
+}
+
 type DoctorRes struct {
 	ID                  uint                       `json:"id" form:"id" validate:"required"`
 	CreatedAt           time.Time                  `json:"created_at" form:"created_at" validate:"required"`
@@ -24,6 +36,16 @@ type DoctorRes struct {
 	MaritalStatus       bool                       `json:"marital_status" form:"address"`
 	Email               string                     `json:"email" form:"email"`
 	DoctorSchedules     []DoctorProfileScheduleRes `json:"doctor_schedules" form:"doctor_schedules"`
+}
+
+func (ctrl *DoctorReq) Validate() error {
+	validate := validator.New()
+	err := validate.Struct(ctrl)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (ctrl *DoctorRes) Validate() error {

@@ -20,8 +20,8 @@ type NurseUseCase interface {
 	GetAll() ([]dto.NurseRes, error)
 	GetById(id uint) (dto.NurseRes, error)
 	GetByLicenseNumber(licenseNumber string) (dto.NurseRes, error)
-	Create(payload dto.UserReq) (dto.NurseRes, error)
-	Update(id uint, payload dto.UserReq) (dto.NurseRes, error)
+	Create(payload dto.NurseReq) (dto.NurseRes, error)
+	Update(id uint, payload dto.NurseReq) (dto.NurseRes, error)
 	Delete(id uint) error
 }
 
@@ -66,6 +66,7 @@ func (uc *nurseUseCase) GetAll() ([]dto.NurseRes, error) {
 		res = append(res, dto.NurseRes{
 			ID:                  nurse.ID,
 			UserID:              nurse.UserId,
+			DoctorID:            nurse.DoctorId,
 			Name:                user.Name,
 			SpecialityId:        nurse.SpecialityId,
 			LicenseNumber:       nurse.LicenseNumber,
@@ -114,6 +115,7 @@ func (uc *nurseUseCase) GetById(id uint) (dto.NurseRes, error) {
 	res = dto.NurseRes{
 		ID:                  nurse.ID,
 		UserID:              nurse.UserId,
+		DoctorID:            nurse.DoctorId,
 		Name:                user.Name,
 		SpecialityId:        nurse.SpecialityId,
 		LicenseNumber:       nurse.LicenseNumber,
@@ -161,6 +163,7 @@ func (uc *nurseUseCase) GetByLicenseNumber(licenseNumber string) (dto.NurseRes, 
 	res = dto.NurseRes{
 		ID:                  nurse.ID,
 		UserID:              nurse.UserId,
+		DoctorID:            nurse.DoctorId,
 		Name:                user.Name,
 		SpecialityId:        nurse.SpecialityId,
 		LicenseNumber:       nurse.LicenseNumber,
@@ -182,7 +185,7 @@ func (uc *nurseUseCase) GetByLicenseNumber(licenseNumber string) (dto.NurseRes, 
 	return res, nil
 }
 
-func (uc *nurseUseCase) Create(payload dto.UserReq) (dto.NurseRes, error) {
+func (uc *nurseUseCase) Create(payload dto.NurseReq) (dto.NurseRes, error) {
 	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
 	if err != nil {
@@ -201,19 +204,17 @@ func (uc *nurseUseCase) Create(payload dto.UserReq) (dto.NurseRes, error) {
 	if existNurse.ID != 0 {
 		return dto.NurseRes{}, errors.New("license number already exist")
 	}
-	payload.Username = payload.LicenseNumber
-	payload.RoleID = uint(roleId)
 
 	// TODO check username exist
-	usernameExist, _ := uc.userRep.GetByUsername(payload.Username)
+	usernameExist, _ := uc.userRep.GetByUsername(payload.LicenseNumber)
 	if usernameExist.ID != 0 {
 		return dto.NurseRes{}, errors.New("username already taken")
 	}
 
 	user := models.User{
 		Model:    gorm.Model{},
-		RoleId:   payload.RoleID,
-		Username: payload.Username,
+		RoleId:   uint(roleId),
+		Username: payload.LicenseNumber,
 		Password: hashedPass,
 		Name:     payload.Name,
 	}
@@ -226,6 +227,7 @@ func (uc *nurseUseCase) Create(payload dto.UserReq) (dto.NurseRes, error) {
 	nurse := models.Nurse{
 		Model:         gorm.Model{},
 		UserId:        resCreateUsr.ID,
+		DoctorId:      payload.DoctorID,
 		LicenseNumber: payload.LicenseNumber,
 		SpecialityId:  payload.SpecialityID,
 		ProfilePic:    payload.ProfilePic,
@@ -257,6 +259,7 @@ func (uc *nurseUseCase) Create(payload dto.UserReq) (dto.NurseRes, error) {
 	res = dto.NurseRes{
 		ID:                  nurse.ID,
 		UserID:              nurse.UserId,
+		DoctorID:            nurse.DoctorId,
 		SpecialityId:        nurse.SpecialityId,
 		LicenseNumber:       nurse.LicenseNumber,
 		SpecialityName:      speciality.Name,
@@ -277,7 +280,7 @@ func (uc *nurseUseCase) Create(payload dto.UserReq) (dto.NurseRes, error) {
 	return res, nil
 }
 
-func (uc *nurseUseCase) Update(id uint, payload dto.UserReq) (dto.NurseRes, error) {
+func (uc *nurseUseCase) Update(id uint, payload dto.NurseReq) (dto.NurseRes, error) {
 	roleId := 3 // role id nurse
 
 	_, err := uc.nurseRep.GetById(id)
@@ -295,19 +298,17 @@ func (uc *nurseUseCase) Update(id uint, payload dto.UserReq) (dto.NurseRes, erro
 	if existNurse.ID != 0 {
 		return dto.NurseRes{}, errors.New("license number already exist")
 	}
-	payload.Username = payload.LicenseNumber
-	payload.RoleID = uint(roleId)
 
 	// TODO check username exist
-	usernameExist, _ := uc.userRep.GetByUsername(payload.Username)
+	usernameExist, _ := uc.userRep.GetByUsername(payload.LicenseNumber)
 	if usernameExist.ID != 0 {
 		return dto.NurseRes{}, errors.New("username already taken")
 	}
 
 	user := models.User{
 		Model:    gorm.Model{},
-		RoleId:   payload.RoleID,
-		Username: payload.Username,
+		RoleId:   uint(roleId),
+		Username: payload.LicenseNumber,
 		Password: hashedPass,
 		Name:     payload.Name,
 	}
@@ -326,6 +327,7 @@ func (uc *nurseUseCase) Update(id uint, payload dto.UserReq) (dto.NurseRes, erro
 	nurse := models.Nurse{
 		Model:         gorm.Model{},
 		UserId:        resUpdtUsr.ID,
+		DoctorId:      payload.DoctorID,
 		LicenseNumber: payload.LicenseNumber,
 		SpecialityId:  payload.SpecialityID,
 		ProfilePic:    payload.ProfilePic,
@@ -357,6 +359,7 @@ func (uc *nurseUseCase) Update(id uint, payload dto.UserReq) (dto.NurseRes, erro
 	res = dto.NurseRes{
 		ID:                  nurse.ID,
 		UserID:              nurse.UserId,
+		DoctorID:            nurse.DoctorId,
 		SpecialityId:        nurse.SpecialityId,
 		LicenseNumber:       nurse.LicenseNumber,
 		SpecialityName:      speciality.Name,

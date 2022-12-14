@@ -8,6 +8,7 @@ import (
 type Nurse struct {
 	gorm.Model
 	UserId        uint
+	DoctorId      uint      `json:"doctor_id" form:"doctor_id"`
 	LicenseNumber string    `json:"license_number" form:"license_number"`
 	SpecialityId  uint      `json:"speciality_id" form:"speciality_id"`
 	ProfilePic    string    `json:"profile_pic" form:"profile_pic"`
