@@ -75,7 +75,7 @@ func (ctrl *nurseController) GetByLicenseNumber(c echo.Context) error {
 }
 
 func (ctrl *nurseController) Create(c echo.Context) error {
-	var payload dto.UserReq
+	var payload dto.NurseReq
 
 	err := c.Bind(&payload)
 	if err != nil {
@@ -114,7 +114,7 @@ func (ctrl *nurseController) Create(c echo.Context) error {
 func (ctrl *nurseController) Update(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
-	var payload dto.UserReq
+	var payload dto.NurseReq
 
 	err := c.Bind(&payload)
 	if err != nil {

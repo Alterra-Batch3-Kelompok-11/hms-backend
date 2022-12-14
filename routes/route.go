@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"github.com/labstack/echo/v4/middleware"
 	"hms-backend/configs"
 	"hms-backend/controllers/authController"
 	"hms-backend/controllers/dashboardController"
@@ -40,18 +41,21 @@ import (
 	"hms-backend/usecases/specialityUseCase"
 	"net/http"
 
-	"github.com/labstack/echo/v4/middleware"
-
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
 
 func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	e := echo.New()
+	//e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+	//	AllowOrigins: []string{"*"},
+	//	AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPost, http.MethodDelete},
+	//	AllowHeaders: []string{echo.HeaderAccessControlAllowOrigin, echo.HeaderContentType},
+	//}))
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPost, http.MethodDelete},
-		AllowHeaders: []string{echo.HeaderAccessControlAllowOrigin, echo.HeaderContentType},
+		AllowHeaders: []string{"*"},
 	}))
 
 	configs.InitConfig()
@@ -110,7 +114,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	v1 := e.Group("/v1")
 	v1.POST("/login", authCtrl.Login)
 	v1.POST("/signup", authCtrl.SignUp)
-	v1.POST("/auth/refresh", authCtrl.RefreshToken)
+	v1.GET("/auth/refresh", authCtrl.RefreshToken, jwt)
 
 	// Roles
 	role := v1.Group("/roles")

@@ -106,7 +106,7 @@ func (ctrl *doctorController) GetToday(c echo.Context) error {
 	})
 }
 func (ctrl *doctorController) Create(c echo.Context) error {
-	var payload dto.UserReq
+	var payload dto.DoctorReq
 
 	err := c.Bind(&payload)
 	if err != nil {
@@ -135,7 +135,7 @@ func (ctrl *doctorController) Create(c echo.Context) error {
 func (ctrl *doctorController) Update(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
-	var payload dto.UserReq
+	var payload dto.DoctorReq
 
 	err := c.Bind(&payload)
 	if err != nil {

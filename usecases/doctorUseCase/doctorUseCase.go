@@ -22,8 +22,8 @@ type DoctorUseCase interface {
 	GetByLicenseNumber(licenseNumber string) (dto.DoctorRes, error)
 	GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, error)
 	GetToday() ([]dto.DoctorRes, error)
-	Create(payload dto.UserReq) (dto.DoctorRes, error)
-	Update(id uint, payload dto.UserReq) (dto.DoctorRes, error)
+	Create(payload dto.DoctorReq) (dto.DoctorRes, error)
+	Update(id uint, payload dto.DoctorReq) (dto.DoctorRes, error)
 	Delete(id uint) error
 }
 
@@ -409,7 +409,7 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 
 	return res, nil
 }
-func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
+func (uc *doctorUseCase) Create(payload dto.DoctorReq) (dto.DoctorRes, error) {
 	roleId := 2 // role id doctor
 
 	hashedPass, err := helpers.HashPassword(payload.Password)
@@ -422,19 +422,17 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 	if existDoctor.ID != 0 {
 		return dto.DoctorRes{}, errors.New("license number already exist")
 	}
-	payload.Username = payload.LicenseNumber
-	payload.RoleID = uint(roleId)
 
 	// TODO check username exist
-	usernameExist, _ := uc.userRep.GetByUsername(payload.Username)
+	usernameExist, _ := uc.userRep.GetByUsername(payload.LicenseNumber)
 	if usernameExist.ID != 0 {
 		return dto.DoctorRes{}, errors.New("username already taken")
 	}
 
 	user := models.User{
 		Model:    gorm.Model{},
-		RoleId:   payload.RoleID,
-		Username: payload.Username,
+		RoleId:   uint(roleId),
+		Username: payload.LicenseNumber,
 		Password: hashedPass,
 		Name:     payload.Name,
 	}
@@ -496,7 +494,7 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 
 	return res, err
 }
-func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, error) {
+func (uc *doctorUseCase) Update(id uint, payload dto.DoctorReq) (dto.DoctorRes, error) {
 	roleId := 2 // role id doctor
 
 	doctor, err := uc.doctorRep.GetById(id)
@@ -514,19 +512,17 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 	if existDoctor.ID != 0 {
 		return dto.DoctorRes{}, errors.New("license number already exist")
 	}
-	payload.Username = payload.LicenseNumber
-	payload.RoleID = uint(roleId)
 
 	// TODO check username exist
-	usernameExist, _ := uc.userRep.GetByUsername(payload.Username)
+	usernameExist, _ := uc.userRep.GetByUsername(payload.LicenseNumber)
 	if usernameExist.ID != 0 {
 		return dto.DoctorRes{}, errors.New("username already taken")
 	}
 
 	user := models.User{
 		Model:    gorm.Model{},
-		RoleId:   payload.RoleID,
-		Username: payload.Username,
+		RoleId:   uint(roleId),
+		Username: payload.LicenseNumber,
 		Password: hashedPass,
 		Name:     payload.Name,
 	}
