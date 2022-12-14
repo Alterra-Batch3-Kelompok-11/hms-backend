@@ -3564,56 +3564,54 @@
                         }
                     }
                 }
-            }
-        },
-        "/v1/patient_conditions": {
+            },
             "post": {
-                "tags" : ["Patient Conditions"],
-                "summary": "Insert Patient Conditions",
+                "tags" : ["Patients"],
+                "summary": "Create Patient",
                 "parameters": [
-                {
-                    "name": "Authorization",
-                    "in": "header",
-                    "description": "Authorization header token from login",
-                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                }
-             ],
-             "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "example": {
-                                "nik": "12341234",
-                                "name": "John doe",
-                                "gender": 1,
-                                "address": "Bekasi",
-                                "phone": "813121212",
-                                "marital_status": true,
-                                "religion_id": 1
-                            }
-                        }
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
-                }
-             },
-             "responses": {
-                "200": {
-                    "description": "Successful response",
+                ],
+                "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "example" : {
-                                    "status": 200,
-                                    "message": "success create data",
-                                    "data": {
-                                        "nik": "12341234",
-                                        "name": "John doe",
-                                        "gender": 1,
-                                        "address": "Bekasi",
-                                        "phone": "813121212",
-                                        "marital_status": true,
-                                        "religion_id": 1
+                                "example": {
+                                    "nik": "12341234",
+                                    "name": "John doe",
+                                    "gender": 1,
+                                    "address": "Bekasi",
+                                    "phone": "813121212",
+                                    "marital_status": true,
+                                    "religion_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example" : {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "nik": "12341234",
+                                            "name": "John doe",
+                                            "gender": 1,
+                                            "address": "Bekasi",
+                                            "phone": "813121212",
+                                            "marital_status": true,
+                                            "religion_id": 1
                                         }
                                     }
                                 }
@@ -3621,7 +3619,82 @@
                         }
                     }
                 }
-             }
+            }
+        },
+        "/v1/patient_conditions": {
+            "post": {
+                "tags": [
+                    "Patient Conditions"
+                ],
+                "summary": "Insert Patient Condition",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "outpatient_session_id": 2,
+                                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                    "medicine": "paracetamol",
+                                    "allergy": "debu"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "treatment_id": 1,
+                                            "outpatient_session_id": 2,
+                                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
+                                            "medicine": "paracetamol",
+                                            "allergy": "debu",
+                                            "is_finish": true,
+                                            "finished_at": "2022-12-09T18:48:21.559971+07:00",
+                                            "finished_at_indo": "09 Desember 2022"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "this outpatient session is not approved",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
          },
         "/v1/patient_conditions/{treatment_id}": {
             "get": {
