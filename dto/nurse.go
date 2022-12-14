@@ -17,7 +17,7 @@ type NurseRes struct {
 	BirthDate           time.Time      `json:"birth_date" form:"birth_date"`
 	BirthDateString     string         `json:"birth_date_string" form:"birth_date_string"`
 	BirthDateStringIndo string         `json:"birth_date_string_indo" form:"birth_date_string_indo"`
-	ProfilePic          string         `json:"phone" form:"phone"`
+	ProfilePic          string         `json:"profile_pic" form:"profile_pic"`
 	Phone               string         `json:"phone" form:"phone"`
 	MaritalStatus       bool           `json:"marital_status" form:"address"`
 	Email               string         `json:"email" form:"email"`
