@@ -1,11 +1,12 @@
 package specialityController
 
 import (
-	"github.com/labstack/echo/v4"
 	"hms-backend/dto"
 	"hms-backend/usecases/specialityUseCase"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type specialityController struct {
@@ -35,7 +36,7 @@ func (ctrl *specialityController) GetAll(c echo.Context) error {
 	})
 }
 func (ctrl *specialityController) GetById(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	res, err := ctrl.usecase.GetById(uint(id))
 	if err != nil {
@@ -73,6 +74,15 @@ func (ctrl *specialityController) Create(c echo.Context) error {
 		})
 	}
 
+	err = payload.Validate()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
 	return c.JSON(http.StatusOK, dto.Response{
 		Status:  http.StatusOK,
 		Message: "success create data",
@@ -80,7 +90,7 @@ func (ctrl *specialityController) Create(c echo.Context) error {
 	})
 }
 func (ctrl *specialityController) Update(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	var payload dto.Speciality
 
@@ -109,7 +119,7 @@ func (ctrl *specialityController) Update(c echo.Context) error {
 	})
 }
 func (ctrl *specialityController) Delete(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	err := ctrl.usecase.Delete(uint(id))
 	if err != nil {

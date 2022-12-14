@@ -78,7 +78,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	rlgUc := religionUseCase.New(rlgRepo)
 	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo, dtrSchedRepo)
 	dtrSchdUc := doctorScheduleUseCase.New(dtrRepo, dtrSchedRepo)
-	nurUC := nurseUseCase.New(nurRepo)
+	nurUC := nurseUseCase.New(nurRepo, usrRepo, spcRepo)
 	outPatientSessionUC := outpatientSessionUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo)
 	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
 	patientConditionUC := patientConditionUseCase.New(treatmentRepo, outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo, historyRepo)
@@ -169,14 +169,14 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 
 	// Outpatient Sessions
 	outpatientSession := v1.Group("/outpatient_sessions")
-	outpatientSession.GET("", outpatientSessionCtrl.GetAll, jwt)
-	outpatientSession.GET("/:id", outpatientSessionCtrl.GetById, jwt)
-	outpatientSession.GET("/patient/:patient_id", outpatientSessionCtrl.GetByPatientId, jwt)
-	outpatientSession.GET("/doctor/:doctor_id", outpatientSessionCtrl.GetByDoctorId, jwt)
-	outpatientSession.GET("/doctor/:doctor_id/unprocesseds", outpatientSessionCtrl.GetUnprocessedByDoctorId, jwt)
-	outpatientSession.GET("/doctor/:doctor_id/processeds", outpatientSessionCtrl.GetProcessedByDoctorId, jwt)
-	outpatientSession.GET("/doctor/:doctor_id/approveds", outpatientSessionCtrl.GetApprovedByDoctorId, jwt)
-	outpatientSession.GET("/doctor/:doctor_id/rejecteds", outpatientSessionCtrl.GetRejectedByDoctorId, jwt)
+	outpatientSession.GET("", outpatientSessionCtrl.GetAll)
+	outpatientSession.GET("/:id", outpatientSessionCtrl.GetById)
+	outpatientSession.GET("/patient/:patient_id", outpatientSessionCtrl.GetByPatientId)
+	outpatientSession.GET("/doctor/:doctor_id", outpatientSessionCtrl.GetByDoctorId)
+	outpatientSession.GET("/doctor/:doctor_id/unprocesseds", outpatientSessionCtrl.GetUnprocessedByDoctorId)
+	outpatientSession.GET("/doctor/:doctor_id/processeds", outpatientSessionCtrl.GetProcessedByDoctorId)
+	outpatientSession.GET("/doctor/:doctor_id/approveds", outpatientSessionCtrl.GetApprovedByDoctorId)
+	outpatientSession.GET("/doctor/:doctor_id/rejecteds", outpatientSessionCtrl.GetRejectedByDoctorId)
 	outpatientSession.POST("", outpatientSessionCtrl.Create, jwt, admMdlwr)
 	outpatientSession.PUT("/:id", outpatientSessionCtrl.Update, jwt, admMdlwr)
 	outpatientSession.PUT("/:id/approval", outpatientSessionCtrl.Approval, jwt, dctrMdlwr)
@@ -184,21 +184,21 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 
 	// Patient Conditions / Treatments
 	patientCondition := v1.Group("/patient_conditions")
-	patientCondition.GET("", patientConditionCtrl.GetAll, jwt)
-	patientCondition.GET("/:id", patientConditionCtrl.GetById, jwt)
-	patientCondition.GET("/patient/:patient_id", patientConditionCtrl.GetByPatientId, jwt)
-	patientCondition.GET("/doctor/:doctor_id", patientConditionCtrl.GetByDoctorId, jwt)
+	patientCondition.GET("", patientConditionCtrl.GetAll)
+	patientCondition.GET("/:id", patientConditionCtrl.GetById)
+	patientCondition.GET("/patient/:patient_id", patientConditionCtrl.GetByPatientId)
+	patientCondition.GET("/doctor/:doctor_id", patientConditionCtrl.GetByDoctorId)
 	patientCondition.POST("", patientConditionCtrl.Create, jwt)
 
 	// Histories
 	history := v1.Group("/histories")
-	history.GET("/doctor/:doctor_id/outpatient_sessions", historyCtrl.GetOutpatientSessionHistory, jwt)
-	history.GET("/doctor/:doctor_id/approvals", historyCtrl.GetApprovalHistory, jwt)
+	history.GET("/doctor/:doctor_id/outpatient_sessions", historyCtrl.GetOutpatientSessionHistory)
+	history.GET("/doctor/:doctor_id/approvals", historyCtrl.GetApprovalHistory)
 
 	// For Dashboard
 	dashboard := v1.Group("/dashboard")
-	dashboard.GET("/web", dashboardCtrl.GetDataDashboardWeb, jwt)
-	dashboard.GET("/mobile/doctor/:doctor_id", dashboardCtrl.GetDataDashboardMobile, jwt)
+	dashboard.GET("/web", dashboardCtrl.GetDataDashboardWeb)
+	dashboard.GET("/mobile/doctor/:doctor_id", dashboardCtrl.GetDataDashboardMobile)
 
 	return e
 }

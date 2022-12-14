@@ -851,56 +851,42 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Mulan",
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
                                                 "doctor_schedules": [
                                                     {
-                                                        "id": 4,
+                                                        "id": 7,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-08T21:22:48.9093239+07:00",
-                                                        "date_indo": "08 Desember 2022",
-                                                        "day_int": 4,
-                                                        "day_string": "Kamis",
-                                                        "start_time": "08:00",
-                                                        "end_time": "11:00"
-                                                    },
-                                                    {
-                                                        "id": 1,
-                                                        "doctor_id": 3,
-                                                        "date": "2022-12-11T21:22:48.9093239+07:00",
-                                                        "date_indo": "11 Desember 2022",
-                                                        "day_int": 0,
-                                                        "day_string": "Minggu",
+                                                        "date": "2022-12-14T15:35:30.4974884+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     },
                                                     {
-                                                        "id": 2,
+                                                        "id": 1,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-12T21:22:48.9093239+07:00",
-                                                        "date_indo": "12 Desember 2022",
+                                                        "date": "2022-12-19T15:35:30.4974884+07:00",
+                                                        "date_indo": "19 Desember 2022",
                                                         "day_int": 1,
                                                         "day_string": "Senin",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     },
                                                     {
-                                                        "id": 3,
+                                                        "id": 4,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-13T21:22:48.9093239+07:00",
-                                                        "date_indo": "13 Desember 2022",
+                                                        "date": "2022-12-20T15:35:30.4974884+07:00",
+                                                        "date_indo": "20 Desember 2022",
                                                         "day_int": 2,
                                                         "day_string": "Selasa",
-                                                        "start_time": "08:00",
-                                                        "end_time": "15:00"
-                                                    },
-                                                    {
-                                                        "id": 5,
-                                                        "doctor_id": 3,
-                                                        "date": "2022-12-14T21:22:48.9093239+07:00",
-                                                        "date_indo": "14 Desember 2022",
-                                                        "day_int": 3,
-                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     }
@@ -914,8 +900,14 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Fulan",
                                                 "speciality_id": 1,
                                                 "license_number": "1231232",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
                                                 "doctor_schedules": null
                                             },
                                             {
@@ -926,9 +918,46 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Fulan",
                                                 "speciality_id": 1,
                                                 "license_number": "",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
-                                                "doctor_schedules": null
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 8,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-14T15:35:30.975379+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-19T15:35:30.975379+07:00",
+                                                        "date_indo": "19 Desember 2022",
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 5,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-20T15:35:30.975379+07:00",
+                                                        "date_indo": "20 Desember 2022",
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
                                             },
                                             {
                                                 "id": 6,
@@ -938,20 +967,148 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Mulannn",
                                                 "speciality_id": 1,
                                                 "license_number": "12312333",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
-                                                "doctor_schedules": null
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 9,
+                                                        "doctor_id": 6,
+                                                        "date": "2022-12-14T15:35:31.0179182+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
                                             },
                                             {
-                                                "id": 8,
-                                                "created_at": "2022-12-02T00:05:36.226+07:00",
-                                                "updated_at": "2022-12-02T00:10:14.22+07:00",
+                                                "id": 7,
+                                                "created_at": "2022-11-30T13:05:43.168+07:00",
+                                                "updated_at": "2022-11-30T13:05:43.168+07:00",
                                                 "deleted_at": null,
                                                 "name": "John Doe",
                                                 "speciality_id": 1,
-                                                "license_number": "1234567891",
-                                                "speciality_name": "Umum",
+                                                "license_number": "1029384756",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 12,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-14T15:35:31.0377342+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 13,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-15T15:35:31.0377342+07:00",
+                                                        "date_indo": "15 Desember 2022",
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 14,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-16T15:35:31.0377342+07:00",
+                                                        "date_indo": "16 Desember 2022",
+                                                        "day_int": 5,
+                                                        "day_string": "Jumat",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 10,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-19T15:35:31.0377342+07:00",
+                                                        "date_indo": "19 Desember 2022",
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 11,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-20T15:35:31.0377342+07:00",
+                                                        "date_indo": "20 Desember 2022",
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 8,
+                                                "created_at": "2022-12-05T12:14:41.072+07:00",
+                                                "updated_at": "2022-12-05T12:14:41.072+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Hulan",
+                                                "speciality_id": 1,
+                                                "license_number": "12345",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 9,
+                                                "created_at": "2022-12-09T15:24:54.961+07:00",
+                                                "updated_at": "2022-12-09T15:24:54.961+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Moris",
+                                                "speciality_id": 1,
+                                                "license_number": "121",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 10,
+                                                "created_at": "2022-12-14T15:33:40.988+07:00",
+                                                "updated_at": "2022-12-14T15:33:40.988+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr. Bones",
+                                                "speciality_id": 1,
+                                                "license_number": "1234515243",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "1998-01-02T00:00:00+07:00",
+                                                "birth_date_string": "1998-1-02",
+                                                "birth_date_string_indo": "02 Januari 1998",
+                                                "phone": "081234567891",
+                                                "marital_status": true,
+                                                "email": "bones@mail.com",
                                                 "doctor_schedules": null
                                             }
                                         ]
@@ -973,11 +1130,15 @@ const SwaggerDocTemplate = `
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "name": "John Doe",
-                                    "license_number": "1234567890",
-                                    "password": "john123",
-                                    "speciality_id": 1,
-                                    "profile_pic": ""
+                                    "name" : "Dr. Bones",
+                                    "license_number" : "1234515243",
+                                    "password" : "bones123",
+                                    "speciality_id" : 1,
+                                    "profile_pic": "",
+                                    "birth_date": "1998-01-02",
+                                    "phone": "081234567891",
+                                    "marital_status" : true,
+                                    "email" : "bones@mail.com"
                                 }
                             }
                         }
@@ -1052,7 +1213,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "integer"
                         },
-                        "example": 3
+                        "example": 10
                     }
                 ],
                 "responses": {
@@ -1066,67 +1227,22 @@ const SwaggerDocTemplate = `
                                         "status": 200,
                                         "message": "success get data",
                                         "data": {
-                                            "id": 3,
-                                            "created_at": "2022-11-23T12:32:38.222+07:00",
-                                            "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                            "id": 10,
+                                            "created_at": "2022-12-14T15:33:40.988+07:00",
+                                            "updated_at": "2022-12-14T15:33:40.988+07:00",
                                             "deleted_at": null,
-                                            "name": "Dr Mulan",
+                                            "name": "Dr. Bones",
                                             "speciality_id": 1,
-                                            "license_number": "123123",
-                                            "speciality_name": "Umum",
+                                            "license_number": "1234515243",
+                                            "speciality_name": "Umum 2",
                                             "profile_pic": "",
-                                            "doctor_schedules": [
-                                                {
-                                                    "id": 4,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-08T21:23:11.522967+07:00",
-                                                    "date_indo": "08 Desember 2022",
-                                                    "day_int": 4,
-                                                    "day_string": "Kamis",
-                                                    "start_time": "08:00",
-                                                    "end_time": "11:00"
-                                                },
-                                                {
-                                                    "id": 1,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-11T21:23:11.522967+07:00",
-                                                    "date_indo": "11 Desember 2022",
-                                                    "day_int": 0,
-                                                    "day_string": "Minggu",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                },
-                                                {
-                                                    "id": 2,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-12T21:23:11.522967+07:00",
-                                                    "date_indo": "12 Desember 2022",
-                                                    "day_int": 1,
-                                                    "day_string": "Senin",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                },
-                                                {
-                                                    "id": 3,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-13T21:23:11.522967+07:00",
-                                                    "date_indo": "13 Desember 2022",
-                                                    "day_int": 2,
-                                                    "day_string": "Selasa",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                },
-                                                {
-                                                    "id": 5,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-14T21:23:11.522967+07:00",
-                                                    "date_indo": "14 Desember 2022",
-                                                    "day_int": 3,
-                                                    "day_string": "Rabu",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                }
-                                            ]
+                                            "birth_date": "1998-01-02T00:00:00+07:00",
+                                            "birth_date_string": "1998-1-02",
+                                            "birth_date_string_indo": "02 Januari 1998",
+                                            "phone": "081234567891",
+                                            "marital_status": true,
+                                            "email": "bones@mail.com",
+                                            "doctor_schedules": null
                                         }
                                     }
                                 }
@@ -1161,11 +1277,15 @@ const SwaggerDocTemplate = `
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "name": "Fulan",
-                                    "license_number": "780198012345",
-                                    "password": "fulan123",
-                                    "speciality_id": 2,
-                                    "profile_pic": ""
+                                    "name" : "Dr. Bones",
+                                    "license_number" : "1234515243",
+                                    "password" : "bones123",
+                                    "speciality_id" : 1,
+                                    "profile_pic": "",
+                                    "birth_date": "1998-01-02",
+                                    "phone": "081234567891",
+                                    "marital_status" : true,
+                                    "email" : "bones@mail.com"
                                 }
                             }
                         }
@@ -1298,7 +1418,7 @@ const SwaggerDocTemplate = `
                         "schema": {
                             "type": "string"
                         },
-                        "example": "1234567891"
+                        "example": "1234515243"
                     }
                 ],
                 "responses": {
@@ -1312,67 +1432,22 @@ const SwaggerDocTemplate = `
                                         "status": 200,
                                         "message": "success get data",
                                         "data": {
-                                            "id": 3,
-                                            "created_at": "2022-11-23T12:32:38.222+07:00",
-                                            "updated_at": "2022-11-23T12:32:38.222+07:00",
+                                            "id": 10,
+                                            "created_at": "2022-12-14T15:33:40.988+07:00",
+                                            "updated_at": "2022-12-14T15:33:40.988+07:00",
                                             "deleted_at": null,
-                                            "name": "Dr Mulan",
+                                            "name": "Dr. Bones",
                                             "speciality_id": 1,
-                                            "license_number": "123123",
-                                            "speciality_name": "Umum",
+                                            "license_number": "1234515243",
+                                            "speciality_name": "Umum 2",
                                             "profile_pic": "",
-                                            "doctor_schedules": [
-                                                {
-                                                    "id": 4,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-08T21:24:37.1713061+07:00",
-                                                    "date_indo": "08 Desember 2022",
-                                                    "day_int": 4,
-                                                    "day_string": "Kamis",
-                                                    "start_time": "08:00",
-                                                    "end_time": "11:00"
-                                                },
-                                                {
-                                                    "id": 1,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-11T21:24:37.1713061+07:00",
-                                                    "date_indo": "11 Desember 2022",
-                                                    "day_int": 0,
-                                                    "day_string": "Minggu",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                },
-                                                {
-                                                    "id": 2,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-12T21:24:37.1713061+07:00",
-                                                    "date_indo": "12 Desember 2022",
-                                                    "day_int": 1,
-                                                    "day_string": "Senin",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                },
-                                                {
-                                                    "id": 3,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-13T21:24:37.1713061+07:00",
-                                                    "date_indo": "13 Desember 2022",
-                                                    "day_int": 2,
-                                                    "day_string": "Selasa",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                },
-                                                {
-                                                    "id": 5,
-                                                    "doctor_id": 3,
-                                                    "date": "2022-12-14T21:24:37.1713061+07:00",
-                                                    "date_indo": "14 Desember 2022",
-                                                    "day_int": 3,
-                                                    "day_string": "Rabu",
-                                                    "start_time": "08:00",
-                                                    "end_time": "15:00"
-                                                }
-                                            ]
+                                            "birth_date": "1998-01-02T00:00:00+07:00",
+                                            "birth_date_string": "1998-1-02",
+                                            "birth_date_string_indo": "02 Januari 1998",
+                                            "phone": "081234567891",
+                                            "marital_status": true,
+                                            "email": "bones@mail.com",
+                                            "doctor_schedules": null
                                         }
                                     }
                                 }
@@ -1433,56 +1508,42 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Mulan",
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
                                                 "doctor_schedules": [
                                                     {
-                                                        "id": 4,
+                                                        "id": 7,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-08T21:23:48.0021063+07:00",
-                                                        "date_indo": "08 Desember 2022",
-                                                        "day_int": 4,
-                                                        "day_string": "Kamis",
-                                                        "start_time": "08:00",
-                                                        "end_time": "11:00"
-                                                    },
-                                                    {
-                                                        "id": 1,
-                                                        "doctor_id": 3,
-                                                        "date": "2022-12-11T21:23:48.0021063+07:00",
-                                                        "date_indo": "11 Desember 2022",
-                                                        "day_int": 0,
-                                                        "day_string": "Minggu",
+                                                        "date": "2022-12-14T15:47:55.9345302+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     },
                                                     {
-                                                        "id": 2,
+                                                        "id": 1,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-12T21:23:48.0021063+07:00",
-                                                        "date_indo": "12 Desember 2022",
+                                                        "date": "2022-12-19T15:47:55.9345302+07:00",
+                                                        "date_indo": "19 Desember 2022",
                                                         "day_int": 1,
                                                         "day_string": "Senin",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     },
                                                     {
-                                                        "id": 3,
+                                                        "id": 4,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-13T21:23:48.0021063+07:00",
-                                                        "date_indo": "13 Desember 2022",
+                                                        "date": "2022-12-20T15:47:55.9345302+07:00",
+                                                        "date_indo": "20 Desember 2022",
                                                         "day_int": 2,
                                                         "day_string": "Selasa",
-                                                        "start_time": "08:00",
-                                                        "end_time": "15:00"
-                                                    },
-                                                    {
-                                                        "id": 5,
-                                                        "doctor_id": 3,
-                                                        "date": "2022-12-14T21:23:48.0021063+07:00",
-                                                        "date_indo": "14 Desember 2022",
-                                                        "day_int": 3,
-                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
                                                         "end_time": "15:00"
                                                     }
@@ -1496,8 +1557,14 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Fulan",
                                                 "speciality_id": 1,
                                                 "license_number": "1231232",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
                                                 "doctor_schedules": null
                                             },
                                             {
@@ -1508,9 +1575,46 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Fulan",
                                                 "speciality_id": 1,
                                                 "license_number": "",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
-                                                "doctor_schedules": null
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 8,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-14T15:47:56.4168133+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-19T15:47:56.4168133+07:00",
+                                                        "date_indo": "19 Desember 2022",
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 5,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-20T15:47:56.4168133+07:00",
+                                                        "date_indo": "20 Desember 2022",
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
                                             },
                                             {
                                                 "id": 6,
@@ -1520,20 +1624,148 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Mulannn",
                                                 "speciality_id": 1,
                                                 "license_number": "12312333",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
-                                                "doctor_schedules": null
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 9,
+                                                        "doctor_id": 6,
+                                                        "date": "2022-12-14T15:47:56.4338012+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
                                             },
                                             {
-                                                "id": 8,
-                                                "created_at": "2022-12-02T00:05:36.226+07:00",
-                                                "updated_at": "2022-12-02T00:10:14.22+07:00",
+                                                "id": 7,
+                                                "created_at": "2022-11-30T13:05:43.168+07:00",
+                                                "updated_at": "2022-11-30T13:05:43.168+07:00",
                                                 "deleted_at": null,
                                                 "name": "John Doe",
                                                 "speciality_id": 1,
-                                                "license_number": "1234567891",
-                                                "speciality_name": "Umum",
+                                                "license_number": "1029384756",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 12,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-14T15:47:56.4595375+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 13,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-15T15:47:56.4595375+07:00",
+                                                        "date_indo": "15 Desember 2022",
+                                                        "day_int": 4,
+                                                        "day_string": "Kamis",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 14,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-16T15:47:56.4595375+07:00",
+                                                        "date_indo": "16 Desember 2022",
+                                                        "day_int": 5,
+                                                        "day_string": "Jumat",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 10,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-19T15:47:56.4595375+07:00",
+                                                        "date_indo": "19 Desember 2022",
+                                                        "day_int": 1,
+                                                        "day_string": "Senin",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    },
+                                                    {
+                                                        "id": 11,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-20T15:47:56.4595375+07:00",
+                                                        "date_indo": "20 Desember 2022",
+                                                        "day_int": 2,
+                                                        "day_string": "Selasa",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 8,
+                                                "created_at": "2022-12-05T12:14:41.072+07:00",
+                                                "updated_at": "2022-12-05T12:14:41.072+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Hulan",
+                                                "speciality_id": 1,
+                                                "license_number": "12345",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 9,
+                                                "created_at": "2022-12-09T15:24:54.961+07:00",
+                                                "updated_at": "2022-12-09T15:24:54.961+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Moris",
+                                                "speciality_id": 1,
+                                                "license_number": "121",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": null
+                                            },
+                                            {
+                                                "id": 10,
+                                                "created_at": "2022-12-14T15:33:40.988+07:00",
+                                                "updated_at": "2022-12-14T15:33:40.988+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr. Bones",
+                                                "speciality_id": 1,
+                                                "license_number": "1234515243",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "1998-01-02T00:00:00+07:00",
+                                                "birth_date_string": "1998-1-02",
+                                                "birth_date_string_indo": "02 Januari 1998",
+                                                "phone": "081234567891",
+                                                "marital_status": true,
+                                                "email": "bones@mail.com",
                                                 "doctor_schedules": null
                                             }
                                         ]
@@ -1571,18 +1803,111 @@ const SwaggerDocTemplate = `
                                                 "name": "Dr Mulan",
                                                 "speciality_id": 1,
                                                 "license_number": "123123",
-                                                "speciality_name": "Umum",
+                                                "speciality_name": "Umum 2",
                                                 "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
                                                 "doctor_schedules": [
                                                     {
-                                                        "id": 4,
+                                                        "id": 7,
                                                         "doctor_id": 3,
-                                                        "date": "2022-12-08T21:20:14.0343053+07:00",
-                                                        "date_indo": "08 Desember 2022",
-                                                        "day_int": 4,
-                                                        "day_string": "Kamis",
+                                                        "date": "2022-12-14T15:48:15.913605+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
                                                         "start_time": "08:00",
-                                                        "end_time": "11:00"
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 5,
+                                                "created_at": "2022-11-25T13:35:43.268+07:00",
+                                                "updated_at": "2022-11-25T13:35:43.268+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Fulan",
+                                                "speciality_id": 1,
+                                                "license_number": "",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 8,
+                                                        "doctor_id": 5,
+                                                        "date": "2022-12-14T15:48:15.9305719+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 6,
+                                                "created_at": "2022-11-28T08:54:44.924+07:00",
+                                                "updated_at": "2022-11-28T08:54:44.924+07:00",
+                                                "deleted_at": null,
+                                                "name": "Dr Mulannn",
+                                                "speciality_id": 1,
+                                                "license_number": "12312333",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 9,
+                                                        "doctor_id": 6,
+                                                        "date": "2022-12-14T15:48:15.9355137+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": 7,
+                                                "created_at": "2022-11-30T13:05:43.168+07:00",
+                                                "updated_at": "2022-11-30T13:05:43.168+07:00",
+                                                "deleted_at": null,
+                                                "name": "John Doe",
+                                                "speciality_id": 1,
+                                                "license_number": "1029384756",
+                                                "speciality_name": "Umum 2",
+                                                "profile_pic": "",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "birth_date_string": "1-1-01",
+                                                "birth_date_string_indo": "01 Januari 1",
+                                                "phone": "",
+                                                "marital_status": false,
+                                                "email": "",
+                                                "doctor_schedules": [
+                                                    {
+                                                        "id": 12,
+                                                        "doctor_id": 7,
+                                                        "date": "2022-12-14T15:48:15.9427151+07:00",
+                                                        "date_indo": "14 Desember 2022",
+                                                        "day_int": 3,
+                                                        "day_string": "Rabu",
+                                                        "start_time": "08:00",
+                                                        "end_time": "15:00"
                                                     }
                                                 ]
                                             }
@@ -3242,7 +3567,9 @@ const SwaggerDocTemplate = `
                         }
                     }
                 }
-            },
+            }
+        },
+        "/v1/patient_conditions": {
             "post": {
                 "tags" : ["Patients"],
                 "summary": "Create Patients",
@@ -3299,82 +3626,7 @@ const SwaggerDocTemplate = `
                 }
              }
          },
-        "/v1/patients_conditions": {
-            "post": {
-                "tags": [
-                    "Patient Conditions"
-                ],
-                "summary": "Insert Patient Condition",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "example": {
-                                    "outpatient_session_id": 2,
-                                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
-                                    "medicine": "paracetamol",
-                                    "allergy": "debu"
-                                }
-                            }
-                        }
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "example": {
-                                        "status": 200,
-                                        "message": "success create data",
-                                        "data": {
-                                            "treatment_id": 1,
-                                            "outpatient_session_id": 2,
-                                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
-                                            "medicine": "paracetamol",
-                                            "allergy": "debu",
-                                            "is_finish": true,
-                                            "finished_at": "2022-12-09T18:48:21.559971+07:00",
-                                            "finished_at_indo": "09 Desember 2022"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "error response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "example": {
-                                        "status": 400,
-                                        "message": "this outpatient session is not approved",
-                                        "data": null
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/patients_conditions/{treatment_id}": {
+        "/v1/patient_conditions/{treatment_id}": {
             "get": {
                 "tags": [
                     "Patient Conditions"
@@ -3455,7 +3707,7 @@ const SwaggerDocTemplate = `
                 }
             }
         },
-        "/v1/patients_conditions/patient/{patient_id}": {
+        "/v1/patient_conditions/patient/{patient_id}": {
             "get": {
                 "tags": [
                     "Patient Conditions"
@@ -3844,6 +4096,370 @@ const SwaggerDocTemplate = `
                     },
                     "400": {
                         "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nurses": {
+            "get": {
+                "tags": [
+                    "Nurses"
+                ],
+                "summary": "Get All",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "user_id": 12,
+                                                "name": "Ns. Melati",
+                                                "speciality_id": 1,
+                                                "license_number": "1342534678",
+                                                "speciality_name": "Umum 2",
+                                                "birth_date": "1997-01-02T00:00:00+07:00",
+                                                "birth_date_string": "1997-1-02",
+                                                "birth_date_string_indo": "02 Januari 1997",
+                                                "marital_status": true,
+                                                "email": "melati@mail.com",
+                                                "nira": "1928374650",
+                                                "sip": "",
+                                                "created_at": "2022-12-14T15:52:34.077+07:00",
+                                                "updated_at": "2022-12-14T15:52:34.077+07:00",
+                                                "deleted_at": null
+                                            },
+                                            {
+                                                "id": 2,
+                                                "user_id": 13,
+                                                "name": "Ns. Melati",
+                                                "speciality_id": 1,
+                                                "license_number": "1234567893",
+                                                "speciality_name": "Umum 2",
+                                                "birth_date": "1997-01-02T00:00:00+07:00",
+                                                "birth_date_string": "1997-1-02",
+                                                "birth_date_string_indo": "02 Januari 1997",
+                                                "marital_status": true,
+                                                "email": "melati@mail.com",
+                                                "nira": "1928374650",
+                                                "sip": "",
+                                                "created_at": "2022-12-14T15:54:27.317+07:00",
+                                                "updated_at": "2022-12-14T15:54:27.317+07:00",
+                                                "deleted_at": null
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Nurses"
+                ],
+                "summary": "Create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name" : "Ns. Melati",
+                                    "license_number" : "1234567893",
+                                    "password" : "melati123",
+                                    "speciality_id" : 1,
+                                    "profile_pic": "",
+                                    "birth_date": "1997-01-02",
+                                    "phone": "081234567892",
+                                    "marital_status" : true,
+                                    "email" : "melati@mail.com",
+                                    "nira" : "1928374650",
+                                    "sip" : ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "id": 2,
+                                            "user_id": 13,
+                                            "name": "",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567893",
+                                            "speciality_name": "Umum 2",
+                                            "birth_date": "1997-01-02T00:00:00+07:00",
+                                            "birth_date_string": "1997-1-02",
+                                            "birth_date_string_indo": "02 Januari 1997",
+                                            "marital_status": true,
+                                            "email": "melati@mail.com",
+                                            "nira": "1928374650",
+                                            "sip": "",
+                                            "created_at": "2022-12-14T15:54:27.317+07:00",
+                                            "updated_at": "2022-12-14T15:54:27.317+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "license number already exist",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nurses/{id}": {
+            "get": {
+                "tags": [
+                    "Nurses"
+                ],
+                "summary": "Get By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Nurse",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 2
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 2,
+                                            "user_id": 13,
+                                            "name": "Ns. Melati",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567893",
+                                            "speciality_name": "Umum 2",
+                                            "birth_date": "1997-01-02T00:00:00+07:00",
+                                            "birth_date_string": "1997-1-02",
+                                            "birth_date_string_indo": "02 Januari 1997",
+                                            "marital_status": true,
+                                            "email": "melati@mail.com",
+                                            "nira": "1928374650",
+                                            "sip": "",
+                                            "created_at": "2022-12-14T15:54:27.317+07:00",
+                                            "updated_at": "2022-12-14T15:54:27.317+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Nurses"
+                ],
+                "summary": "Update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name" : "Ns. Melati",
+                                    "license_number" : "1234567893",
+                                    "password" : "melati123",
+                                    "speciality_id" : 1,
+                                    "profile_pic": "",
+                                    "birth_date": "1997-01-02",
+                                    "phone": "081234567892",
+                                    "marital_status" : true,
+                                    "email" : "melati@mail.com",
+                                    "nira" : "1928374650",
+                                    "sip" : ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of doctor",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success create data",
+                                        "data": {
+                                            "id": 2,
+                                            "user_id": 13,
+                                            "name": "",
+                                            "speciality_id": 1,
+                                            "license_number": "1234567893",
+                                            "speciality_name": "Umum 2",
+                                            "birth_date": "1997-01-02T00:00:00+07:00",
+                                            "birth_date_string": "1997-1-02",
+                                            "birth_date_string_indo": "02 Januari 1997",
+                                            "marital_status": true,
+                                            "email": "melati@mail.com",
+                                            "nira": "1928374650",
+                                            "sip": "",
+                                            "created_at": "2022-12-14T15:54:27.317+07:00",
+                                            "updated_at": "2022-12-14T15:54:27.317+07:00",
+                                            "deleted_at": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Nurses"
+                ],
+                "summary": "Delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Nurse",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {

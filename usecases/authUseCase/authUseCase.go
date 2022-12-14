@@ -10,6 +10,7 @@ import (
 	"hms-backend/repositories/doctorRepository"
 	"hms-backend/repositories/nurseRepository"
 	"hms-backend/repositories/userRepository"
+	"time"
 )
 
 type AuthUseCase interface {
@@ -118,11 +119,22 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 	licenseNumber := ""
 
 	if payload.RoleID == 2 { // if role as doctor
+		birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+		birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
+		if err != nil {
+			return dto.UserRes{}, err
+		}
+
 		doctor := models.Doctor{
 			Model:         gorm.Model{},
 			UserId:        resCreateUsr.ID,
 			SpecialityId:  payload.SpecialityID,
 			LicenseNumber: payload.LicenseNumber,
+			ProfilePic:    payload.ProfilePic,
+			BirthDate:     birthDateTime,
+			Phone:         payload.Phone,
+			MaritalStatus: payload.MaritalStatus,
+			Email:         payload.Email,
 		}
 
 		resCreateDtr, err := uc.doctorRepository.Create(doctor)
@@ -132,10 +144,23 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 
 		licenseNumber = resCreateDtr.LicenseNumber
 	} else if payload.RoleID == 3 { // if role as nurse
+		birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+		birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
+		if err != nil {
+			return dto.UserRes{}, err
+		}
+
 		nurse := models.Nurse{
 			Model:         gorm.Model{},
 			UserId:        resCreateUsr.ID,
 			LicenseNumber: payload.LicenseNumber,
+			ProfilePic:    payload.ProfilePic,
+			BirthDate:     birthDateTime,
+			Phone:         payload.Phone,
+			MaritalStatus: payload.MaritalStatus,
+			Email:         payload.Email,
+			Nira:          payload.Nira,
+			SIP:           payload.SIP,
 		}
 
 		resCreateNrs, err := uc.nurseRepository.Create(nurse)

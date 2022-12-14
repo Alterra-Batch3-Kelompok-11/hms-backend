@@ -52,6 +52,12 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 	}
 
 	for _, doctor := range doctors {
+		birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+		birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+			constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+			strconv.Itoa(doctor.BirthDate.Year())
+
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
 			return res, err
@@ -90,16 +96,22 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 		}
 
 		res = append(res, dto.DoctorRes{
-			ID:              doctor.ID,
-			CreatedAt:       doctor.CreatedAt,
-			UpdatedAt:       doctor.UpdatedAt,
-			DeletedAt:       doctor.DeletedAt,
-			Name:            user.Name,
-			SpecialityId:    doctor.SpecialityId,
-			LicenseNumber:   doctor.LicenseNumber,
-			SpecialityName:  speciality.Name,
-			ProfilePic:      doctor.ProfilePic,
-			DoctorSchedules: schedules,
+			ID:                  doctor.ID,
+			CreatedAt:           doctor.CreatedAt,
+			UpdatedAt:           doctor.UpdatedAt,
+			DeletedAt:           doctor.DeletedAt,
+			Name:                user.Name,
+			SpecialityId:        doctor.SpecialityId,
+			LicenseNumber:       doctor.LicenseNumber,
+			SpecialityName:      speciality.Name,
+			ProfilePic:          doctor.ProfilePic,
+			BirthDate:           doctor.BirthDate,
+			BirthDateString:     birthDateString,
+			BirthDateStringIndo: birthDateIndoString,
+			Phone:               doctor.Phone,
+			MaritalStatus:       doctor.MaritalStatus,
+			Email:               doctor.Email,
+			DoctorSchedules:     schedules,
 		})
 	}
 
@@ -113,6 +125,12 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 		return res, err
 	}
 
+	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+		strconv.Itoa(doctor.BirthDate.Year())
+
 	user, err := uc.userRep.GetById(doctor.UserId)
 	if err != nil {
 		return res, err
@@ -150,16 +168,22 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 	}
 
 	res = dto.DoctorRes{
-		ID:              doctor.ID,
-		CreatedAt:       doctor.CreatedAt,
-		UpdatedAt:       doctor.UpdatedAt,
-		DeletedAt:       doctor.DeletedAt,
-		Name:            user.Name,
-		SpecialityId:    doctor.SpecialityId,
-		LicenseNumber:   doctor.LicenseNumber,
-		SpecialityName:  speciality.Name,
-		ProfilePic:      doctor.ProfilePic,
-		DoctorSchedules: schedules,
+		ID:                  doctor.ID,
+		CreatedAt:           doctor.CreatedAt,
+		UpdatedAt:           doctor.UpdatedAt,
+		DeletedAt:           doctor.DeletedAt,
+		Name:                user.Name,
+		SpecialityId:        doctor.SpecialityId,
+		LicenseNumber:       doctor.LicenseNumber,
+		SpecialityName:      speciality.Name,
+		ProfilePic:          doctor.ProfilePic,
+		BirthDate:           doctor.BirthDate,
+		BirthDateString:     birthDateString,
+		BirthDateStringIndo: birthDateIndoString,
+		Phone:               doctor.Phone,
+		MaritalStatus:       doctor.MaritalStatus,
+		Email:               doctor.Email,
+		DoctorSchedules:     schedules,
 	}
 
 	return res, nil
@@ -172,6 +196,12 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 		return res, err
 	}
 
+	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+		strconv.Itoa(doctor.BirthDate.Year())
+
 	user, err := uc.userRep.GetById(doctor.UserId)
 	if err != nil {
 		return res, err
@@ -209,16 +239,22 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 	}
 
 	res = dto.DoctorRes{
-		ID:              doctor.ID,
-		CreatedAt:       doctor.CreatedAt,
-		UpdatedAt:       doctor.UpdatedAt,
-		DeletedAt:       doctor.DeletedAt,
-		Name:            user.Name,
-		SpecialityId:    doctor.SpecialityId,
-		LicenseNumber:   doctor.LicenseNumber,
-		SpecialityName:  speciality.Name,
-		ProfilePic:      doctor.ProfilePic,
-		DoctorSchedules: schedules,
+		ID:                  doctor.ID,
+		CreatedAt:           doctor.CreatedAt,
+		UpdatedAt:           doctor.UpdatedAt,
+		DeletedAt:           doctor.DeletedAt,
+		Name:                user.Name,
+		SpecialityId:        doctor.SpecialityId,
+		LicenseNumber:       doctor.LicenseNumber,
+		SpecialityName:      speciality.Name,
+		ProfilePic:          doctor.ProfilePic,
+		BirthDate:           doctor.BirthDate,
+		BirthDateString:     birthDateString,
+		BirthDateStringIndo: birthDateIndoString,
+		Phone:               doctor.Phone,
+		MaritalStatus:       doctor.MaritalStatus,
+		Email:               doctor.Email,
+		DoctorSchedules:     schedules,
 	}
 
 	return res, nil
@@ -231,6 +267,12 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 	}
 
 	for _, doctor := range doctors {
+		birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+		birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+			constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+			strconv.Itoa(doctor.BirthDate.Year())
+
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
 			return res, err
@@ -268,16 +310,22 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 		}
 
 		res = append(res, dto.DoctorRes{
-			ID:              doctor.ID,
-			CreatedAt:       doctor.CreatedAt,
-			UpdatedAt:       doctor.UpdatedAt,
-			DeletedAt:       doctor.DeletedAt,
-			Name:            user.Name,
-			SpecialityId:    doctor.SpecialityId,
-			LicenseNumber:   doctor.LicenseNumber,
-			SpecialityName:  speciality.Name,
-			ProfilePic:      doctor.ProfilePic,
-			DoctorSchedules: schedules,
+			ID:                  doctor.ID,
+			CreatedAt:           doctor.CreatedAt,
+			UpdatedAt:           doctor.UpdatedAt,
+			DeletedAt:           doctor.DeletedAt,
+			Name:                user.Name,
+			SpecialityId:        doctor.SpecialityId,
+			LicenseNumber:       doctor.LicenseNumber,
+			SpecialityName:      speciality.Name,
+			ProfilePic:          doctor.ProfilePic,
+			BirthDate:           doctor.BirthDate,
+			BirthDateString:     birthDateString,
+			BirthDateStringIndo: birthDateIndoString,
+			Phone:               doctor.Phone,
+			MaritalStatus:       doctor.MaritalStatus,
+			Email:               doctor.Email,
+			DoctorSchedules:     schedules,
 		})
 	}
 
@@ -299,6 +347,12 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 		if err != nil {
 			return res, err
 		}
+
+		birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+		birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+			constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+			strconv.Itoa(doctor.BirthDate.Year())
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
@@ -334,16 +388,22 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 		}
 
 		res = append(res, dto.DoctorRes{
-			ID:              doctor.ID,
-			CreatedAt:       doctor.CreatedAt,
-			UpdatedAt:       doctor.UpdatedAt,
-			DeletedAt:       doctor.DeletedAt,
-			Name:            user.Name,
-			SpecialityId:    doctor.SpecialityId,
-			LicenseNumber:   doctor.LicenseNumber,
-			SpecialityName:  speciality.Name,
-			ProfilePic:      doctor.ProfilePic,
-			DoctorSchedules: schedules,
+			ID:                  doctor.ID,
+			CreatedAt:           doctor.CreatedAt,
+			UpdatedAt:           doctor.UpdatedAt,
+			DeletedAt:           doctor.DeletedAt,
+			Name:                user.Name,
+			SpecialityId:        doctor.SpecialityId,
+			LicenseNumber:       doctor.LicenseNumber,
+			SpecialityName:      speciality.Name,
+			ProfilePic:          doctor.ProfilePic,
+			BirthDate:           doctor.BirthDate,
+			BirthDateString:     birthDateString,
+			BirthDateStringIndo: birthDateIndoString,
+			Phone:               doctor.Phone,
+			MaritalStatus:       doctor.MaritalStatus,
+			Email:               doctor.Email,
+			DoctorSchedules:     schedules,
 		})
 	}
 
@@ -384,12 +444,22 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 		return dto.DoctorRes{}, err
 	}
 
+	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
+	if err != nil {
+		return dto.DoctorRes{}, err
+	}
+
 	doctor := models.Doctor{
 		Model:         gorm.Model{},
 		UserId:        resCreateUsr.ID,
 		SpecialityId:  payload.SpecialityID,
 		LicenseNumber: payload.LicenseNumber,
 		ProfilePic:    payload.ProfilePic,
+		BirthDate:     birthDateTime,
+		Phone:         payload.Phone,
+		MaritalStatus: payload.MaritalStatus,
+		Email:         payload.Email,
 	}
 
 	resCreateDtr, err := uc.doctorRep.Create(doctor)
@@ -399,17 +469,29 @@ func (uc *doctorUseCase) Create(payload dto.UserReq) (dto.DoctorRes, error) {
 
 	speciality, _ := uc.spcRep.GetById(resCreateDtr.SpecialityId)
 
+	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+		strconv.Itoa(doctor.BirthDate.Year())
+
 	res := dto.DoctorRes{
-		ID:              resCreateDtr.ID,
-		CreatedAt:       resCreateDtr.CreatedAt,
-		UpdatedAt:       resCreateDtr.UpdatedAt,
-		DeletedAt:       resCreateDtr.DeletedAt,
-		Name:            resCreateUsr.Name,
-		SpecialityId:    resCreateDtr.SpecialityId,
-		LicenseNumber:   resCreateDtr.LicenseNumber,
-		SpecialityName:  speciality.Name,
-		ProfilePic:      doctor.ProfilePic,
-		DoctorSchedules: []dto.DoctorProfileScheduleRes{},
+		ID:                  resCreateDtr.ID,
+		CreatedAt:           resCreateDtr.CreatedAt,
+		UpdatedAt:           resCreateDtr.UpdatedAt,
+		DeletedAt:           resCreateDtr.DeletedAt,
+		Name:                resCreateUsr.Name,
+		SpecialityId:        resCreateDtr.SpecialityId,
+		LicenseNumber:       resCreateDtr.LicenseNumber,
+		SpecialityName:      speciality.Name,
+		ProfilePic:          doctor.ProfilePic,
+		BirthDate:           doctor.BirthDate,
+		BirthDateString:     birthDateString,
+		BirthDateStringIndo: birthDateIndoString,
+		Phone:               doctor.Phone,
+		MaritalStatus:       doctor.MaritalStatus,
+		Email:               doctor.Email,
+		DoctorSchedules:     []dto.DoctorProfileScheduleRes{},
 	}
 
 	return res, err
@@ -454,12 +536,22 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 		return dto.DoctorRes{}, err
 	}
 
+	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
+	if err != nil {
+		return dto.DoctorRes{}, err
+	}
+
 	doctor = models.Doctor{
 		Model:         gorm.Model{},
 		UserId:        doctor.UserId,
 		SpecialityId:  payload.SpecialityID,
 		LicenseNumber: payload.LicenseNumber,
 		ProfilePic:    payload.ProfilePic,
+		BirthDate:     birthDateTime,
+		Phone:         payload.Phone,
+		MaritalStatus: payload.MaritalStatus,
+		Email:         payload.Email,
 	}
 
 	resUpdtDtr, err := uc.doctorRep.Update(id, doctor)
@@ -495,17 +587,29 @@ func (uc *doctorUseCase) Update(id uint, payload dto.UserReq) (dto.DoctorRes, er
 		}
 	}
 
+	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+
+	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
+		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
+		strconv.Itoa(doctor.BirthDate.Year())
+
 	res := dto.DoctorRes{
-		ID:              resUpdtDtr.ID,
-		CreatedAt:       resUpdtDtr.CreatedAt,
-		UpdatedAt:       resUpdtDtr.UpdatedAt,
-		DeletedAt:       resUpdtDtr.DeletedAt,
-		Name:            resUpdtUsr.Name,
-		SpecialityId:    resUpdtDtr.SpecialityId,
-		LicenseNumber:   resUpdtDtr.LicenseNumber,
-		SpecialityName:  speciality.Name,
-		DoctorSchedules: schedules,
-		ProfilePic:      doctor.ProfilePic,
+		ID:                  resUpdtDtr.ID,
+		CreatedAt:           resUpdtDtr.CreatedAt,
+		UpdatedAt:           resUpdtDtr.UpdatedAt,
+		DeletedAt:           resUpdtDtr.DeletedAt,
+		Name:                resUpdtUsr.Name,
+		SpecialityId:        resUpdtDtr.SpecialityId,
+		LicenseNumber:       resUpdtDtr.LicenseNumber,
+		SpecialityName:      speciality.Name,
+		DoctorSchedules:     schedules,
+		ProfilePic:          doctor.ProfilePic,
+		BirthDate:           doctor.BirthDate,
+		BirthDateString:     birthDateString,
+		BirthDateStringIndo: birthDateIndoString,
+		Phone:               doctor.Phone,
+		MaritalStatus:       doctor.MaritalStatus,
+		Email:               doctor.Email,
 	}
 
 	return res, err

@@ -15,7 +15,7 @@ type Patient struct {
 	BirthDate     time.Time `json:"birth_date" form:"birth_date"`
 	Gender        int       `json:"gender" form:"gender"`
 	Address       string    `json:"address" form:"address"`
-	Phone         string    `json:"phone_number" form:"phone_number"`
+	Phone         string    `json:"phone" form:"phone"`
 	MaritalStatus bool      `json:"marital_status" form:"address"`
 	Religion      Religion
 }

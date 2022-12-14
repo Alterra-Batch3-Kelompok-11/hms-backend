@@ -1,21 +1,39 @@
 package dto
 
 import (
-	"gorm.io/gorm"
 	"time"
+
+	"github.com/go-playground/validator/v10"
+	"gorm.io/gorm"
 )
 
 type DoctorRes struct {
-	ID              uint                       `json:"id" form:"id"`
-	CreatedAt       time.Time                  `json:"created_at" form:"created_at"`
-	UpdatedAt       time.Time                  `json:"updated_at" form:"updated_at"`
-	DeletedAt       gorm.DeletedAt             `gorm:"index" json:"deleted_at" form:"deleted_at"`
-	Name            string                     `json:"name"`
-	SpecialityId    uint                       `json:"speciality_id" form:"speciality_id"`
-	LicenseNumber   string                     `json:"license_number" form:"license_number"`
-	SpecialityName  string                     `json:"speciality_name" form:"speciality_name"`
-	ProfilePic      string                     `json:"profile_pic" form:"profile_pic"`
-	DoctorSchedules []DoctorProfileScheduleRes `json:"doctor_schedules" form:"doctor_schedules"`
+	ID                  uint                       `json:"id" form:"id" validate:"required"`
+	CreatedAt           time.Time                  `json:"created_at" form:"created_at" validate:"required"`
+	UpdatedAt           time.Time                  `json:"updated_at" form:"updated_at" validate:"required"`
+	DeletedAt           gorm.DeletedAt             `gorm:"index" json:"deleted_at" form:"deleted_at"`
+	Name                string                     `json:"name" validate:"required"`
+	SpecialityId        uint                       `json:"speciality_id" form:"speciality_id" validate:"required"`
+	LicenseNumber       string                     `json:"license_number" form:"license_number" validate:"required"`
+	SpecialityName      string                     `json:"speciality_name" form:"speciality_name"`
+	ProfilePic          string                     `json:"profile_pic" form:"profile_pic"`
+	BirthDate           time.Time                  `json:"birth_date" form:"birth_date"`
+	BirthDateString     string                     `json:"birth_date_string" form:"birth_date_string"`
+	BirthDateStringIndo string                     `json:"birth_date_string_indo" form:"birth_date_string_indo"`
+	Phone               string                     `json:"phone" form:"phone"`
+	MaritalStatus       bool                       `json:"marital_status" form:"address"`
+	Email               string                     `json:"email" form:"email"`
+	DoctorSchedules     []DoctorProfileScheduleRes `json:"doctor_schedules" form:"doctor_schedules"`
+}
+
+func (ctrl *DoctorRes) Validate() error {
+	validate := validator.New()
+	err := validate.Struct(ctrl)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 type TodayDoctorRes struct {

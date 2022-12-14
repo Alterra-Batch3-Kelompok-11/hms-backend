@@ -35,7 +35,7 @@ func (ctrl *religionController) GetAll(c echo.Context) error {
 	})
 }
 func (ctrl *religionController) GetById(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	res, err := ctrl.usecase.GetById(uint(id))
 	if err != nil {

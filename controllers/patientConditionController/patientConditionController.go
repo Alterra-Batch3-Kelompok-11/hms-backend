@@ -35,7 +35,7 @@ func (ctrl *patientConditionController) GetAll(c echo.Context) error {
 	})
 }
 func (ctrl *patientConditionController) GetById(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	res, err := ctrl.usecase.GetById(uint(id))
 	if err != nil {
@@ -53,7 +53,7 @@ func (ctrl *patientConditionController) GetById(c echo.Context) error {
 	})
 }
 func (ctrl *patientConditionController) GetByDoctorId(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetByDoctorId(uint(doctorId))
 	if err != nil {
@@ -71,7 +71,7 @@ func (ctrl *patientConditionController) GetByDoctorId(c echo.Context) error {
 	})
 }
 func (ctrl *patientConditionController) GetByPatientId(c echo.Context) error {
-	patientId, _ := strconv.ParseInt(c.Param("patient_id"), 16, 64)
+	patientId, _ := strconv.ParseInt(c.Param("patient_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetByPatientId(uint(patientId))
 	if err != nil {

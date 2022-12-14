@@ -1,11 +1,12 @@
 package doctorController
 
 import (
-	"github.com/labstack/echo/v4"
 	"hms-backend/dto"
 	"hms-backend/usecases/doctorUseCase"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type doctorController struct {
@@ -35,7 +36,7 @@ func (ctrl *doctorController) GetAll(c echo.Context) error {
 	})
 }
 func (ctrl *doctorController) GetById(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	res, err := ctrl.usecase.GetById(uint(id))
 	if err != nil {
@@ -71,7 +72,7 @@ func (ctrl *doctorController) GetByLicenseNumber(c echo.Context) error {
 	})
 }
 func (ctrl *doctorController) GetBySpecialityId(c echo.Context) error {
-	specialityId, _ := strconv.ParseInt(c.Param("speciality_id"), 16, 64)
+	specialityId, _ := strconv.ParseInt(c.Param("speciality_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetBySpecialityId(uint(specialityId))
 	if err != nil {
@@ -132,7 +133,7 @@ func (ctrl *doctorController) Create(c echo.Context) error {
 	})
 }
 func (ctrl *doctorController) Update(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	var payload dto.UserReq
 
@@ -161,7 +162,7 @@ func (ctrl *doctorController) Update(c echo.Context) error {
 	})
 }
 func (ctrl *doctorController) Delete(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	err := ctrl.usecase.Delete(uint(id))
 	if err != nil {

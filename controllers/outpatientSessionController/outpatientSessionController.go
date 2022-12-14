@@ -1,11 +1,12 @@
 package outpatientSessionController
 
 import (
-	"github.com/labstack/echo/v4"
 	"hms-backend/dto"
 	"hms-backend/usecases/outpatientSessionUseCase"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type outpatientSessionController struct {
@@ -34,7 +35,7 @@ func (ctrl *outpatientSessionController) GetAll(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) GetById(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	res, err := ctrl.usecase.GetById(uint(id))
 	if err != nil {
@@ -52,7 +53,7 @@ func (ctrl *outpatientSessionController) GetById(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) GetByDoctorId(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetByDoctorId(uint(doctorId))
 	if err != nil {
@@ -70,7 +71,7 @@ func (ctrl *outpatientSessionController) GetByDoctorId(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) GetByPatientId(c echo.Context) error {
-	patientId, _ := strconv.ParseInt(c.Param("patient_id"), 16, 64)
+	patientId, _ := strconv.ParseInt(c.Param("patient_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetByPatientId(uint(patientId))
 	if err != nil {
@@ -88,7 +89,7 @@ func (ctrl *outpatientSessionController) GetByPatientId(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) GetUnprocessedByDoctorId(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetUnprocessedByDoctorId(uint(doctorId))
 	if err != nil {
@@ -106,7 +107,7 @@ func (ctrl *outpatientSessionController) GetUnprocessedByDoctorId(c echo.Context
 	})
 }
 func (ctrl *outpatientSessionController) GetProcessedByDoctorId(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetProcessedByDoctorId(uint(doctorId))
 	if err != nil {
@@ -124,7 +125,7 @@ func (ctrl *outpatientSessionController) GetProcessedByDoctorId(c echo.Context) 
 	})
 }
 func (ctrl *outpatientSessionController) GetApprovedByDoctorId(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetApprovedByDoctorId(uint(doctorId))
 	if err != nil {
@@ -142,7 +143,7 @@ func (ctrl *outpatientSessionController) GetApprovedByDoctorId(c echo.Context) e
 	})
 }
 func (ctrl *outpatientSessionController) GetRejectedByDoctorId(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetRejectedByDoctorId(uint(doctorId))
 	if err != nil {
@@ -180,6 +181,15 @@ func (ctrl *outpatientSessionController) Create(c echo.Context) error {
 		})
 	}
 
+	err = payload.Validate()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
 	return c.JSON(http.StatusOK, dto.Response{
 		Status:  http.StatusOK,
 		Message: "success create data",
@@ -187,7 +197,7 @@ func (ctrl *outpatientSessionController) Create(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) Update(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	var payload dto.OutpatientSessionReq
 
@@ -216,7 +226,7 @@ func (ctrl *outpatientSessionController) Update(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) Approval(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	var payload dto.ApprovalReq
 
@@ -245,7 +255,7 @@ func (ctrl *outpatientSessionController) Approval(c echo.Context) error {
 	})
 }
 func (ctrl *outpatientSessionController) Delete(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	err := ctrl.usecase.Delete(uint(id))
 	if err != nil {
