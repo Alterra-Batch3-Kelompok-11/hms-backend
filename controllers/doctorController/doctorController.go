@@ -1,11 +1,12 @@
 package doctorController
 
 import (
-	"github.com/labstack/echo/v4"
 	"hms-backend/dto"
 	"hms-backend/usecases/doctorUseCase"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type doctorController struct {

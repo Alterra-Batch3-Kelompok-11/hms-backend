@@ -76,11 +76,21 @@ func (ctrl *patientController) Create(c echo.Context) error {
 		})
 	}
 
+	err = payload.Validate()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
 	return c.JSON(http.StatusOK, dto.Response{
 		Status:  http.StatusOK,
 		Message: "success create data",
 		Data:    res,
 	})
+
 }
 
 func (ctrl *patientController) Update(c echo.Context) error {
@@ -98,6 +108,15 @@ func (ctrl *patientController) Update(c echo.Context) error {
 	}
 
 	res, err := ctrl.usecase.Update(uint(id), payload)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
+	err = payload.Validate()
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.Response{
 			Status:  http.StatusBadRequest,

@@ -1,16 +1,28 @@
 package dto
 
 import (
-	"gorm.io/gorm"
 	"time"
+
+	"github.com/go-playground/validator/v10"
+	"gorm.io/gorm"
 )
 
 type OutpatientSessionReq struct {
-	PatientId    uint   `json:"patient_id" form:"patient_id"`
-	DoctorId     uint   `json:"doctor_id" form:"doctor_id"`
-	Complaint    string `json:"complaint" form:"complaint"`
-	ScheduleDate string `json:"schedule_date" form:"schedule_date"`
-	ScheduleTime string `json:"schedule_time" form:"schedule_time"`
+	PatientId    uint   `json:"patient_id" form:"patient_id" validate:"required"`
+	DoctorId     uint   `json:"doctor_id" form:"doctor_id" validate:"required"`
+	Complaint    string `json:"complaint" form:"complaint" validate:"required"`
+	ScheduleDate string `json:"schedule_date" form:"schedule_date" validate:"required"`
+	ScheduleTime string `json:"schedule_time" form:"schedule_time" validate:"required"`
+}
+
+func (ctrl *OutpatientSessionReq) Validate() error {
+	validate := validator.New()
+	err := validate.Struct(ctrl)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 type OutpatientSessionRes struct {

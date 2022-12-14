@@ -1,11 +1,12 @@
 package specialityController
 
 import (
-	"github.com/labstack/echo/v4"
 	"hms-backend/dto"
 	"hms-backend/usecases/specialityUseCase"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type specialityController struct {
@@ -65,6 +66,15 @@ func (ctrl *specialityController) Create(c echo.Context) error {
 	}
 
 	res, err := ctrl.usecase.Create(payload)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
+	err = payload.Validate()
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.Response{
 			Status:  http.StatusBadRequest,
