@@ -3571,8 +3571,8 @@ const SwaggerDocTemplate = `
         },
         "/v1/patient_conditions": {
             "post": {
-                "tags" : ["Patients"],
-                "summary": "Create Patients",
+                "tags" : ["Patient Conditions"],
+                "summary": "Insert Patient Conditions",
                 "parameters": [
                 {
                     "name": "Authorization",
