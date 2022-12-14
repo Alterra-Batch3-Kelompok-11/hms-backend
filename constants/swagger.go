@@ -41,7 +41,7 @@ const SwaggerDocTemplate = `
             "name": "Doctor Schedules"
         },
         {
-            "name": "Nurse"
+            "name": "Nurses"
         },
         {
             "name": "Outpatient Sessions"
