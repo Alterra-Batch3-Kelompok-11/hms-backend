@@ -18,7 +18,7 @@ func New(srv historyUseCase.HistoryUseCase) *historyController {
 	}
 }
 func (ctrl *historyController) GetOutpatientSessionHistory(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetOutpatientSessionHistory(uint(doctorId))
 	if err != nil {
@@ -36,7 +36,7 @@ func (ctrl *historyController) GetOutpatientSessionHistory(c echo.Context) error
 	})
 }
 func (ctrl *historyController) GetApprovalHistory(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetApprovalHistory(uint(doctorId))
 	if err != nil {

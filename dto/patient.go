@@ -1,16 +1,30 @@
 package dto
 
-import "time"
+import (
+	"time"
+
+	"github.com/go-playground/validator/v10"
+)
 
 type Patient struct {
-	NIK           string    `json:"nik"`
-	Name          string    `json:"name"`
-	BirthDate     time.Time `json:"birth_date"`
-	Gender        int       `json:"gender"`
-	Phone         string    `json:"phone"`
-	Address       string    `json:"address"`
-	MaritalStatus bool      `json:"marital_status"`
-	ReligionID    uint      `json:"religion_id"`
+	NIK           string    `json:"nik" validate:"required"`
+	Name          string    `json:"name" validate:"required"`
+	BirthDate     time.Time `json:"birth_date" validate:"required"`
+	Gender        int       `json:"gender" validate:"required"`
+	Phone         string    `json:"phone" validate:"required"`
+	Address       string    `json:"address" validate:"required"`
+	MaritalStatus bool      `json:"marital_status" validate:"required"`
+	ReligionID    uint      `json:"religion_id" validate:"required"`
+}
+
+func (ctrl *Patient) Validate() error {
+	validate := validator.New()
+	err := validate.Struct(ctrl)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 type PatientToday struct {

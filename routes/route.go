@@ -78,7 +78,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	rlgUc := religionUseCase.New(rlgRepo)
 	dtrUc := doctorUseCase.New(dtrRepo, usrRepo, spcRepo, dtrSchedRepo)
 	dtrSchdUc := doctorScheduleUseCase.New(dtrRepo, dtrSchedRepo)
-	nurUC := nurseUseCase.New(nurRepo)
+	nurUC := nurseUseCase.New(nurRepo, usrRepo, spcRepo)
 	outPatientSessionUC := outpatientSessionUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo)
 	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
 	patientConditionUC := patientConditionUseCase.New(treatmentRepo, outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo, historyRepo)

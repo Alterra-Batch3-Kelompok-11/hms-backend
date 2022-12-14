@@ -36,7 +36,7 @@ func (ctrl *dashboardController) GetDataDashboardWeb(c echo.Context) error {
 }
 
 func (ctrl *dashboardController) GetDataDashboardMobile(c echo.Context) error {
-	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 16, 64)
+	doctorId, _ := strconv.ParseInt(c.Param("doctor_id"), 0, 64)
 
 	res, err := ctrl.usecase.GetDataDashboardMobile(uint(doctorId))
 	if err != nil {

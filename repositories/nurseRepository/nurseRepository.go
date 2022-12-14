@@ -10,6 +10,7 @@ type NurseRepository interface {
 	GetById(id uint) (models.Nurse, error)
 	GetByUserId(userId uint) (models.Nurse, error)
 	GetByLicenseNumber(licenseNumber string) (models.Nurse, error)
+	GetByLicenseNumberOther(licenseNumber string, id uint) (models.Nurse, error)
 	Count() (int64, error)
 	Create(user models.Nurse) (models.Nurse, error)
 	Update(id uint, user models.Nurse) (models.Nurse, error)
@@ -55,6 +56,15 @@ func (rep *nurseRepository) GetByLicenseNumber(licenseNumber string) (models.Nur
 	nurse := models.Nurse{}
 
 	if err := rep.db.Model(models.Nurse{}).Where("license_number = ?", licenseNumber).First(&nurse).Error; err != nil {
+		return nurse, err
+	}
+
+	return nurse, nil
+}
+func (rep *nurseRepository) GetByLicenseNumberOther(licenseNumber string, id uint) (models.Nurse, error) {
+	nurse := models.Nurse{}
+
+	if err := rep.db.Model(models.Nurse{}).Where("license_number = ? AND ID != ?", licenseNumber, id).First(&nurse).Error; err != nil {
 		return nurse, err
 	}
 

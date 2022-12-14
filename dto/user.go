@@ -1,15 +1,16 @@
 package dto
 
 import (
+	"github.com/go-playground/validator/v10"
 	"gorm.io/gorm"
 	"time"
 )
 
 type UserReq struct {
-	Name          string `json:"name" form:"name"`
+	Name          string `json:"name" form:"name" validate:"required"`
 	LicenseNumber string `json:"license_number" form:"license_number"`
 	Username      string `json:"username" form:"username"`
-	Password      string `json:"password" form:"password"`
+	Password      string `json:"password" form:"password" validate:"required"`
 	RoleID        uint   `json:"role_id" form:"role_id"`
 	SpecialityID  uint   `json:"speciality_id" form:"speciality_id"`
 	ProfilePic    string `json:"profile_pic" form:"profile_pic"`
@@ -43,4 +44,14 @@ type LoginRes struct {
 	LicenseNumber string      `json:"license_number" form:"license_number"`
 	DoctorID      interface{} `json:"doctor_id" form:"doctor_id"`
 	NurseID       interface{} `json:"nurse_id" form:"nurse_id"`
+}
+
+func (ctrl *UserReq) Validate() error {
+	validate := validator.New()
+	err := validate.Struct(ctrl)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

@@ -37,7 +37,7 @@ func (ctrl *nurseController) GetAll(c echo.Context) error {
 }
 
 func (ctrl *nurseController) GetById(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	res, err := ctrl.usecase.GetById(uint(id))
 	if err != nil {
@@ -75,7 +75,7 @@ func (ctrl *nurseController) GetByLicenseNumber(c echo.Context) error {
 }
 
 func (ctrl *nurseController) Create(c echo.Context) error {
-	var payload dto.NurseRes
+	var payload dto.UserReq
 
 	err := c.Bind(&payload)
 	if err != nil {
@@ -95,6 +95,15 @@ func (ctrl *nurseController) Create(c echo.Context) error {
 		})
 	}
 
+	err = payload.Validate()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.Response{
+			Status:  http.StatusBadRequest,
+			Message: err.Error(),
+			Data:    nil,
+		})
+	}
+
 	return c.JSON(http.StatusOK, dto.Response{
 		Status:  http.StatusOK,
 		Message: "success create data",
@@ -103,9 +112,9 @@ func (ctrl *nurseController) Create(c echo.Context) error {
 }
 
 func (ctrl *nurseController) Update(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
-	var payload dto.NurseRes
+	var payload dto.UserReq
 
 	err := c.Bind(&payload)
 	if err != nil {
@@ -133,7 +142,7 @@ func (ctrl *nurseController) Update(c echo.Context) error {
 }
 
 func (ctrl *nurseController) Delete(c echo.Context) error {
-	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
+	id, _ := strconv.ParseInt(c.Param("id"), 0, 64)
 
 	err := ctrl.usecase.Delete(uint(id))
 	if err != nil {
