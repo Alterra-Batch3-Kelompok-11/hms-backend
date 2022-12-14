@@ -10,6 +10,7 @@ import (
 	"hms-backend/repositories/doctorRepository"
 	"hms-backend/repositories/nurseRepository"
 	"hms-backend/repositories/userRepository"
+	"time"
 )
 
 type AuthUseCase interface {
@@ -123,6 +124,13 @@ func (uc *authUseCase) SignUp(payload dto.UserReq) (dto.UserRes, error) {
 			UserId:        resCreateUsr.ID,
 			SpecialityId:  payload.SpecialityID,
 			LicenseNumber: payload.LicenseNumber,
+			ProfilePic:    payload.ProfilePic,
+			BirthDate:     time.Time{},
+			Phone:         "",
+			MaritalStatus: false,
+			Email:         "",
+			User:          models.User{},
+			Speciality:    models.Speciality{},
 		}
 
 		resCreateDtr, err := uc.doctorRepository.Create(doctor)

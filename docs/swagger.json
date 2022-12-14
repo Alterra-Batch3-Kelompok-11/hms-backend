@@ -3241,7 +3241,7 @@
                 }
             }
         },
-        "/v1/patients_conditions": {
+        "/v1/patient_conditions": {
             "post": {
                 "tags": [
                     "Patient Conditions"
@@ -3316,7 +3316,7 @@
                 }
             }
         },
-        "/v1/patients_conditions/{treatment_id}": {
+        "/v1/patient_conditions/{treatment_id}": {
             "get": {
                 "tags": [
                     "Patient Conditions"
@@ -3397,7 +3397,7 @@
                 }
             }
         },
-        "/v1/patients_conditions/patient/{patient_id}": {
+        "/v1/patient_conditions/patient/{patient_id}": {
             "get": {
                 "tags": [
                     "Patient Conditions"

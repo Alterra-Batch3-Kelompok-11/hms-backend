@@ -15,6 +15,10 @@ type DoctorRes struct {
 	LicenseNumber   string                     `json:"license_number" form:"license_number"`
 	SpecialityName  string                     `json:"speciality_name" form:"speciality_name"`
 	ProfilePic      string                     `json:"profile_pic" form:"profile_pic"`
+	BirthDate       time.Time                  `json:"birth_date" form:"birth_date"`
+	Phone           string                     `json:"phone" form:"phone"`
+	MaritalStatus   bool                       `json:"marital_status" form:"address"`
+	Email           string                     `json:"email" form:"email"`
 	DoctorSchedules []DoctorProfileScheduleRes `json:"doctor_schedules" form:"doctor_schedules"`
 }
 
