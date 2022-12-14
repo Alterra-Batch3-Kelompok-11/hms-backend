@@ -110,7 +110,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	v1 := e.Group("/v1")
 	v1.POST("/login", authCtrl.Login)
 	v1.POST("/signup", authCtrl.SignUp)
-	v1.POST("/auth/refresh", authCtrl.RefreshToken)
+	v1.GET("/auth/refresh", authCtrl.RefreshToken, jwt)
 
 	// Roles
 	role := v1.Group("/roles")
