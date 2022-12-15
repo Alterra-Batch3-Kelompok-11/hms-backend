@@ -9,12 +9,12 @@ import (
 type Patient struct {
 	NIK           string    `json:"nik" validate:"required"`
 	Name          string    `json:"name" validate:"required"`
-	BirthDate     time.Time `json:"birth_date" validate:"required"`
+	BirthDate     time.Time `json:"birth_date"`
 	Gender        int       `json:"gender" validate:"required"`
 	Phone         string    `json:"phone" validate:"required"`
 	Address       string    `json:"address" validate:"required"`
-	MaritalStatus bool      `json:"marital_status" validate:"required"`
-	ReligionID    uint      `json:"religion_id" validate:"required"`
+	MaritalStatus bool      `json:"marital_status"`
+	ReligionID    uint      `json:"religion_id"`
 }
 
 func (ctrl *Patient) Validate() error {
