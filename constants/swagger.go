@@ -292,14 +292,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -353,14 +353,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -412,14 +412,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "user not found",
                                         "data": null
                                     }
@@ -559,14 +559,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -627,14 +627,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -683,14 +683,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -811,14 +811,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -1184,14 +1184,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "license number already exist",
                                         "data": null
                                     }
@@ -1252,14 +1252,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -1340,14 +1340,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -1389,14 +1389,14 @@ const SwaggerDocTemplate = `
                             "application/json": {}
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -1457,14 +1457,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -1966,14 +1966,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2171,14 +2171,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2267,14 +2267,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2342,14 +2342,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2630,14 +2630,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2738,14 +2738,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2795,14 +2795,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -2931,14 +2931,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3067,14 +3067,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3163,14 +3163,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3259,14 +3259,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3355,14 +3355,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3451,14 +3451,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3513,14 +3513,14 @@ const SwaggerDocTemplate = `
                             "application/json": {}
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3788,14 +3788,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3871,14 +3871,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -3939,14 +3939,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4007,14 +4007,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4074,14 +4074,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4156,14 +4156,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4213,14 +4213,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4444,14 +4444,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4541,14 +4541,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4590,14 +4590,14 @@ const SwaggerDocTemplate = `
                             "application/json": {}
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4661,14 +4661,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "Error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
@@ -4741,14 +4741,14 @@ const SwaggerDocTemplate = `
                             }
                         }
                     },
-                    "400": {
+                    "404": {
                         "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "status": 400,
+                                        "status": 404,
                                         "message": "record not found",
                                         "data": null
                                     }
