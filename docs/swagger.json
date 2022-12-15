@@ -48,6 +48,9 @@
         },
         {
             "name": "Histories"
+        },
+        {
+            "name": "Notifications"
         }
     ],
     "paths": {
@@ -4614,6 +4617,86 @@
                     },
                     "400": {
                         "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 400,
+                                        "message": "record not found",
+                                        "data": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/notifications": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Get Notifications",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization header token from login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "success get data",
+                                        "data": [
+                                            {
+                                                "outpatient_session_id": 13,
+                                                "description": "Request Kunjungan",
+                                                "schedule_date": "2022-12-15",
+                                                "schedule_date_indo": "15 Desember 2022",
+                                                "schedule_time": "05:00"
+                                            },
+                                            {
+                                                "outpatient_session_id": 14,
+                                                "description": "Request Kunjungan",
+                                                "schedule_date": "2022-12-15",
+                                                "schedule_date_indo": "15 Desember 2022",
+                                                "schedule_time": "05:01"
+                                            },
+                                            {
+                                                "outpatient_session_id": 15,
+                                                "description": "Request Kunjungan",
+                                                "schedule_date": "2022-12-15",
+                                                "schedule_date_indo": "15 Desember 2022",
+                                                "schedule_time": "05:01"
+                                            },
+                                            {
+                                                "outpatient_session_id": 16,
+                                                "description": "Request Kunjungan",
+                                                "schedule_date": "2022-12-15",
+                                                "schedule_date_indo": "15 Desember 2022",
+                                                "schedule_time": "05:01"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
                         "content": {
                             "application/json": {
                                 "schema": {
