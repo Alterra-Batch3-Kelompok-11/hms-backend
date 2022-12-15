@@ -33,9 +33,9 @@ func (ctrl *notificationController) GetByDoctorId(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "Unable to parse token")
 	}
 
-	userId := uint(claims["roleId"].(float64))
+	userId := uint(claims["userId"].(float64))
 
-	res, err := ctrl.usecase.GetByDoctorId(userId)
+	res, err := ctrl.usecase.GetByUserId(userId)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.Response{
 			Status:  http.StatusBadRequest,
