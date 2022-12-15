@@ -13,8 +13,8 @@ type Patient struct {
 	Gender        int       `json:"gender" validate:"required"`
 	Phone         string    `json:"phone" validate:"required"`
 	Address       string    `json:"address" validate:"required"`
-	MaritalStatus bool      `json:"marital_status" validate:"required"`
-	ReligionID    uint      `json:"religion_id" validate:"required"`
+	MaritalStatus bool      `json:"marital_status"`
+	ReligionID    uint      `json:"religion_id"`
 }
 
 func (ctrl *Patient) Validate() error {
