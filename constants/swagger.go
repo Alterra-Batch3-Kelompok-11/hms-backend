@@ -4025,7 +4025,7 @@ const SwaggerDocTemplate = `
                 }
             }
         },
-        "/vi/patients/{id}" : {
+        "/v1/patients/{id}" : {
             "get": {
                 "tags": [
                     "Patients"
