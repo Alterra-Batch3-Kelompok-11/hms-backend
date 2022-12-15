@@ -53,6 +53,18 @@
             "name": "Notifications"
         }
     ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "apiKey",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+
     "paths": {
         "/v1/dashboard/web": {
             "get": {
@@ -60,14 +72,9 @@
                     "Dashboard"
                 ],
                 "summary": "Data Dashboard For Web",
-                "parameters": [
+                "security": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
+                        "bearerAuth" : []
                     }
                 ],
                 "responses": {
@@ -383,6 +390,11 @@
                             "type": "string"
                         },
                         "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerAuth" : []
                     }
                 ],
                 "responses": {
@@ -3608,7 +3620,7 @@
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "2000-01-01T00:00:00.000Z",
+                                    "birth_date": "1997-01-02",
                                     "religion_id": 1
                                 }
                             }
@@ -4117,7 +4129,7 @@
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "2000-01-01T00:00:00.000Z",
+                                    "birth_date": "1997-01-02",
                                     "religion_id": 1
                                 }
                             }

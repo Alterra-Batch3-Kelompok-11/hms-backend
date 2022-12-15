@@ -56,6 +56,18 @@ const SwaggerDocTemplate = `
             "name": "Notifications"
         }
     ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "apiKey",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+
     "paths": {
         "/v1/dashboard/web": {
             "get": {
@@ -63,14 +75,9 @@ const SwaggerDocTemplate = `
                     "Dashboard"
                 ],
                 "summary": "Data Dashboard For Web",
-                "parameters": [
+                "security": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
+                        "bearerAuth" : []
                     }
                 ],
                 "responses": {
@@ -386,6 +393,11 @@ const SwaggerDocTemplate = `
                             "type": "string"
                         },
                         "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerAuth" : []
                     }
                 ],
                 "responses": {

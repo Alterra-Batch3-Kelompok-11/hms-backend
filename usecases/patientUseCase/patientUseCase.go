@@ -5,6 +5,7 @@ import (
 	"hms-backend/dto"
 	"hms-backend/models"
 	"hms-backend/repositories/patientRepository"
+	"time"
 )
 
 type PatientUseCase interface {
@@ -76,11 +77,17 @@ func (uc *patientUseCase) GetById(id uint) (dto.PatientRes, error) {
 }
 
 func (uc *patientUseCase) Create(payload dto.Patient) (dto.PatientRes, error) {
+	dateTimeString := payload.BirthDate[0:10] + "T00:00:00+07:00"
+	birthDateTime, err := time.Parse(time.RFC3339, dateTimeString)
+	if err != nil {
+		return dto.PatientRes{}, err
+	}
+
 	patient := models.Patient{
 		Model:         gorm.Model{},
 		Nik:           payload.NIK,
 		Name:          payload.Name,
-		BirthDate:     payload.BirthDate,
+		BirthDate:     birthDateTime,
 		Gender:        payload.Gender,
 		Address:       payload.Address,
 		Phone:         payload.Phone,
@@ -112,11 +119,17 @@ func (uc *patientUseCase) Create(payload dto.Patient) (dto.PatientRes, error) {
 }
 
 func (uc *patientUseCase) Update(id uint, payload dto.Patient) (dto.PatientRes, error) {
+	dateTimeString := payload.BirthDate[0:10] + "T00:00:00+07:00"
+	birthDateTime, err := time.Parse(time.RFC3339, dateTimeString)
+	if err != nil {
+		return dto.PatientRes{}, err
+	}
+
 	patient := models.Patient{
 		Model:         gorm.Model{},
 		Nik:           payload.NIK,
 		Name:          payload.Name,
-		BirthDate:     payload.BirthDate,
+		BirthDate:     birthDateTime,
 		Gender:        payload.Gender,
 		Address:       payload.Address,
 		Phone:         payload.Phone,
