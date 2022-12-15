@@ -12,7 +12,7 @@ import (
 )
 
 type NotificationUseCase interface {
-	GetByDoctorId(userId uint) ([]dto.Notification, error)
+	GetByUserId(userId uint) ([]dto.Notification, error)
 }
 
 type notificationUseCase struct {
