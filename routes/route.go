@@ -8,6 +8,7 @@ import (
 	"hms-backend/controllers/doctorController"
 	"hms-backend/controllers/doctorScheduleController"
 	"hms-backend/controllers/historyController"
+	"hms-backend/controllers/notificationController"
 	"hms-backend/controllers/nurseController"
 	"hms-backend/controllers/outpatientSessionController"
 	"hms-backend/controllers/patientConditionController"
@@ -32,6 +33,7 @@ import (
 	"hms-backend/usecases/doctorScheduleUseCase"
 	"hms-backend/usecases/doctorUseCase"
 	"hms-backend/usecases/historyUseCase"
+	"hms-backend/usecases/notificationUseCase"
 	"hms-backend/usecases/nurseUseCase"
 	"hms-backend/usecases/outpatientSessionUseCase"
 	"hms-backend/usecases/patientConditionUseCase"
@@ -87,6 +89,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
 	patientConditionUC := patientConditionUseCase.New(treatmentRepo, outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo, historyRepo)
 	historyUC := historyUseCase.New(outPatientSessionRepo, patRepo)
+	notifUC := notificationUseCase.New(outPatientSessionRepo, dtrRepo, nrsRepo, usrRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
@@ -101,6 +104,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dashboardCtrl := dashboardController.New(dashboardUC)
 	patientConditionCtrl := patientConditionController.New(patientConditionUC)
 	historyCtrl := historyController.New(historyUC)
+	notifCtrl := notificationController.New(notifUC)
 
 	// Middlewares
 	jwt := middleware.JWT([]byte(configs.Cfg.JwtKey))
@@ -203,6 +207,9 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dashboard := v1.Group("/dashboard")
 	dashboard.GET("/web", dashboardCtrl.GetDataDashboardWeb)
 	dashboard.GET("/mobile/doctor/:doctor_id", dashboardCtrl.GetDataDashboardMobile)
+
+	// Notifications
+	v1.GET("/notifications", notifCtrl.GetByDoctorId, jwt)
 
 	return e
 }

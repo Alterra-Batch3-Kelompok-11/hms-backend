@@ -1,18 +1,17 @@
 package patientUseCase
 
 import (
+	"gorm.io/gorm"
 	"hms-backend/dto"
 	"hms-backend/models"
 	"hms-backend/repositories/patientRepository"
-
-	"gorm.io/gorm"
 )
 
 type PatientUseCase interface {
-	GetAll() ([]dto.Patient, error)
-	GetById(id uint) (dto.Patient, error)
-	Create(payload dto.Patient) (dto.Patient, error)
-	Update(id uint, payload dto.Patient) (dto.Patient, error)
+	GetAll() ([]dto.PatientRes, error)
+	GetById(id uint) (dto.PatientRes, error)
+	Create(payload dto.Patient) (dto.PatientRes, error)
+	Update(id uint, payload dto.Patient) (dto.PatientRes, error)
 	Delete(id uint) error
 }
 
@@ -24,49 +23,59 @@ func New(patRep patientRepository.PatientRepository) *patientUseCase {
 	return &patientUseCase{patRep}
 }
 
-func (uc *patientUseCase) GetAll() ([]dto.Patient, error) {
-	var res []dto.Patient
-	roles, err := uc.patientRep.GetAll()
+func (uc *patientUseCase) GetAll() ([]dto.PatientRes, error) {
+	var res []dto.PatientRes
+	patients, err := uc.patientRep.GetAll()
 	if err != nil {
 		return res, err
 	}
 
-	for _, role := range roles {
-		res = append(res, dto.Patient{
-			NIK:           role.Nik,
-			Name:          role.Name,
-			BirthDate:     role.BirthDate,
-			Gender:        role.Gender,
-			Phone:         role.Phone,
-			Address:       role.Address,
-			MaritalStatus: role.MaritalStatus,
-			ReligionID:    role.ReligionID,
+	for _, patient := range patients {
+		res = append(res, dto.PatientRes{
+			ID:            patient.ID,
+			CreatedAt:     patient.CreatedAt,
+			UpdatedAt:     patient.UpdatedAt,
+			DeletedAt:     patient.DeletedAt,
+			Nik:           patient.Nik,
+			Name:          patient.Name,
+			BirthDate:     patient.BirthDate,
+			Gender:        patient.Gender,
+			Address:       patient.Address,
+			Phone:         patient.Phone,
+			MaritalStatus: patient.MaritalStatus,
+			ReligionID:    patient.ReligionID,
 		})
 	}
 
 	return res, nil
 }
 
-func (uc *patientUseCase) GetById(id uint) (dto.Patient, error) {
-	var res dto.Patient
-	role, err := uc.patientRep.GetById(id)
+func (uc *patientUseCase) GetById(id uint) (dto.PatientRes, error) {
+	var res dto.PatientRes
+	patient, err := uc.patientRep.GetById(id)
 	if err != nil {
 		return res, err
 	}
 
-	res.NIK = role.Nik
-	res.Name = role.Name
-	res.BirthDate = role.BirthDate
-	res.Gender = role.Gender
-	res.Address = role.Address
-	res.Phone = role.Phone
-	res.MaritalStatus = role.MaritalStatus
-	res.ReligionID = role.ReligionID
+	res = dto.PatientRes{
+		ID:            patient.ID,
+		CreatedAt:     patient.CreatedAt,
+		UpdatedAt:     patient.UpdatedAt,
+		DeletedAt:     patient.DeletedAt,
+		Nik:           patient.Nik,
+		Name:          patient.Name,
+		BirthDate:     patient.BirthDate,
+		Gender:        patient.Gender,
+		Address:       patient.Address,
+		Phone:         patient.Phone,
+		MaritalStatus: patient.MaritalStatus,
+		ReligionID:    patient.ReligionID,
+	}
 
 	return res, nil
 }
 
-func (uc *patientUseCase) Create(payload dto.Patient) (dto.Patient, error) {
+func (uc *patientUseCase) Create(payload dto.Patient) (dto.PatientRes, error) {
 	patient := models.Patient{
 		Model:         gorm.Model{},
 		Nik:           payload.NIK,
@@ -81,22 +90,28 @@ func (uc *patientUseCase) Create(payload dto.Patient) (dto.Patient, error) {
 
 	patUc, err := uc.patientRep.Create(patient)
 	if err != nil {
-		return payload, err
+		return dto.PatientRes{}, err
 	}
 
-	payload.NIK = patUc.Nik
-	payload.Name = patUc.Name
-	payload.BirthDate = patUc.BirthDate
-	payload.Gender = patUc.Gender
-	payload.Address = patUc.Address
-	payload.Phone = patUc.Phone
-	payload.MaritalStatus = patUc.MaritalStatus
-	payload.ReligionID = patUc.ReligionID
+	res := dto.PatientRes{
+		ID:            patUc.ID,
+		CreatedAt:     patUc.CreatedAt,
+		UpdatedAt:     patUc.UpdatedAt,
+		DeletedAt:     patUc.DeletedAt,
+		Nik:           patUc.Nik,
+		Name:          patUc.Name,
+		BirthDate:     patUc.BirthDate,
+		Gender:        patUc.Gender,
+		Address:       patUc.Address,
+		Phone:         patUc.Phone,
+		MaritalStatus: patUc.MaritalStatus,
+		ReligionID:    patUc.ReligionID,
+	}
 
-	return payload, nil
+	return res, nil
 }
 
-func (uc *patientUseCase) Update(id uint, payload dto.Patient) (dto.Patient, error) {
+func (uc *patientUseCase) Update(id uint, payload dto.Patient) (dto.PatientRes, error) {
 	patient := models.Patient{
 		Model:         gorm.Model{},
 		Nik:           payload.NIK,
@@ -111,19 +126,25 @@ func (uc *patientUseCase) Update(id uint, payload dto.Patient) (dto.Patient, err
 
 	patUc, err := uc.patientRep.Update(id, patient)
 	if err != nil {
-		return payload, err
+		return dto.PatientRes{}, err
 	}
 
-	payload.NIK = patUc.Nik
-	payload.Name = patUc.Name
-	payload.BirthDate = patUc.BirthDate
-	payload.Gender = patUc.Gender
-	payload.Address = patUc.Address
-	payload.Phone = patUc.Phone
-	payload.MaritalStatus = patUc.MaritalStatus
-	payload.ReligionID = patUc.ReligionID
+	res := dto.PatientRes{
+		ID:            patUc.ID,
+		CreatedAt:     patUc.CreatedAt,
+		UpdatedAt:     patUc.UpdatedAt,
+		DeletedAt:     patUc.DeletedAt,
+		Nik:           patUc.Nik,
+		Name:          patUc.Name,
+		BirthDate:     patUc.BirthDate,
+		Gender:        patUc.Gender,
+		Address:       patUc.Address,
+		Phone:         patUc.Phone,
+		MaritalStatus: patUc.MaritalStatus,
+		ReligionID:    patUc.ReligionID,
+	}
 
-	return payload, nil
+	return res, nil
 }
 
 func (uc *patientUseCase) Delete(id uint) error {
