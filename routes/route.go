@@ -89,7 +89,7 @@ func New(db *gorm.DB, echoSwagger echo.HandlerFunc) *echo.Echo {
 	dashboardUC := dashboardUseCase.New(outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, nurRepo, patRepo, rlgRepo)
 	patientConditionUC := patientConditionUseCase.New(treatmentRepo, outPatientSessionRepo, usrRepo, dtrRepo, spcRepo, dtrSchedRepo, patRepo, historyRepo)
 	historyUC := historyUseCase.New(outPatientSessionRepo, patRepo)
-	notifUC := notificationUseCase.New(outPatientSessionRepo)
+	notifUC := notificationUseCase.New(outPatientSessionRepo, dtrRepo, nrsRepo, usrRepo)
 
 	// Controllers
 	authCtrl := authController.New(authUc)
