@@ -3623,7 +3623,7 @@ const SwaggerDocTemplate = `
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "2000-01-01T00:00:00.000Z",
+                                    "birth_date": "1997-01-02",
                                     "religion_id": 1
                                 }
                             }
@@ -4132,7 +4132,7 @@ const SwaggerDocTemplate = `
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "2000-01-01T00:00:00.000Z",
+                                    "birth_date": "1997-01-02",
                                     "religion_id": 1
                                 }
                             }
