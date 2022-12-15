@@ -42,7 +42,7 @@ type OutpatientSessionRes struct {
 	ScheduleDate       string         `json:"schedule_date" form:"schedule_date"`
 	ScheduleDateIndo   string         `json:"schedule_date_indo" form:"schedule_date_indo"`
 	ScheduleTime       string         `json:"schedule_time" form:"schedule_time"`
-	Patient            Patient        `json:"patient" form:"patient"`
+	Patient            PatientRes     `json:"patient" form:"patient"`
 	Doctor             DoctorRes      `json:"doctor" form:"doctor"`
 }
 
