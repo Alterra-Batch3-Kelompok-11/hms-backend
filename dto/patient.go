@@ -9,7 +9,7 @@ import (
 type Patient struct {
 	NIK           string    `json:"nik" validate:"required"`
 	Name          string    `json:"name" validate:"required"`
-	BirthDate     time.Time `json:"birth_date" validate:"required"`
+	BirthDate     time.Time `json:"birth_date"`
 	Gender        int       `json:"gender" validate:"required"`
 	Phone         string    `json:"phone" validate:"required"`
 	Address       string    `json:"address" validate:"required"`
