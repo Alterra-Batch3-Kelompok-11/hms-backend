@@ -31,7 +31,7 @@ func New(
 	return &notificationUseCase{outptRep, dctrRep, nrsRep, userRep}
 }
 
-func (uc *notificationUseCase) GetByDoctorId(userId uint) ([]dto.Notification, error) {
+func (uc *notificationUseCase) GetByUserId(userId uint) ([]dto.Notification, error) {
 	var res []dto.Notification
 
 	user, err := uc.userRep.GetById(userId)
