@@ -3554,12 +3554,29 @@ const SwaggerDocTemplate = `
                                         "data": [
                                             {
                                                 "id": 1,
+                                                "created_at": "2022-12-05T11:12:31.321+07:00",
+                                                "updated_at": "2022-12-05T11:12:31.321+07:00",
+                                                "deleted_at": null,
                                                 "nik": "12341234",
-                                                "name": "John doe",
-                                                "birth_date": "0001-01-01T00:00:00Z",
-                                                "gender": 2,
-                                                "phone": "813121212",
+                                                "name": "John tor",
+                                                "birth_date": "1992-01-01T00:00:00+07:00",
+                                                "gender": 1,
                                                 "address": "Bekasi",
+                                                "phone": "0812121212",
+                                                "marital_status": true,
+                                                "religion_id": 1
+                                            },
+                                            {
+                                                "id": 2,
+                                                "created_at": "2022-12-07T13:06:59.487+07:00",
+                                                "updated_at": "2022-12-07T13:06:59.487+07:00",
+                                                "deleted_at": null,
+                                                "nik": "1324354657",
+                                                "name": "Abdil Tegar Arifin",
+                                                "birth_date": "0001-01-01T00:00:00Z",
+                                                "gender": 1,
+                                                "address": "Jember",
+                                                "phone": "081234567890",
                                                 "marital_status": true,
                                                 "religion_id": 1
                                             }
@@ -3588,12 +3605,13 @@ const SwaggerDocTemplate = `
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "nik": "12341234",
-                                    "name": "John doe",
+                                    "nik": "1234509882",
+                                    "name": "Ahmad Fulan",
                                     "gender": 1,
-                                    "address": "Bekasi",
-                                    "phone": "813121212",
-                                    "marital_status": true,
+                                    "address": "Jakarta",
+                                    "phone": "0812121213",
+                                    "marital_status": false,
+                                    "birth_date": "2000-01-01T00:00:00.000Z",
                                     "religion_id": 1
                                 }
                             }
@@ -3611,12 +3629,17 @@ const SwaggerDocTemplate = `
                                         "status": 200,
                                         "message": "success create data",
                                         "data": {
-                                            "nik": "12341234",
-                                            "name": "John doe",
+                                            "id": 3,
+                                            "created_at": "2022-12-15T12:23:20.437+07:00",
+                                            "updated_at": "2022-12-15T12:23:20.437+07:00",
+                                            "deleted_at": null,
+                                            "nik": "1234509882",
+                                            "name": "Ahmad Fulan",
+                                            "birth_date": "2000-01-01T00:00:00Z",
                                             "gender": 1,
-                                            "address": "Bekasi",
-                                            "phone": "813121212",
-                                            "marital_status": true,
+                                            "address": "Jakarta",
+                                            "phone": "0812121213",
+                                            "marital_status": false,
                                             "religion_id": 1
                                         }
                                     }
@@ -4012,7 +4035,8 @@ const SwaggerDocTemplate = `
                 {
                     "name" : "id",
                     "in" : "path",
-                    "description" : "ID of patient"
+                    "description" : "ID of patient",
+                    "example": 2
                 }
 
                 ],
@@ -4030,14 +4054,20 @@ const SwaggerDocTemplate = `
                                     "type": "object",
                                     "example": {
                                         "status": 200,
-                                        "messages": "success get data",
-                                        "data":{
-                                            "id": 0,
-                                            "user_id": 3,
-                                            "license_number": "123124",
-                                            "created_at": "2022-12-01T13:26:45.924+07:00",
-                                            "updated_at": "2022-12-01T13:35:49.342+07:00",
-                                            "deleted_at": null
+                                        "message": "success get data",
+                                        "data": {
+                                            "id": 2,
+                                            "created_at": "2022-12-07T13:06:59.487+07:00",
+                                            "updated_at": "2022-12-07T13:06:59.487+07:00",
+                                            "deleted_at": null,
+                                            "nik": "1324354657",
+                                            "name": "Abdil Tegar Arifin",
+                                            "birth_date": "0001-01-01T00:00:00Z",
+                                            "gender": 1,
+                                            "address": "Jember",
+                                            "phone": "081234567890",
+                                            "marital_status": true,
+                                            "religion_id": 1
                                         }
                                     }
                                 }
@@ -4068,7 +4098,8 @@ const SwaggerDocTemplate = `
                     {
                         "name" : "id",
                         "in" : "path",
-                        "description" : "ID of patient"
+                        "description" : "ID of patient",
+                        "example": 3
                     },
                     {
                         "name": "Authorization",
@@ -4083,8 +4114,14 @@ const SwaggerDocTemplate = `
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "user_id": 3,
-                                    "license_number": "123124"
+                                    "nik": "1234509882",
+                                    "name": "Ahmad Fulan",
+                                    "gender": 1,
+                                    "address": "Jakarta",
+                                    "phone": "0812121213",
+                                    "marital_status": false,
+                                    "birth_date": "2000-01-01T00:00:00.000Z",
+                                    "religion_id": 1
                                 }
                             }
                         }
@@ -4099,14 +4136,20 @@ const SwaggerDocTemplate = `
                                     "type": "object",
                                     "example": {
                                         "status": 200,
-                                        "messages": "success update data",
-                                        "data":{
-                                            "id": 0,
-                                            "user_id": 3,
-                                            "license_number": "123124",
-                                            "created_at": "2022-12-01T13:26:45.924+07:00",
-                                            "updated_at": "2022-12-01T13:35:49.342+07:00",
-                                            "deleted_at": null
+                                        "message": "success create data",
+                                        "data": {
+                                            "id": 3,
+                                            "created_at": "2022-12-15T12:23:20.437+07:00",
+                                            "updated_at": "2022-12-15T12:23:20.437+07:00",
+                                            "deleted_at": null,
+                                            "nik": "1234509882",
+                                            "name": "Ahmad Fulan",
+                                            "birth_date": "2000-01-01T00:00:00Z",
+                                            "gender": 1,
+                                            "address": "Jakarta",
+                                            "phone": "0812121213",
+                                            "marital_status": false,
+                                            "religion_id": 1
                                         }
                                     }
                                 }
