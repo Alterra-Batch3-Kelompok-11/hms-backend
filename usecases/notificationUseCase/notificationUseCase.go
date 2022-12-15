@@ -12,7 +12,7 @@ import (
 )
 
 type NotificationUseCase interface {
-	GetByDoctorId(userId uint) ([]dto.Notification, error)
+	GetByUserId(userId uint) ([]dto.Notification, error)
 }
 
 type notificationUseCase struct {
@@ -31,7 +31,7 @@ func New(
 	return &notificationUseCase{outptRep, dctrRep, nrsRep, userRep}
 }
 
-func (uc *notificationUseCase) GetByDoctorId(userId uint) ([]dto.Notification, error) {
+func (uc *notificationUseCase) GetByUserId(userId uint) ([]dto.Notification, error) {
 	var res []dto.Notification
 
 	user, err := uc.userRep.GetById(userId)
@@ -64,12 +64,12 @@ func (uc *notificationUseCase) GetByDoctorId(userId uint) ([]dto.Notification, e
 
 	for _, outpatientSession := range outpatientSessions {
 
-		dateString := strconv.Itoa(outpatientSession.CreatedAt.Year()) + "-" + strconv.Itoa(int(outpatientSession.CreatedAt.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.CreatedAt.Day())
-		timeString := fmt.Sprintf("%02d", outpatientSession.CreatedAt.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.CreatedAt.Minute())
+		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
-		dateIndoString := fmt.Sprintf("%02d", outpatientSession.CreatedAt.Day()) + " " +
-			constants.Bulan[int(outpatientSession.CreatedAt.Month())] + " " +
-			strconv.Itoa(outpatientSession.CreatedAt.Year())
+		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
+			constants.Bulan[int(outpatientSession.Schedule.Month())] + " " +
+			strconv.Itoa(outpatientSession.Schedule.Year())
 
 		description := "Request Kunjungan"
 
