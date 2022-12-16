@@ -77,17 +77,17 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 	for _, todaySched := range todayScheds {
 		doctor, err := uc.doctorRep.GetById(todaySched.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		todayDoctors = append(todayDoctors, dto.TodayDoctorRes{
@@ -110,27 +110,27 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 	for _, outPatientSession := range outPatientSessions {
 		patient, err := uc.patientRep.GetById(outPatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		religion, err := uc.religionRep.GetById(patient.ReligionID)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		doctor, err := uc.doctorRep.GetById(outPatientSession.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outPatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outPatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outPatientSession.Schedule.Day())
@@ -186,27 +186,27 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 	for _, outPatientSessionDesc := range outPatientSessionDescs {
 		patient, err := uc.patientRep.GetById(outPatientSessionDesc.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		religion, err := uc.religionRep.GetById(patient.ReligionID)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		doctor, err := uc.doctorRep.GetById(outPatientSessionDesc.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outPatientSessionDesc.Schedule.Year()) + "-" +
@@ -293,7 +293,7 @@ func (uc *dashboardUseCase) GetDataDashboardMobile(doctorId uint) (dto.Dashboard
 	for _, outpatientSession := range outpatientSessions {
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, nil
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
