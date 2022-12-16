@@ -3752,6 +3752,17 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Treatment Id",
+                "parameters": [
+                    {
+                        "name": "treatment_id",
+                        "in": "path",
+                        "description": "ID of Treatment",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3822,6 +3833,17 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Patient Id",
+                "parameters": [
+                    {
+                        "name": "patient_id",
+                        "in": "path",
+                        "description": "ID of Patient",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
