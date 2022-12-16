@@ -160,6 +160,11 @@
                     "Dashboard"
                 ],
                 "summary": "Data Dashboard For Mobile",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "doctor_id",
@@ -484,6 +489,11 @@
             "post": {
                 "tags": ["Specialities"],
                 "summary": "Create Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -588,6 +598,11 @@
             "put": {
                 "tags": ["Specialities"],
                 "summary": "Update Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -656,6 +671,11 @@
             "delete": {
                 "tags": ["Specialities"],
                 "summary": "Delete Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -1136,6 +1156,11 @@
                     "Doctors"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1283,6 +1308,11 @@
                     "Doctors"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1371,6 +1401,11 @@
                     "Doctors"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -1997,6 +2032,11 @@
                     "Doctor Schedules"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2064,6 +2104,11 @@
                     "Doctor Schedules"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -2300,6 +2345,11 @@
                     "Doctor Schedules"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2485,6 +2535,11 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2661,6 +2716,11 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2769,6 +2829,11 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -3600,6 +3665,11 @@
             "post": {
                 "tags" : ["Patients"],
                 "summary": "Create Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -3665,6 +3735,11 @@
                     "Patient Conditions"
                 ],
                 "summary": "Insert Patient Condition",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4103,6 +4178,11 @@
             "put" : {
                 "tags" : ["Patients"],
                 "summary" : "Update Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters" : [
                     {
                         "name" : "id",
@@ -4185,6 +4265,11 @@
             "delete": {
                 "tags" : ["Patients"],
                 "summary" : "Delete Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -4312,6 +4397,11 @@
                     "Nurses"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4475,6 +4565,11 @@
                     "Nurses"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4572,6 +4667,11 @@
                     "Nurses"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
