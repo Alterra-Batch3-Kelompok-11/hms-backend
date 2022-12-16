@@ -163,6 +163,11 @@ const SwaggerDocTemplate = `
                     "Dashboard"
                 ],
                 "summary": "Data Dashboard For Mobile",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "doctor_id",
@@ -487,6 +492,11 @@ const SwaggerDocTemplate = `
             "post": {
                 "tags": ["Specialities"],
                 "summary": "Create Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -591,6 +601,11 @@ const SwaggerDocTemplate = `
             "put": {
                 "tags": ["Specialities"],
                 "summary": "Update Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -659,6 +674,11 @@ const SwaggerDocTemplate = `
             "delete": {
                 "tags": ["Specialities"],
                 "summary": "Delete Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -1139,6 +1159,11 @@ const SwaggerDocTemplate = `
                     "Doctors"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1286,6 +1311,11 @@ const SwaggerDocTemplate = `
                     "Doctors"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1374,6 +1404,11 @@ const SwaggerDocTemplate = `
                     "Doctors"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -2000,6 +2035,11 @@ const SwaggerDocTemplate = `
                     "Doctor Schedules"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2067,6 +2107,11 @@ const SwaggerDocTemplate = `
                     "Doctor Schedules"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -2303,6 +2348,11 @@ const SwaggerDocTemplate = `
                     "Doctor Schedules"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2378,16 +2428,6 @@ const SwaggerDocTemplate = `
                     "Outpatient Sessions"
                 ],
                 "summary": "Get All",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -2488,6 +2528,11 @@ const SwaggerDocTemplate = `
                     "Outpatient Sessions"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2579,14 +2624,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 2
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2664,6 +2701,11 @@ const SwaggerDocTemplate = `
                     "Outpatient Sessions"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2772,6 +2814,11 @@ const SwaggerDocTemplate = `
                     "Outpatient Sessions"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -2840,14 +2887,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2976,14 +3015,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3112,14 +3143,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3208,14 +3231,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3304,14 +3319,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3400,14 +3407,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3603,6 +3602,11 @@ const SwaggerDocTemplate = `
             "post": {
                 "tags" : ["Patients"],
                 "summary": "Create Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -3668,6 +3672,11 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Insert Patient Condition",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3743,17 +3752,6 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Treatment Id",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3824,17 +3822,6 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Patient Id",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3916,14 +3903,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 7
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3984,14 +3963,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -4106,6 +4077,11 @@ const SwaggerDocTemplate = `
             "put" : {
                 "tags" : ["Patients"],
                 "summary" : "Update Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters" : [
                     {
                         "name" : "id",
@@ -4188,6 +4164,11 @@ const SwaggerDocTemplate = `
             "delete": {
                 "tags" : ["Patients"],
                 "summary" : "Delete Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -4315,6 +4296,11 @@ const SwaggerDocTemplate = `
                     "Nurses"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4478,6 +4464,11 @@ const SwaggerDocTemplate = `
                     "Nurses"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4575,6 +4566,11 @@ const SwaggerDocTemplate = `
                     "Nurses"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -4697,17 +4693,6 @@ const SwaggerDocTemplate = `
                     "Notifications"
                 ],
                 "summary": "Get Notifications",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",

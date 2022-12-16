@@ -160,6 +160,11 @@
                     "Dashboard"
                 ],
                 "summary": "Data Dashboard For Mobile",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "doctor_id",
@@ -484,6 +489,11 @@
             "post": {
                 "tags": ["Specialities"],
                 "summary": "Create Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -588,6 +598,11 @@
             "put": {
                 "tags": ["Specialities"],
                 "summary": "Update Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -656,6 +671,11 @@
             "delete": {
                 "tags": ["Specialities"],
                 "summary": "Delete Speciality",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -1136,6 +1156,11 @@
                     "Doctors"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1283,6 +1308,11 @@
                     "Doctors"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1371,6 +1401,11 @@
                     "Doctors"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -1997,6 +2032,11 @@
                     "Doctor Schedules"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2064,6 +2104,11 @@
                     "Doctor Schedules"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -2300,6 +2345,11 @@
                     "Doctor Schedules"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2375,16 +2425,6 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Get All",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -2485,6 +2525,11 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2576,14 +2621,6 @@
                             "type": "integer"
                         },
                         "example": 2
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2661,6 +2698,11 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2769,6 +2811,11 @@
                     "Outpatient Sessions"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -2837,14 +2884,6 @@
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2973,14 +3012,6 @@
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3109,14 +3140,6 @@
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3205,14 +3228,6 @@
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3301,14 +3316,6 @@
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3397,14 +3404,6 @@
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3600,6 +3599,11 @@
             "post": {
                 "tags" : ["Patients"],
                 "summary": "Create Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -3665,6 +3669,11 @@
                     "Patient Conditions"
                 ],
                 "summary": "Insert Patient Condition",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3740,17 +3749,6 @@
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Treatment Id",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3821,17 +3819,6 @@
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Patient Id",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3913,14 +3900,6 @@
                             "type": "integer"
                         },
                         "example": 7
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3981,14 +3960,6 @@
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -4103,6 +4074,11 @@
             "put" : {
                 "tags" : ["Patients"],
                 "summary" : "Update Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters" : [
                     {
                         "name" : "id",
@@ -4185,6 +4161,11 @@
             "delete": {
                 "tags" : ["Patients"],
                 "summary" : "Delete Patient",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -4312,6 +4293,11 @@
                     "Nurses"
                 ],
                 "summary": "Create",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4475,6 +4461,11 @@
                     "Nurses"
                 ],
                 "summary": "Update",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4572,6 +4563,11 @@
                     "Nurses"
                 ],
                 "summary": "Delete",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -4694,17 +4690,6 @@
                     "Notifications"
                 ],
                 "summary": "Get Notifications",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
