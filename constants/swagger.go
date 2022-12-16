@@ -2428,16 +2428,6 @@ const SwaggerDocTemplate = `
                     "Outpatient Sessions"
                 ],
                 "summary": "Get All",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -2634,14 +2624,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 2
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2905,14 +2887,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3041,14 +3015,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3177,14 +3143,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3273,14 +3231,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3369,14 +3319,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3465,14 +3407,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3818,17 +3752,6 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Treatment Id",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3899,17 +3822,6 @@ const SwaggerDocTemplate = `
                     "Patient Conditions"
                 ],
                 "summary": "Get Patient Condition By Patient Id",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3991,14 +3903,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 7
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -4059,14 +3963,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -4797,17 +4693,6 @@ const SwaggerDocTemplate = `
                     "Notifications"
                 ],
                 "summary": "Get Notifications",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
