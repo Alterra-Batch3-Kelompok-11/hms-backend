@@ -38,7 +38,7 @@ func (uc *historyUseCase) GetOutpatientSessionHistory(doctorId uint) ([]dto.Hist
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -78,7 +78,7 @@ func (uc *historyUseCase) GetApprovalHistory(doctorId uint) ([]dto.History, erro
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())

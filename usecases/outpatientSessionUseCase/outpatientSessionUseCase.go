@@ -61,22 +61,22 @@ func (uc *outpatientSessionUseCase) GetAll() ([]dto.OutpatientSessionRes, error)
 	for _, outpatientSession := range outpatientSessions {
 		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -216,25 +216,26 @@ func (uc *outpatientSessionUseCase) GetByDoctorId(doctorId uint) ([]dto.Outpatie
 		return res, err
 	}
 
+	doctor, err := uc.doctorRep.GetById(doctorId)
+	if err != nil {
+		return res, err
+	}
+
+	user, err := uc.userRep.GetById(doctor.UserId)
+	if err != nil {
+		return res, err
+	}
+
+	speciality, err := uc.specRep.GetById(doctor.SpecialityId)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outpatientSession := range outpatientSessions {
-		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
-		if err != nil {
-			return res, err
-		}
-
-		user, err := uc.userRep.GetById(doctor.UserId)
-		if err != nil {
-			return res, err
-		}
-
-		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
-		if err != nil {
-			return res, err
-		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -296,25 +297,25 @@ func (uc *outpatientSessionUseCase) GetByPatientId(patientId uint) ([]dto.Outpat
 		return res, err
 	}
 
+	patient, err := uc.patientRep.GetById(patientId)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outpatientSession := range outpatientSessions {
 		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
-		}
-
-		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
-		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -376,25 +377,26 @@ func (uc *outpatientSessionUseCase) GetUnprocessedByDoctorId(doctorId uint) ([]d
 		return res, err
 	}
 
+	doctor, err := uc.doctorRep.GetById(doctorId)
+	if err != nil {
+		return res, err
+	}
+
+	user, err := uc.userRep.GetById(doctor.UserId)
+	if err != nil {
+		return res, err
+	}
+
+	speciality, err := uc.specRep.GetById(doctor.SpecialityId)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outpatientSession := range outpatientSessions {
-		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
-		if err != nil {
-			return res, err
-		}
-
-		user, err := uc.userRep.GetById(doctor.UserId)
-		if err != nil {
-			return res, err
-		}
-
-		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
-		if err != nil {
-			return res, err
-		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -456,25 +458,26 @@ func (uc *outpatientSessionUseCase) GetProcessedByDoctorId(doctorId uint) ([]dto
 		return res, err
 	}
 
+	doctor, err := uc.doctorRep.GetById(doctorId)
+	if err != nil {
+		return res, err
+	}
+
+	user, err := uc.userRep.GetById(doctor.UserId)
+	if err != nil {
+		return res, err
+	}
+
+	speciality, err := uc.specRep.GetById(doctor.SpecialityId)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outpatientSession := range outpatientSessions {
-		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
-		if err != nil {
-			return res, err
-		}
-
-		user, err := uc.userRep.GetById(doctor.UserId)
-		if err != nil {
-			return res, err
-		}
-
-		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
-		if err != nil {
-			return res, err
-		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -536,25 +539,26 @@ func (uc *outpatientSessionUseCase) GetApprovedByDoctorId(doctorId uint) ([]dto.
 		return res, err
 	}
 
+	doctor, err := uc.doctorRep.GetById(doctorId)
+	if err != nil {
+		return res, err
+	}
+
+	user, err := uc.userRep.GetById(doctor.UserId)
+	if err != nil {
+		return res, err
+	}
+
+	speciality, err := uc.specRep.GetById(doctor.SpecialityId)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outpatientSession := range outpatientSessions {
-		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
-		if err != nil {
-			return res, err
-		}
-
-		user, err := uc.userRep.GetById(doctor.UserId)
-		if err != nil {
-			return res, err
-		}
-
-		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
-		if err != nil {
-			return res, err
-		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
@@ -616,25 +620,26 @@ func (uc *outpatientSessionUseCase) GetRejectedByDoctorId(doctorId uint) ([]dto.
 		return res, err
 	}
 
+	doctor, err := uc.doctorRep.GetById(doctorId)
+	if err != nil {
+		return res, err
+	}
+
+	user, err := uc.userRep.GetById(doctor.UserId)
+	if err != nil {
+		return res, err
+	}
+
+	speciality, err := uc.specRep.GetById(doctor.SpecialityId)
+	if err != nil {
+		return res, err
+	}
+
 	for _, outpatientSession := range outpatientSessions {
-		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
-		if err != nil {
-			return res, err
-		}
-
-		user, err := uc.userRep.GetById(doctor.UserId)
-		if err != nil {
-			return res, err
-		}
-
-		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
-		if err != nil {
-			return res, err
-		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())

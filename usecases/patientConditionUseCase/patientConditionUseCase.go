@@ -358,22 +358,22 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 
 		treatment, err := uc.treatmentRepo.GetByOutpatientSessionId(outpatientSession.ID)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		doctor, err := uc.doctorRep.GetById(outpatientSession.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.specRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		patient, err := uc.patientRep.GetById(outpatientSession.PatientId)
