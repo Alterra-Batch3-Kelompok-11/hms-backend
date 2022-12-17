@@ -59,7 +59,7 @@ const SwaggerDocTemplate = `
     "components": {
         "securitySchemes": {
             "bearerAuth": {
-                "type": "apiKey",
+                "type": "http",
                 "scheme": "bearer",
                 "bearerFormat": "JWT",
                 "name": "Authorization",
