@@ -13,7 +13,7 @@ type InsertPatientConditionRes struct {
 	ID                  uint      `json:"treatment_id"`
 	OutpatientSessionId uint      `json:"outpatient_session_id" form:"outpatient_session_id"`
 	PatientID           uint      `json:"patient_id"`
-	DoctorID            uint      `json:"patient_id"`
+	DoctorID            uint      `json:"doctor_id"`
 	Description         string    `json:"description" form:"description"`
 	Medicine            string    `json:"medicine" form:"medicine"`
 	Allergy             string    `json:"allergy" form:"allergy"`

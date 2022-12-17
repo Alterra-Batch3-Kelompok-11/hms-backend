@@ -3716,6 +3716,8 @@ const SwaggerDocTemplate = `
                                         "data": {
                                             "treatment_id": 1,
                                             "outpatient_session_id": 2,
+                                            "patient_id": 1,
+                                            "doctor_id": 7,
                                             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis, arcu id mattis lacinia, tellus nunc sagittis risus, ut egestas sem eros a neque. Ut efficitur non neque dictum vehicula.",
                                             "medicine": "paracetamol",
                                             "allergy": "debu",
