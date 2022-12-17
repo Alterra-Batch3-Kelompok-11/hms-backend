@@ -14,8 +14,8 @@ func New() *DoctorRepositoryMock {
 	return &DoctorRepositoryMock{}
 }
 
-func (uc *DoctorRepositoryMock) GetAll() ([]models.Doctor, error) {
-	args := uc.Called()
+func (rep *DoctorRepositoryMock) GetAll() ([]models.Doctor, error) {
+	args := rep.Called()
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).([]models.Doctor)
@@ -26,8 +26,8 @@ func (uc *DoctorRepositoryMock) GetAll() ([]models.Doctor, error) {
 		return []models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) GetById(id uint) (models.Doctor, error) {
-	args := uc.Called(id)
+func (rep *DoctorRepositoryMock) GetById(id uint) (models.Doctor, error) {
+	args := rep.Called(id)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(models.Doctor)
@@ -38,8 +38,8 @@ func (uc *DoctorRepositoryMock) GetById(id uint) (models.Doctor, error) {
 		return models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) GetByUserId(userId uint) (models.Doctor, error) {
-	args := uc.Called(userId)
+func (rep *DoctorRepositoryMock) GetByUserId(userId uint) (models.Doctor, error) {
+	args := rep.Called(userId)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(models.Doctor)
@@ -50,8 +50,8 @@ func (uc *DoctorRepositoryMock) GetByUserId(userId uint) (models.Doctor, error) 
 		return models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) GetByLicenseNumber(licenseNumber string) (models.Doctor, error) {
-	args := uc.Called(licenseNumber)
+func (rep *DoctorRepositoryMock) GetByLicenseNumber(licenseNumber string) (models.Doctor, error) {
+	args := rep.Called(licenseNumber)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(models.Doctor)
@@ -62,8 +62,8 @@ func (uc *DoctorRepositoryMock) GetByLicenseNumber(licenseNumber string) (models
 		return models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) GetByLicenseNumberOther(licenseNumber string, id uint) (models.Doctor, error) {
-	args := uc.Called(licenseNumber, id)
+func (rep *DoctorRepositoryMock) GetByLicenseNumberOther(licenseNumber string, id uint) (models.Doctor, error) {
+	args := rep.Called(licenseNumber, id)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(models.Doctor)
@@ -74,8 +74,8 @@ func (uc *DoctorRepositoryMock) GetByLicenseNumberOther(licenseNumber string, id
 		return models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) GetBySpecialityId(specialityId uint) ([]models.Doctor, error) {
-	args := uc.Called(specialityId)
+func (rep *DoctorRepositoryMock) GetBySpecialityId(specialityId uint) ([]models.Doctor, error) {
+	args := rep.Called(specialityId)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).([]models.Doctor)
@@ -86,8 +86,8 @@ func (uc *DoctorRepositoryMock) GetBySpecialityId(specialityId uint) ([]models.D
 		return []models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) Count() (int64, error) {
-	args := uc.Called()
+func (rep *DoctorRepositoryMock) Count() (int64, error) {
+	args := rep.Called()
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(int64)
@@ -98,8 +98,8 @@ func (uc *DoctorRepositoryMock) Count() (int64, error) {
 		return int64(0), errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) Create(user models.Doctor) (models.Doctor, error) {
-	args := uc.Called(user)
+func (rep *DoctorRepositoryMock) Create(user models.Doctor) (models.Doctor, error) {
+	args := rep.Called(user)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(models.Doctor)
@@ -110,8 +110,8 @@ func (uc *DoctorRepositoryMock) Create(user models.Doctor) (models.Doctor, error
 		return models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) Update(id uint, user models.Doctor) (models.Doctor, error) {
-	args := uc.Called(id, user)
+func (rep *DoctorRepositoryMock) Update(id uint, user models.Doctor) (models.Doctor, error) {
+	args := rep.Called(id, user)
 
 	isSuccess := args.Get(0).(bool)
 	data := args.Get(1).(models.Doctor)
@@ -122,8 +122,8 @@ func (uc *DoctorRepositoryMock) Update(id uint, user models.Doctor) (models.Doct
 		return models.Doctor{}, errors.New("testing error")
 	}
 }
-func (uc *DoctorRepositoryMock) Delete(id uint) error {
-	args := uc.Called(id)
+func (rep *DoctorRepositoryMock) Delete(id uint) error {
+	args := rep.Called(id)
 
 	isSuccess := args.Get(0).(bool)
 
