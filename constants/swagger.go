@@ -59,7 +59,7 @@ const SwaggerDocTemplate = `
     "components": {
         "securitySchemes": {
             "bearerAuth": {
-                "type": "http",
+                "type": "apiKey",
                 "scheme": "bearer",
                 "bearerFormat": "JWT",
                 "name": "Authorization",
@@ -671,11 +671,6 @@ const SwaggerDocTemplate = `
             "get": {
                 "tags": ["Specialities"],
                 "summary": "Get Specialities",
-                "requestBody": {
-                    "content": {
-                        "application/json": {}
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -715,14 +710,6 @@ const SwaggerDocTemplate = `
                 "security": [
                     {
                         "bearerAuth" : []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -4744,15 +4731,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "responses": {
@@ -4824,15 +4802,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "responses": {
@@ -4937,6 +4906,11 @@ const SwaggerDocTemplate = `
                     "Notifications"
                 ],
                 "summary": "Get Notifications",
+                "security": [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
