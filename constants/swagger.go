@@ -59,11 +59,9 @@ const SwaggerDocTemplate = `
     "components": {
         "securitySchemes": {
             "bearerAuth": {
-                "type": "apiKey",
+                "type": "http",
                 "scheme": "bearer",
-                "bearerFormat": "JWT",
-                "name": "Authorization",
-                "in": "header"
+                "bearerFormat": "JWT"
             }
         }
     },
@@ -394,14 +392,6 @@ const SwaggerDocTemplate = `
                         "in": "path",
                         "description": "ID of doctor",
                         "example": 7
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -1391,17 +1381,6 @@ const SwaggerDocTemplate = `
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -1552,15 +1531,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "responses": {
@@ -1625,15 +1595,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "responses": {
@@ -2271,14 +2232,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2328,14 +2281,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -2575,16 +2520,6 @@ const SwaggerDocTemplate = `
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -2756,16 +2691,6 @@ const SwaggerDocTemplate = `
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -2938,14 +2863,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 2
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3035,14 +2952,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 2
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
@@ -3714,14 +3623,6 @@ const SwaggerDocTemplate = `
                             "type": "integer"
                         },
                         "example": 2
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer {TOKEN}"
                     }
                 ],
                 "responses": {
