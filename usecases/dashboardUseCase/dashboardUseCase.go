@@ -216,6 +216,13 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 		timeString := fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Hour()) + ":" +
 			fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Minute())
 
+		finishedDateString := strconv.Itoa(outPatientSessionDesc.FinishedAt.Year()) + "-" +
+			strconv.Itoa(int(outPatientSessionDesc.FinishedAt.Month())) + "-" +
+			fmt.Sprintf("%02d", outPatientSessionDesc.FinishedAt.Day())
+
+		finishedTimeString := fmt.Sprintf("%02d", outPatientSessionDesc.FinishedAt.Hour()) + ":" +
+			fmt.Sprintf("%02d", outPatientSessionDesc.FinishedAt.Minute())
+
 		patients = append(patients, dto.OutpatientSessionDashboardRes{
 			Patient: struct {
 				NIK           string    `json:"nik"`
@@ -247,13 +254,15 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 				doctor.LicenseNumber,
 				speciality.Name,
 			},
-			Schedule:     outPatientSessionDesc.Schedule,
-			Complaint:    outPatientSessionDesc.Complaint,
-			IsApproved:   outPatientSessionDesc.IsApproved,
-			IsFinish:     outPatientSessionDesc.IsFinish,
-			FinishedAt:   outPatientSessionDesc.FinishedAt,
-			ScheduleDate: dateString,
-			ScheduleTime: timeString,
+			Complaint:      outPatientSessionDesc.Complaint,
+			IsApproved:     outPatientSessionDesc.IsApproved,
+			IsFinish:       outPatientSessionDesc.IsFinish,
+			FinishedAt:     outPatientSessionDesc.FinishedAt,
+			FinishedAtDate: finishedDateString,
+			FinishedAtTime: finishedTimeString,
+			Schedule:       outPatientSessionDesc.Schedule,
+			ScheduleDate:   dateString,
+			ScheduleTime:   timeString,
 		})
 	}
 

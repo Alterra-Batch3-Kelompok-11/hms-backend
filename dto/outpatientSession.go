@@ -67,11 +67,13 @@ type OutpatientSessionDashboardRes struct {
 		LicenseNumber  string `json:"license_number" form:"license_number"`
 		SpecialityName string `json:"speciality_name" form:"speciality_name"`
 	} `json:"doctor"`
-	Schedule     time.Time `json:"schedule" form:"schedule"`
-	Complaint    string    `json:"complaint" form:"complaint"`
-	IsApproved   int       `json:"is_approved" form:"is_approved"`
-	IsFinish     bool      `json:"is_finish" form:"is_finish"`
-	FinishedAt   time.Time `json:"finished_at" form:"finished_at"`
-	ScheduleDate string    `json:"schedule_date" form:"schedule_date"`
-	ScheduleTime string    `json:"schedule_time" form:"schedule_time"`
+	Complaint      string    `json:"complaint" form:"complaint"`
+	IsApproved     int       `json:"is_approved" form:"is_approved"`
+	IsFinish       bool      `json:"is_finish" form:"is_finish"`
+	FinishedAt     time.Time `json:"finished_at" form:"finished_at"`
+	FinishedAtDate string    `json:"finished_at_date" form:"finished_at_date"`
+	FinishedAtTime string    `json:"finished_at_time" form:"finished_at_time"`
+	Schedule       time.Time `json:"schedule" form:"schedule"`
+	ScheduleDate   string    `json:"schedule_date" form:"schedule_date"`
+	ScheduleTime   string    `json:"schedule_time" form:"schedule_time"`
 }
