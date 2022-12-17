@@ -513,6 +513,8 @@ func (uc *patientConditionUseCase) Create(payload dto.InsertPatientCondition) (d
 	res = dto.InsertPatientConditionRes{
 		ID:                  createTreatment.ID,
 		OutpatientSessionId: payload.OutpatientSessionId,
+		PatientID:           outpatientSession.PatientId,
+		DoctorID:            outpatientSession.DoctorId,
 		Description:         payload.Description,
 		Medicine:            payload.Medicine,
 		Allergy:             payload.Allergy,
