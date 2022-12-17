@@ -88,61 +88,281 @@
                                         "status": 200,
                                         "message": "success get data",
                                         "data": {
-                                            "total_doctors": 5,
-                                            "total_nurses": 0,
-                                            "total_patients": 1,
+                                            "total_doctors": 11,
+                                            "total_nurses": 2,
+                                            "total_patients": 10,
                                             "today_doctors": null,
                                             "today_outpatient_sessions": null,
                                             "patients": [
                                                 {
                                                     "patient": {
-                                                        "nik": "12341234",
-                                                        "name": "John tor",
+                                                        "nik": "1234509878",
+                                                        "name": "Adityo Rahman",
                                                         "birth_date": "0001-01-01T00:00:00Z",
                                                         "gender": 1,
                                                         "age": 2021,
+                                                        "phone": "0812121213",
+                                                        "address": "Jakarta",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "sakit gigi",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-14T06:03:06.323+07:00",
+                                                    "finished_at_date": "2022-12-14",
+                                                    "finished_at_time": "06:03",
+                                                    "schedule": "2022-12-14T08:00:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "08:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1234509876",
+                                                        "name": "Dio Putro",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121212",
+                                                        "address": "Bekasi",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "sakit gigi",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-14T05:19:24.486+07:00",
+                                                    "finished_at_date": "2022-12-14",
+                                                    "finished_at_time": "05:19",
+                                                    "schedule": "2022-12-14T07:00:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "07:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1234509877",
+                                                        "name": "Ismunandar Muis",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121213",
+                                                        "address": "Jakarta",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "sakit gigi",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-14T05:59:45.242+07:00",
+                                                    "finished_at_date": "2022-12-14",
+                                                    "finished_at_time": "05:59",
+                                                    "schedule": "2022-12-14T06:00:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "06:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1234509879",
+                                                        "name": "Gunado Siregar",
+                                                        "birth_date": "2000-01-01T00:00:00+07:00",
+                                                        "gender": 1,
+                                                        "age": 22,
+                                                        "phone": "0812121213",
+                                                        "address": "Jakarta",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "sakit gigi",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-14T06:04:06.055+07:00",
+                                                    "finished_at_date": "2022-12-14",
+                                                    "finished_at_time": "06:04",
+                                                    "schedule": "2022-12-14T04:00:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "04:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1234509879",
+                                                        "name": "Gunado Siregar",
+                                                        "birth_date": "2000-01-01T00:00:00+07:00",
+                                                        "gender": 1,
+                                                        "age": 22,
+                                                        "phone": "0812121213",
+                                                        "address": "Jakarta",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "Sakit Perut",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-17T12:03:08.2+07:00",
+                                                    "finished_at_date": "2022-12-17",
+                                                    "finished_at_time": "12:03",
+                                                    "schedule": "2022-12-14T03:00:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "03:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1234509878",
+                                                        "name": "Adityo Rahman",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121213",
+                                                        "address": "Jakarta",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "Sakit Perut",
+                                                    "is_approved": 1,
+                                                    "is_finish": false,
+                                                    "finished_at": "0001-01-01T00:00:00Z",
+                                                    "finished_at_date": "1-1-01",
+                                                    "finished_at_time": "00:00",
+                                                    "schedule": "2022-12-14T02:30:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "02:30"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1234509877",
+                                                        "name": "Ismunandar Muis",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "0812121213",
+                                                        "address": "Jakarta",
+                                                        "marital_status": false,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "Sakit Perut",
+                                                    "is_approved": 1,
+                                                    "is_finish": false,
+                                                    "finished_at": "0001-01-01T00:00:00Z",
+                                                    "finished_at_date": "1-1-01",
+                                                    "finished_at_time": "00:00",
+                                                    "schedule": "2022-12-14T02:00:00+07:00",
+                                                    "schedule_date": "2022-12-14",
+                                                    "schedule_time": "02:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "12341234",
+                                                        "name": "John tor",
+                                                        "birth_date": "1992-01-01T00:00:00+07:00",
+                                                        "gender": 1,
+                                                        "age": 30,
                                                         "phone": "0812121212",
                                                         "address": "Bekasi",
                                                         "marital_status": true,
                                                         "religion_name": "Islam"
                                                     },
                                                     "doctor": {
-                                                        "name": "Dr Mulan",
-                                                        "license_number": "123123",
-                                                        "speciality_name": "Umum"
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
                                                     },
-                                                    "schedule": "2022-12-07T10:00:00+07:00",
-                                                    "complaint": "sakit mata",
-                                                    "is_approved": 0,
-                                                    "is_finish": false,
-                                                    "finished_at": "0001-01-01T00:00:00Z",
-                                                    "schedule_date": "2022-12-07",
+                                                    "complaint": "sakit gigi",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-14T03:54:55.386+07:00",
+                                                    "finished_at_date": "2022-12-14",
+                                                    "finished_at_time": "03:54",
+                                                    "schedule": "2022-12-11T10:00:00+07:00",
+                                                    "schedule_date": "2022-12-11",
                                                     "schedule_time": "10:00"
                                                 },
                                                 {
                                                     "patient": {
                                                         "nik": "12341234",
                                                         "name": "John tor",
-                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "birth_date": "1992-01-01T00:00:00+07:00",
                                                         "gender": 1,
-                                                        "age": 2021,
+                                                        "age": 30,
                                                         "phone": "0812121212",
                                                         "address": "Bekasi",
                                                         "marital_status": true,
                                                         "religion_name": "Islam"
                                                     },
                                                     "doctor": {
-                                                        "name": "Dr Mulan",
-                                                        "license_number": "123123",
-                                                        "speciality_name": "Umum"
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
                                                     },
-                                                    "schedule": "2022-12-04T10:00:00+07:00",
-                                                    "complaint": "batuk berdahak",
-                                                    "is_approved": 0,
+                                                    "complaint": "sakit mata",
+                                                    "is_approved": 1,
                                                     "is_finish": true,
-                                                    "finished_at": "2022-12-09T18:48:21.559+07:00",
-                                                    "schedule_date": "2022-12-04",
-                                                    "schedule_time": "10:00"
+                                                    "finished_at": "2022-12-14T01:51:42.749+07:00",
+                                                    "finished_at_date": "2022-12-14",
+                                                    "finished_at_time": "01:51",
+                                                    "schedule": "2022-12-07T06:00:00+07:00",
+                                                    "schedule_date": "2022-12-07",
+                                                    "schedule_time": "06:00"
+                                                },
+                                                {
+                                                    "patient": {
+                                                        "nik": "1324354657",
+                                                        "name": "Abdil Tegar Arifin",
+                                                        "birth_date": "0001-01-01T00:00:00Z",
+                                                        "gender": 1,
+                                                        "age": 2021,
+                                                        "phone": "081234567890",
+                                                        "address": "Jember",
+                                                        "marital_status": true,
+                                                        "religion_name": "Islam"
+                                                    },
+                                                    "doctor": {
+                                                        "name": "John Doe",
+                                                        "license_number": "1029384756",
+                                                        "speciality_name": "Umum 2"
+                                                    },
+                                                    "complaint": "batuk berdahak",
+                                                    "is_approved": 1,
+                                                    "is_finish": true,
+                                                    "finished_at": "2022-12-11T16:12:37.25+07:00",
+                                                    "finished_at_date": "2022-12-11",
+                                                    "finished_at_time": "16:12",
+                                                    "schedule": "2022-12-07T03:00:00+07:00",
+                                                    "schedule_date": "2022-12-07",
+                                                    "schedule_time": "03:00"
                                                 }
                                             ]
                                         }
