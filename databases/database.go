@@ -11,11 +11,6 @@ import (
 
 var DB *gorm.DB
 
-func init() {
-	InitDB()
-	InitialMigration()
-}
-
 func InitDB() {
 	configs.InitConfig()
 
