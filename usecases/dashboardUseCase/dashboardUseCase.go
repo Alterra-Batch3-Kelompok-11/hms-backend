@@ -133,7 +133,8 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 			continue
 		}
 
-		dateString := strconv.Itoa(outPatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outPatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outPatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outPatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outPatientSession.Schedule.Month())) + "-" + strconv.Itoa(outPatientSession.Schedule.Year())
+
 		timeString := fmt.Sprintf("%02d", outPatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outPatientSession.Schedule.Minute())
 
 		todayOutPatientSessions = append(todayOutPatientSessions, dto.OutpatientSessionDashboardRes{
@@ -209,9 +210,7 @@ func (uc *dashboardUseCase) GetDataDashboardWeb() (dto.DashboardWeb, error) {
 			continue
 		}
 
-		dateString := strconv.Itoa(outPatientSessionDesc.Schedule.Year()) + "-" +
-			strconv.Itoa(int(outPatientSessionDesc.Schedule.Month())) + "-" +
-			fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Day()) + "-" + strconv.Itoa(int(outPatientSessionDesc.Schedule.Month())) + "-" + strconv.Itoa(outPatientSessionDesc.Schedule.Year())
 
 		timeString := fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Hour()) + ":" +
 			fmt.Sprintf("%02d", outPatientSessionDesc.Schedule.Minute())
@@ -305,7 +304,7 @@ func (uc *dashboardUseCase) GetDataDashboardMobile(doctorId uint) (dto.Dashboard
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +

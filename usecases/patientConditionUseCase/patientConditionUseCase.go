@@ -88,7 +88,7 @@ func (uc *patientConditionUseCase) GetAll() ([]dto.PatientConditionRes, error) {
 			return res, err
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -112,7 +112,6 @@ func (uc *patientConditionUseCase) GetAll() ([]dto.PatientConditionRes, error) {
 				Phone         string    `json:"phone"`
 				Address       string    `json:"address"`
 				MaritalStatus bool      `json:"marital_status"`
-				ReligionName  string    `json:"religion_name"`
 			}{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -122,7 +121,6 @@ func (uc *patientConditionUseCase) GetAll() ([]dto.PatientConditionRes, error) {
 				Phone:         patient.Phone,
 				Address:       patient.Address,
 				MaritalStatus: patient.MaritalStatus,
-				ReligionName:  "",
 			},
 			Doctor: struct {
 				Name           string `json:"name"`
@@ -184,7 +182,7 @@ func (uc *patientConditionUseCase) GetById(id uint) (dto.PatientConditionRes, er
 		return res, err
 	}
 
-	dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+	dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 	timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 	dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -208,7 +206,6 @@ func (uc *patientConditionUseCase) GetById(id uint) (dto.PatientConditionRes, er
 			Phone         string    `json:"phone"`
 			Address       string    `json:"address"`
 			MaritalStatus bool      `json:"marital_status"`
-			ReligionName  string    `json:"religion_name"`
 		}{
 			NIK:           patient.Nik,
 			Name:          patient.Name,
@@ -218,7 +215,6 @@ func (uc *patientConditionUseCase) GetById(id uint) (dto.PatientConditionRes, er
 			Phone:         patient.Phone,
 			Address:       patient.Address,
 			MaritalStatus: patient.MaritalStatus,
-			ReligionName:  finishedAtIndoString,
 		},
 		Doctor: struct {
 			Name           string `json:"name"`
@@ -240,7 +236,7 @@ func (uc *patientConditionUseCase) GetById(id uint) (dto.PatientConditionRes, er
 		Allergy:          treatment.Allergy,
 		IsFinish:         outpatientSession.IsFinish,
 		FinishedAt:       outpatientSession.FinishedAt,
-		FinishedAtIndo:   "",
+		FinishedAtIndo:   finishedAtIndoString,
 	}
 
 	return res, nil
@@ -282,7 +278,7 @@ func (uc *patientConditionUseCase) GetByDoctorId(doctorId uint) ([]dto.PatientCo
 			return res, err
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -306,7 +302,6 @@ func (uc *patientConditionUseCase) GetByDoctorId(doctorId uint) ([]dto.PatientCo
 				Phone         string    `json:"phone"`
 				Address       string    `json:"address"`
 				MaritalStatus bool      `json:"marital_status"`
-				ReligionName  string    `json:"religion_name"`
 			}{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -316,7 +311,6 @@ func (uc *patientConditionUseCase) GetByDoctorId(doctorId uint) ([]dto.PatientCo
 				Phone:         patient.Phone,
 				Address:       patient.Address,
 				MaritalStatus: patient.MaritalStatus,
-				ReligionName:  finishedAtIndoString,
 			},
 			Doctor: struct {
 				Name           string `json:"name"`
@@ -338,7 +332,7 @@ func (uc *patientConditionUseCase) GetByDoctorId(doctorId uint) ([]dto.PatientCo
 			Allergy:          treatment.Allergy,
 			IsFinish:         outpatientSession.IsFinish,
 			FinishedAt:       outpatientSession.FinishedAt,
-			FinishedAtIndo:   "",
+			FinishedAtIndo:   finishedAtIndoString,
 		})
 	}
 
@@ -381,7 +375,7 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 			return res, err
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -405,7 +399,6 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 				Phone         string    `json:"phone"`
 				Address       string    `json:"address"`
 				MaritalStatus bool      `json:"marital_status"`
-				ReligionName  string    `json:"religion_name"`
 			}{
 				NIK:           patient.Nik,
 				Name:          patient.Name,
@@ -415,7 +408,6 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 				Phone:         patient.Phone,
 				Address:       patient.Address,
 				MaritalStatus: patient.MaritalStatus,
-				ReligionName:  finishedAtIndoString,
 			},
 			Doctor: struct {
 				Name           string `json:"name"`
@@ -437,7 +429,7 @@ func (uc *patientConditionUseCase) GetByPatientId(patientId uint) ([]dto.Patient
 			Allergy:          treatment.Allergy,
 			IsFinish:         outpatientSession.IsFinish,
 			FinishedAt:       outpatientSession.FinishedAt,
-			FinishedAtIndo:   "",
+			FinishedAtIndo:   finishedAtIndoString,
 		})
 	}
 
