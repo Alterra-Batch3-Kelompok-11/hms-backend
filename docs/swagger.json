@@ -596,17 +596,6 @@
                     "Auth"
                 ],
                 "summary": "Refresh Token",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "security": [
                     {
                         "bearerAuth" : []
@@ -806,12 +795,6 @@
                         "in": "path",
                         "description": "ID of role",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -879,12 +862,6 @@
                         "in": "path",
                         "description": "ID of role",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -3712,14 +3689,6 @@
                         "bearerAuth" : []
                     }
                 ],
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3732,7 +3701,7 @@
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "1997-01-02",
+                                    "birth_date": "30-12-1998",
                                     "religion_id": 1
                                 }
                             }
@@ -3756,7 +3725,7 @@
                                             "deleted_at": null,
                                             "nik": "1234509882",
                                             "name": "Ahmad Fulan",
-                                            "birth_date": "2000-01-01T00:00:00Z",
+                                            "birth_date": "1998-12-30T00:00:00Z",
                                             "gender": 1,
                                             "address": "Jakarta",
                                             "phone": "0812121213",
@@ -3797,17 +3766,6 @@
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -4217,12 +4175,6 @@
                         "in" : "path",
                         "description" : "ID of patient",
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -4237,7 +4189,7 @@
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "1997-01-02",
+                                    "birth_date": "30-12-1998",
                                     "religion_id": 1
                                 }
                             }
@@ -4261,7 +4213,7 @@
                                             "deleted_at": null,
                                             "nik": "1234509882",
                                             "name": "Ahmad Fulan",
-                                            "birth_date": "2000-01-01T00:00:00Z",
+                                            "birth_date": "1998-12-30T00:00:00Z",
                                             "gender": 1,
                                             "address": "Jakarta",
                                             "phone": "0812121213",
@@ -4304,12 +4256,6 @@
                         "in": "path",
                         "description": "ID of patient",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -4453,17 +4399,6 @@
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",

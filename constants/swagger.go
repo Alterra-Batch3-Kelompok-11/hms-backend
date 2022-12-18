@@ -599,17 +599,6 @@ const SwaggerDocTemplate = `
                     "Auth"
                 ],
                 "summary": "Refresh Token",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "security": [
                     {
                         "bearerAuth" : []
@@ -809,12 +798,6 @@ const SwaggerDocTemplate = `
                         "in": "path",
                         "description": "ID of role",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -882,12 +865,6 @@ const SwaggerDocTemplate = `
                         "in": "path",
                         "description": "ID of role",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -3715,14 +3692,6 @@ const SwaggerDocTemplate = `
                         "bearerAuth" : []
                     }
                 ],
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3735,7 +3704,7 @@ const SwaggerDocTemplate = `
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "1997-01-02",
+                                    "birth_date": "30-12-1998",
                                     "religion_id": 1
                                 }
                             }
@@ -3759,7 +3728,7 @@ const SwaggerDocTemplate = `
                                             "deleted_at": null,
                                             "nik": "1234509882",
                                             "name": "Ahmad Fulan",
-                                            "birth_date": "2000-01-01T00:00:00Z",
+                                            "birth_date": "1998-12-30T00:00:00Z",
                                             "gender": 1,
                                             "address": "Jakarta",
                                             "phone": "0812121213",
@@ -3800,17 +3769,6 @@ const SwaggerDocTemplate = `
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -4220,12 +4178,6 @@ const SwaggerDocTemplate = `
                         "in" : "path",
                         "description" : "ID of patient",
                         "example": 3
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -4240,7 +4192,7 @@ const SwaggerDocTemplate = `
                                     "address": "Jakarta",
                                     "phone": "0812121213",
                                     "marital_status": false,
-                                    "birth_date": "1997-01-02",
+                                    "birth_date": "30-12-1998",
                                     "religion_id": 1
                                 }
                             }
@@ -4264,7 +4216,7 @@ const SwaggerDocTemplate = `
                                             "deleted_at": null,
                                             "nik": "1234509882",
                                             "name": "Ahmad Fulan",
-                                            "birth_date": "2000-01-01T00:00:00Z",
+                                            "birth_date": "1998-12-30T00:00:00Z",
                                             "gender": 1,
                                             "address": "Jakarta",
                                             "phone": "0812121213",
@@ -4307,12 +4259,6 @@ const SwaggerDocTemplate = `
                         "in": "path",
                         "description": "ID of patient",
                         "example": 1
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
                     }
                 ],
                 "requestBody": {
@@ -4456,17 +4402,6 @@ const SwaggerDocTemplate = `
                         }
                     }
                 },
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization header token from login",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkzMTAwOTcsInJvbGVJZCI6MSwidXNlcklkIjozLCJ1c2VybmFtZSI6ImFkbWluIn0.xfRdOVwqer4s9bKAxOX7LDE90tfnM-01ji6ae6HcLj4"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",

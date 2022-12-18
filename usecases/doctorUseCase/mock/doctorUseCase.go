@@ -2,8 +2,9 @@ package mock
 
 import (
 	"errors"
-	"github.com/stretchr/testify/mock"
 	"hms-backend/dto"
+
+	"github.com/stretchr/testify/mock"
 )
 
 type DoctorUseCaseMock struct {

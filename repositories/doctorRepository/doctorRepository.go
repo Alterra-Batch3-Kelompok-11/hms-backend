@@ -29,7 +29,9 @@ func New(db *gorm.DB) *doctorRepository {
 func (rep *doctorRepository) GetAll() ([]models.Doctor, error) {
 	var doctors []models.Doctor
 
-	if err := rep.db.Model([]models.Doctor{}).Find(&doctors).Error; err != nil {
+	err := rep.db.Model([]models.Doctor{}).Find(&doctors).Error
+
+	if err != nil {
 		return doctors, err
 	}
 
@@ -38,7 +40,9 @@ func (rep *doctorRepository) GetAll() ([]models.Doctor, error) {
 func (rep *doctorRepository) GetById(id uint) (models.Doctor, error) {
 	doctor := models.Doctor{}
 
-	if err := rep.db.Model(models.Doctor{}).Where("ID = ?", id).First(&doctor).Error; err != nil {
+	err := rep.db.Model(models.Doctor{}).Where("ID = ?", id).First(&doctor).Error
+
+	if err != nil {
 		return doctor, err
 	}
 

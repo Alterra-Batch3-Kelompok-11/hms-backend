@@ -5,6 +5,7 @@ import (
 	"hms-backend/dto"
 	"hms-backend/models"
 	"hms-backend/repositories/patientRepository"
+	"strings"
 	"time"
 )
 
@@ -77,7 +78,9 @@ func (uc *patientUseCase) GetById(id uint) (dto.PatientRes, error) {
 }
 
 func (uc *patientUseCase) Create(payload dto.Patient) (dto.PatientRes, error) {
-	dateTimeString := payload.BirthDate[0:10] + "T00:00:00+07:00"
+	splitedBirthDate := strings.Split(payload.BirthDate[0:10], "-")
+
+	dateTimeString := splitedBirthDate[2] + "-" + splitedBirthDate[1] + "-" + splitedBirthDate[0] + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, dateTimeString)
 	if err != nil {
 		return dto.PatientRes{}, err
@@ -119,7 +122,9 @@ func (uc *patientUseCase) Create(payload dto.Patient) (dto.PatientRes, error) {
 }
 
 func (uc *patientUseCase) Update(id uint, payload dto.Patient) (dto.PatientRes, error) {
-	dateTimeString := payload.BirthDate[0:10] + "T00:00:00+07:00"
+	splitedBirthDate := strings.Split(payload.BirthDate[0:10], "-")
+
+	dateTimeString := splitedBirthDate[2] + "-" + splitedBirthDate[1] + "-" + splitedBirthDate[0] + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, dateTimeString)
 	if err != nil {
 		return dto.PatientRes{}, err
