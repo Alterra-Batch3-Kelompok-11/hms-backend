@@ -13,6 +13,7 @@ import (
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -79,7 +80,7 @@ func (uc *outpatientSessionUseCase) GetAll() ([]dto.OutpatientSessionRes, error)
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -158,7 +159,7 @@ func (uc *outpatientSessionUseCase) GetById(id uint) (dto.OutpatientSessionRes, 
 		return res, err
 	}
 
-	dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+	dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 	timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 	dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -238,7 +239,7 @@ func (uc *outpatientSessionUseCase) GetByDoctorId(doctorId uint) ([]dto.Outpatie
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -318,7 +319,7 @@ func (uc *outpatientSessionUseCase) GetByPatientId(patientId uint) ([]dto.Outpat
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -399,7 +400,7 @@ func (uc *outpatientSessionUseCase) GetUnprocessedByDoctorId(doctorId uint) ([]d
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -480,7 +481,7 @@ func (uc *outpatientSessionUseCase) GetProcessedByDoctorId(doctorId uint) ([]dto
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -561,7 +562,7 @@ func (uc *outpatientSessionUseCase) GetApprovedByDoctorId(doctorId uint) ([]dto.
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -642,7 +643,7 @@ func (uc *outpatientSessionUseCase) GetRejectedByDoctorId(doctorId uint) ([]dto.
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +
@@ -697,7 +698,9 @@ func (uc *outpatientSessionUseCase) GetRejectedByDoctorId(doctorId uint) ([]dto.
 func (uc *outpatientSessionUseCase) Create(payload dto.OutpatientSessionReq) (dto.OutpatientSessionRes, error) {
 	var res dto.OutpatientSessionRes
 
-	dateTimeString := payload.ScheduleDate + "T" + payload.ScheduleTime + "+07:00"
+	splitedDate := strings.Split(payload.ScheduleDate[0:10], "-")
+
+	dateTimeString := splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0] + "T00:00:00+07:00"
 	dateTime, err := time.Parse(time.RFC3339, dateTimeString)
 	if err != nil {
 		return res, err
