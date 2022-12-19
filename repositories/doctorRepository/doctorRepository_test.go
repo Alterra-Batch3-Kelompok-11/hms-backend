@@ -4,14 +4,15 @@ import (
 	"database/sql"
 	"database/sql/driver"
 	"fmt"
-	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/stretchr/testify/suite"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 	"hms-backend/models"
 	"regexp"
 	"testing"
 	"time"
+
+	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/stretchr/testify/suite"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 type AnyTime struct{}
@@ -84,7 +85,33 @@ func (s *doctorTestSuite) TestGetById() {
 	s.mocking.
 		ExpectQuery(regexp.QuoteMeta("SELECT * FROM `doctors` WHERE ID = ? AND `doctors`.`deleted_at` IS NULL ORDER BY `doctors`.`id` LIMIT 1")).
 		WithArgs(1).
-		WillReturnRows(Rows).RowsWillBeClosed()
+		WillReturnRows(sqlmock.NewRows([]string{
+			"id",
+			"created_at",
+			"updated_at",
+			"deleted_at",
+			"user_id",
+			"speciality_id",
+			"license_number",
+			"profile_pic",
+			"birth_date",
+			"phone",
+			"marital_status",
+			"email",
+		}).AddRow(
+			1,
+			nil,
+			nil,
+			nil,
+			1,
+			1,
+			"1234567890",
+			"",
+			nil,
+			"0812121213",
+			false,
+			"fulan@mail.com",
+		)).RowsWillBeClosed()
 
 	var testCases = []struct {
 		name      string
@@ -122,7 +149,33 @@ func (s *doctorTestSuite) TestGetByUserId() {
 	s.mocking.
 		ExpectQuery(regexp.QuoteMeta("SELECT * FROM `doctors` WHERE user_id = ? AND `doctors`.`deleted_at` IS NULL ORDER BY `doctors`.`id` LIMIT 1")).
 		WithArgs(1).
-		WillReturnRows(Rows).RowsWillBeClosed()
+		WillReturnRows(sqlmock.NewRows([]string{
+			"id",
+			"created_at",
+			"updated_at",
+			"deleted_at",
+			"user_id",
+			"speciality_id",
+			"license_number",
+			"profile_pic",
+			"birth_date",
+			"phone",
+			"marital_status",
+			"email",
+		}).AddRow(
+			1,
+			nil,
+			nil,
+			nil,
+			1,
+			1,
+			"1234567890",
+			"",
+			nil,
+			"0812121213",
+			false,
+			"fulan@mail.com",
+		)).RowsWillBeClosed()
 
 	var testCases = []struct {
 		name      string
@@ -160,7 +213,33 @@ func (s *doctorTestSuite) TestGetByLicenseNumber() {
 	s.mocking.
 		ExpectQuery(regexp.QuoteMeta("SELECT * FROM `doctors` WHERE license_number = ? AND `doctors`.`deleted_at` IS NULL ORDER BY `doctors`.`id` LIMIT 1")).
 		WithArgs("1234567890").
-		WillReturnRows(Rows).RowsWillBeClosed()
+		WillReturnRows(sqlmock.NewRows([]string{
+			"id",
+			"created_at",
+			"updated_at",
+			"deleted_at",
+			"user_id",
+			"speciality_id",
+			"license_number",
+			"profile_pic",
+			"birth_date",
+			"phone",
+			"marital_status",
+			"email",
+		}).AddRow(
+			1,
+			nil,
+			nil,
+			nil,
+			1,
+			1,
+			"1234567890",
+			"",
+			nil,
+			"0812121213",
+			false,
+			"fulan@mail.com",
+		)).RowsWillBeClosed()
 
 	var testCases = []struct {
 		name          string
@@ -198,7 +277,33 @@ func (s *doctorTestSuite) TestGetByLicenseNumberOther() {
 	s.mocking.
 		ExpectQuery(regexp.QuoteMeta("SELECT * FROM `doctors` WHERE (license_number = ? AND ID != ?) AND `doctors`.`deleted_at` IS NULL ORDER BY `doctors`.`id` LIMIT 1")).
 		WithArgs("1234567890", 1).
-		WillReturnRows(Rows).RowsWillBeClosed()
+		WillReturnRows(sqlmock.NewRows([]string{
+			"id",
+			"created_at",
+			"updated_at",
+			"deleted_at",
+			"user_id",
+			"speciality_id",
+			"license_number",
+			"profile_pic",
+			"birth_date",
+			"phone",
+			"marital_status",
+			"email",
+		}).AddRow(
+			1,
+			nil,
+			nil,
+			nil,
+			1,
+			1,
+			"1234567890",
+			"",
+			nil,
+			"0812121213",
+			false,
+			"fulan@mail.com",
+		)).RowsWillBeClosed()
 
 	var testCases = []struct {
 		name          string
@@ -238,7 +343,33 @@ func (s *doctorTestSuite) TestGetBySpecialityId() {
 	s.mocking.
 		ExpectQuery(regexp.QuoteMeta("SELECT * FROM `doctors` WHERE speciality_id = ? AND `doctors`.`deleted_at` IS NULL")).
 		WithArgs(1).
-		WillReturnRows(Rows).RowsWillBeClosed()
+		WillReturnRows(sqlmock.NewRows([]string{
+			"id",
+			"created_at",
+			"updated_at",
+			"deleted_at",
+			"user_id",
+			"speciality_id",
+			"license_number",
+			"profile_pic",
+			"birth_date",
+			"phone",
+			"marital_status",
+			"email",
+		}).AddRow(
+			1,
+			nil,
+			nil,
+			nil,
+			1,
+			1,
+			"1234567890",
+			"",
+			nil,
+			"0812121213",
+			false,
+			"fulan@mail.com",
+		)).RowsWillBeClosed()
 
 	var testCases = []struct {
 		name      string
@@ -312,9 +443,6 @@ func (s *doctorTestSuite) TestCreate() {
 		WillReturnError(nil)
 
 	s.mocking.ExpectCommit()
-
-	s.mocking.ExpectQuery(regexp.QuoteMeta("SELECT * FROM `doctors` WHERE `doctors`.`deleted_at` IS NULL")).
-		WillReturnRows(Rows)
 
 	var testCases = []struct {
 		name      string
