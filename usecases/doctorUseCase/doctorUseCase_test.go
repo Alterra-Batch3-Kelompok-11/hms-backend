@@ -1,8 +1,6 @@
 package doctorUseCase
 
 import (
-	"github.com/stretchr/testify/suite"
-	"gorm.io/gorm"
 	"hms-backend/constants"
 	"hms-backend/dto"
 	"hms-backend/models"
@@ -12,6 +10,9 @@ import (
 	mock2 "hms-backend/repositories/userRepository/mock"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/suite"
+	"gorm.io/gorm"
 )
 
 type doctorTestSuite struct {
