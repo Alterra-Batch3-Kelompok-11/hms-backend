@@ -346,7 +346,7 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 	for _, todaySched := range todayScheds {
 		doctor, err := uc.doctorRep.GetById(todaySched.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
@@ -357,12 +357,12 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.spcRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
