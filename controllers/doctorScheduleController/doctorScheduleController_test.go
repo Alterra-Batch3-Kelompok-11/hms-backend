@@ -204,12 +204,12 @@ func (s *doctorScheduleTestSuite) TestGetByLicenseNumber() {
 }
 
 func (s *doctorScheduleTestSuite) TestGetByDoctorId() {
-	s.mock.On("GetBySpecialityId", uint(1)).Return(
+	s.mock.On("GetByDoctorId", uint(1)).Return(
 		true,
 		Schedules,
 	)
 
-	s.mock.On("GetBySpecialityId", uint(0)).Return(
+	s.mock.On("GetByDoctorId", uint(0)).Return(
 		false,
 		[]dto.DoctorScheduleRes{},
 	)

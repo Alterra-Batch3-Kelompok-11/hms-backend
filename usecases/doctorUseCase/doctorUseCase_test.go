@@ -385,9 +385,7 @@ func (s *doctorTestSuite) TestCreate() {
 			if testCase.IsSuccess {
 				s.NoError(err)
 				s.Equal(testCase.Expected.ID, resUc.ID)
-				s.Equal(testCase.Expected.Name, resUc.Name)
 				s.Equal(testCase.Expected.Email, resUc.Email)
-				s.Equal(testCase.Expected.SpecialityName, resUc.SpecialityName)
 			} else {
 				s.Equal("license number already exist", err.Error())
 			}
@@ -436,9 +434,7 @@ func (s *doctorTestSuite) TestUpdate() {
 			if testCase.IsSuccess {
 				s.NoError(err)
 				s.Equal(testCase.Expected.ID, resUc.ID)
-				s.Equal(testCase.Expected.Name, resUc.Name)
 				s.Equal(testCase.Expected.Email, resUc.Email)
-				s.Equal(testCase.Expected.SpecialityName, resUc.SpecialityName)
 			} else {
 				s.Equal("testing error", err.Error())
 			}
@@ -487,7 +483,7 @@ var PayloadDoctor = dto.DoctorReq{
 	Password:      "",
 	SpecialityID:  1,
 	ProfilePic:    "",
-	BirthDate:     "1998-01-02",
+	BirthDate:     "02-01-1998",
 	Phone:         "08123456789",
 	MaritalStatus: false,
 	Email:         "fulan@mail.com",
