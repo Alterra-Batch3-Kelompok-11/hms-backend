@@ -13,6 +13,7 @@ import (
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -52,7 +53,7 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 	}
 
 	for _, doctor := range doctors {
-		birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+		birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 		birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 			constants.Bulan[int(doctor.BirthDate.Month())] + " " +
@@ -125,7 +126,7 @@ func (uc *doctorUseCase) GetById(id uint) (dto.DoctorRes, error) {
 		return res, err
 	}
 
-	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+	birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
@@ -196,7 +197,7 @@ func (uc *doctorUseCase) GetByLicenseNumber(licenseNumber string) (dto.DoctorRes
 		return res, err
 	}
 
-	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+	birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
@@ -267,7 +268,7 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 	}
 
 	for _, doctor := range doctors {
-		birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+		birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 		birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 			constants.Bulan[int(doctor.BirthDate.Month())] + " " +
@@ -345,10 +346,10 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 	for _, todaySched := range todayScheds {
 		doctor, err := uc.doctorRep.GetById(todaySched.DoctorId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
-		birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+		birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 		birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 			constants.Bulan[int(doctor.BirthDate.Month())] + " " +
@@ -356,12 +357,12 @@ func (uc *doctorUseCase) GetToday() ([]dto.DoctorRes, error) {
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.spcRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
@@ -442,7 +443,9 @@ func (uc *doctorUseCase) Create(payload dto.DoctorReq) (dto.DoctorRes, error) {
 		return dto.DoctorRes{}, err
 	}
 
-	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+	splitedBirthDate := strings.Split(payload.BirthDate[0:10], "-")
+
+	birthDateTimeString := splitedBirthDate[2] + "-" + splitedBirthDate[1] + "-" + splitedBirthDate[0] + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
 	if err != nil {
 		return dto.DoctorRes{}, err
@@ -467,7 +470,7 @@ func (uc *doctorUseCase) Create(payload dto.DoctorReq) (dto.DoctorRes, error) {
 
 	speciality, _ := uc.spcRep.GetById(resCreateDtr.SpecialityId)
 
-	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+	birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 		constants.Bulan[int(doctor.BirthDate.Month())] + " " +
@@ -532,7 +535,9 @@ func (uc *doctorUseCase) Update(id uint, payload dto.DoctorReq) (dto.DoctorRes, 
 		return dto.DoctorRes{}, err
 	}
 
-	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+	splitedBirthDate := strings.Split(payload.BirthDate[0:10], "-")
+
+	birthDateTimeString := splitedBirthDate[2] + "-" + splitedBirthDate[1] + "-" + splitedBirthDate[0] + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
 	if err != nil {
 		return dto.DoctorRes{}, err
@@ -583,7 +588,7 @@ func (uc *doctorUseCase) Update(id uint, payload dto.DoctorReq) (dto.DoctorRes, 
 		}
 	}
 
-	birthDateString := strconv.Itoa(doctor.BirthDate.Year()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", doctor.BirthDate.Day())
+	birthDateString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + "-" + strconv.Itoa(int(doctor.BirthDate.Month())) + "-" + strconv.Itoa(doctor.BirthDate.Year())
 
 	birthDateIndoString := fmt.Sprintf("%02d", doctor.BirthDate.Day()) + " " +
 		constants.Bulan[int(doctor.BirthDate.Month())] + " " +

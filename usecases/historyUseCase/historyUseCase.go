@@ -41,7 +41,7 @@ func (uc *historyUseCase) GetOutpatientSessionHistory(doctorId uint) ([]dto.Hist
 			continue
 		}
 
-		dateString := strconv.Itoa(outpatientSession.Schedule.Year()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + fmt.Sprintf("%02d", outpatientSession.Schedule.Day())
+		dateString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + "-" + strconv.Itoa(int(outpatientSession.Schedule.Month())) + "-" + strconv.Itoa(outpatientSession.Schedule.Year())
 		timeString := fmt.Sprintf("%02d", outpatientSession.Schedule.Hour()) + ":" + fmt.Sprintf("%02d", outpatientSession.Schedule.Minute())
 
 		dateIndoString := fmt.Sprintf("%02d", outpatientSession.Schedule.Day()) + " " +

@@ -11,6 +11,7 @@ import (
 	"hms-backend/repositories/specialityRepository"
 	"hms-backend/repositories/userRepository"
 	"strconv"
+	"strings"
 	"time"
 
 	"gorm.io/gorm"
@@ -186,7 +187,9 @@ func (uc *nurseUseCase) GetByLicenseNumber(licenseNumber string) (dto.NurseRes, 
 }
 
 func (uc *nurseUseCase) Create(payload dto.NurseReq) (dto.NurseRes, error) {
-	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+	splitedBirthDate := strings.Split(payload.BirthDate[0:10], "-")
+
+	birthDateTimeString := splitedBirthDate[2] + "-" + splitedBirthDate[1] + "-" + splitedBirthDate[0] + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
 	if err != nil {
 		return dto.NurseRes{}, err
@@ -318,7 +321,9 @@ func (uc *nurseUseCase) Update(id uint, payload dto.NurseReq) (dto.NurseRes, err
 		return dto.NurseRes{}, err
 	}
 
-	birthDateTimeString := payload.BirthDate + "T00:00:00+07:00"
+	splitedBirthDate := strings.Split(payload.BirthDate[0:10], "-")
+
+	birthDateTimeString := splitedBirthDate[2] + "-" + splitedBirthDate[1] + "-" + splitedBirthDate[0] + "T00:00:00+07:00"
 	birthDateTime, err := time.Parse(time.RFC3339, birthDateTimeString)
 	if err != nil {
 		return dto.NurseRes{}, err
@@ -345,7 +350,7 @@ func (uc *nurseUseCase) Update(id uint, payload dto.NurseReq) (dto.NurseRes, err
 		return res, err
 	}
 
-	birthDateString := strconv.Itoa(nurse.BirthDate.Year()) + "-" + strconv.Itoa(int(nurse.BirthDate.Month())) + "-" + fmt.Sprintf("%02d", nurse.BirthDate.Day())
+	birthDateString := fmt.Sprintf("%02d", nurse.BirthDate.Day()) + "-" + strconv.Itoa(int(nurse.BirthDate.Month())) + "-" + strconv.Itoa(nurse.BirthDate.Year())
 
 	birthDateIndoString := fmt.Sprintf("%02d", nurse.BirthDate.Day()) + " " +
 		constants.Bulan[int(nurse.BirthDate.Month())] + " " +

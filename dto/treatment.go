@@ -33,7 +33,6 @@ type PatientConditionRes struct {
 		Phone         string    `json:"phone"`
 		Address       string    `json:"address"`
 		MaritalStatus bool      `json:"marital_status"`
-		ReligionName  string    `json:"religion_name"`
 	} `json:"patient"`
 	Doctor struct {
 		Name           string `json:"name"`
