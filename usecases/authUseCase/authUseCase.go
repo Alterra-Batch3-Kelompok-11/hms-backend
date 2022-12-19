@@ -73,6 +73,7 @@ func (uc *authUseCase) Login(username, password string) (dto.LoginRes, error) {
 		}
 
 		res.NurseID = nurse.ID
+		res.DoctorID = nurse.DoctorId
 	}
 
 	return res, nil
