@@ -61,12 +61,12 @@ func (uc *doctorUseCase) GetAll() ([]dto.DoctorRes, error) {
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.spcRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
@@ -276,12 +276,12 @@ func (uc *doctorUseCase) GetBySpecialityId(specialityId uint) ([]dto.DoctorRes, 
 
 		user, err := uc.userRep.GetById(doctor.UserId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		speciality, err := uc.spcRep.GetById(doctor.SpecialityId)
 		if err != nil {
-			return res, err
+			continue
 		}
 
 		jakartaTimeNow, _ := helpers.TimeIn(time.Now(), "Asia/Bangkok")
