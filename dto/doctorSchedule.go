@@ -9,7 +9,7 @@ import (
 
 type DoctorScheduleReq struct {
 	DoctorId  uint   `json:"doctor_id" validate:"required"`
-	DayInt    int    `json:"day_int" form:"day_int" validate:"required"`
+	DayInt    int    `json:"day_int" form:"day_int"`
 	StartTime string `json:"start_time" form:"start_time" validate:"required"`
 	EndTime   string `json:"end_time" form:"end_time" validate:"required"`
 }
