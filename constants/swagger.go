@@ -2380,10 +2380,10 @@ const SwaggerDocTemplate = `
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "name": "Fulan",
-                                    "license_number": "780198012345",
-                                    "password": "fulan123",
-                                    "speciality_id": 2
+                                    "doctor_id": 3,
+                                    "day_int": 2,
+                                    "start_time": "08:00",
+                                    "end_time": "15:00"
                                 }
                             }
                         }
